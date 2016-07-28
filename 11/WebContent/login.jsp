@@ -73,7 +73,7 @@
 				<!-- <iframe scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:91px;height:30px;"
      src="http://www.clocklink.com/html5embed.php?clock=008&timezone=KoreaRepublicof_Seoul&color=gray&size=91&Title=&Message=&Target=&From=2016,1,1,0,0,0&Color=gray">
      </iframe> -->
-				<img src="image/logo.png" />				
+				<!-- <img src="image/logo.png" />	 -->			
 				</div>
 				<div class="input_login">
 					<input type="text" placeholder="아이디">
