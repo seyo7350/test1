@@ -204,3 +204,28 @@ img{
 .address{
 	font-size: 13px;
 }
+
+#info1{
+	color: rgb(108, 108, 108);
+	font-family: "Nanum Gothic", sans-serif;
+	font-size: 13px;
+	font-style: italic;
+	font-weight: 700;
+	text-align: right;
+	margin-top: 13px;
+	margin-bottom: 13px;
+}
+
+#info2{
+	color: rgb(156, 156, 156);
+	font-family: "Nanum Gothic", sans-serif;
+	font-size: 13px;
+	text-align: right;
+	margin-top: 13px;
+	margin-bottom: 13px;
+}
+
+.copyright{
+	margin-top: 13px;
+	margin-bottom: 13px;
+}

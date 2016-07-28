@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 td, th {
     display: table-cell;
-    vertical-align: inherit;
+    vertical-align: top;
 }
 tr{
 	display: table-row;
@@ -44,6 +44,57 @@ form{
 	letter-spacing: 1;
 	color: #686868;
 }
+
+.detail_menu_tab ul {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+
+.detail_menu_tab ul li {
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	margin: 0 0 0 2px;
+	padding: 0 0 0 13px;
+	*padding: 0 5px 0 13px;
+	background:
+		url("/design/cherry07/trend9/cherrycoco/imgs/detail_tab_menu_bar.png")
+		no-repeat left 2px;
+}
+
+.detail_menu_tab ul li.first_child {
+	margin: 0;
+	padding: 0 2px 0 0;
+	background: none;
+}
+
+.detail_menu_tab ul li.last_child {
+	float: right;
+	background: none;
+}
+
+.detail_menu_tab ul li a {
+	display: block;
+	font-size: 12px;
+	font-weight: bold;
+	color: #a3a3a3;
+	vertical-align: middle;
+}
+
+.detail_menu_tab ul li a.over {
+	color: #fed1ac;
+}
+
+.detail_menu_tab ul li a:hover {
+	text-decoration: none;
+	color: #fed1ac;
+}
+#productDetail .thumb-info .info .prd-btns {
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+}
 #productDetail .thumb-info .info tit-prd{
 	margin: 0 0 10px;
 	padding: 0 5px 5px 2px;
@@ -62,7 +113,6 @@ form{
     margin-left: 122px;
     width: 436px;
     text-align: center;
-    margin-right: 131px; 
 }
 #productDetail .thumb-info .info .tit-prd {
     font-size: 24px;
