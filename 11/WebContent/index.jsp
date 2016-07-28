@@ -103,13 +103,13 @@
 	                GUIDE/개인정보취급방침/..
 	            </ul> -->
 	            <div class="address">
-					<p style="text-align: right; color: #6c6c6c; font-weight: bold; font-style: italic;">
+					<p id="info1">
 						CALL 1600 - 7255<br>
 						MON-FRI AM 10:00 - PM 5:00 / SAT AM 10:00 - PM 1:00<br>
 						LUNCHI TIME PM 1:00 - 2:00 / SUN/HOLYDAY CLOSED<br><br>
 						_BANK_ : WOORI 1005-501-330632, ....
 					</p>
-	                <p style="text-align: right; color: #9c9c9c;">
+	                <p id="info2">
 	                	법인명(상호): (주)체리코코  | 대표자(성명): 지동헌 | 사업자 등록번호 안내: [215-87-15936] | 통신판매업 신고 제 2011 - 서울강남 - 03186호<br>
 						전화: 1600-7255 | 주소: 서울특별시 강남구 신사동 517-4 M SPACE 빌딩 2층 (강남대로158길 26) -(주)체리코코 <br>
 						교환 & 반품 주소 : 서울 성북구 종암동 57-39번지 CJ대한통운 종암대리점 (주)체리코코 <br>
