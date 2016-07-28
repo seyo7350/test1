@@ -9,19 +9,24 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
 
-
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="js/textRolling.js"></script>
 <script src="js/jquery.bxslider.js"></script>
 <script src="js/jquery.bxslider.min.js"></script>
 
+<style type="text/css"> 
+table { border-collapse:collapse; border:3px solid lightgray; } 
+
+a  {font-size: 12px; color:gray;}
+
+</style> 
 
 </head>
 <body>
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
-			login&nbsp;&nbsp;/&nbsp;&nbsp;join<br>
+			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='legi.jsp'>join<br>
 			shopping bag<br>
 			mypage&nbsp;&nbsp;/&nbsp;&nbsp;home
 		</div>
@@ -46,9 +51,7 @@
 	</div>
 </div>
 
-
-
-      
+<!--위에거 수정금지  -->
       
 <div class="container">
 	<div class="container_top">
@@ -59,8 +62,25 @@
 	<div class="container_middle">
 		<div class="content">
 			
-		<jsp:include page="login.html"></jsp:include>
+<p style="text-align: center; background-color:rgb(214,214,214);" ><strong>회원가입 완료</strong></p>
+<table align="center"  >
+<col width ="150"><col width ="400">
+ <tr>
+      <td rowspan="4"> <img src ="image/legiAF.JPG" /> </td>
+      <td> <a>~님의 회원가입이 성공적으로 이루어졌습니다.</a></td>
+ </tr>
+  <tr>
+    <td> <a>APPLEKOKO 안에서 즐거운 쇼핑 되세요.</a> </td>
+ </tr>
+  <tr>
+    <td><a style="color: red;">~님의 축하적립금은 2000원 입니다.</a></td>
+ </tr>
+   <tr>
+    <td> <a>감사합니다.</a> </td>
+ </tr>
+</table>
 			
+ <!--아래거 수정금지  --> 			
 		</div>
 	</div>
 	<div class="container_footer">
@@ -70,20 +90,20 @@
 	                GUIDE/개인정보취급방침/..
 	            </ul> -->
 	            <div class="address">
-					<p id="info1">
+					<p style="text-align: right; color: #6c6c6c; font-weight: bold; font-style: italic;">
 						CALL 1600 - 7255<br>
 						MON-FRI AM 10:00 - PM 5:00 / SAT AM 10:00 - PM 1:00<br>
 						LUNCHI TIME PM 1:00 - 2:00 / SUN/HOLYDAY CLOSED<br><br>
 						_BANK_ : WOORI 1005-501-330632, ....
 					</p>
-	                <p id="info2">
+	                <p style="text-align: right; color: #9c9c9c;">
 	                	법인명(상호): (주)체리코코  | 대표자(성명): 지동헌 | 사업자 등록번호 안내: [215-87-15936] | 통신판매업 신고 제 2011 - 서울강남 - 03186호<br>
 						전화: 1600-7255 | 주소: 서울특별시 강남구 신사동 517-4 M SPACE 빌딩 2층 (강남대로158길 26) -(주)체리코코 <br>
 						교환 & 반품 주소 : 서울 성북구 종암동 57-39번지 CJ대한통운 종암대리점 (주)체리코코 <br>
 						개인정보관리책임자: 지동헌 | Contact help@cherrykoko.com for more information.<br>
 	                </p>
 	                <p class="copyright" style="text-align: right;"><img src="http://img29.makeshop.co.kr/design/cherry07/trend9/cherrycoco/imgs/footer_copy_img.png" /></p>
-	            </div>          
+	            </div>	           
 	        </div>
 		</div>		
 	</div><!-- container_footer -->

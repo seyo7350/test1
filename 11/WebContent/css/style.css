@@ -212,6 +212,8 @@ img{
 	font-style: italic;
 	font-weight: 700;
 	text-align: right;
+	margin-top: 13px;
+	margin-bottom: 13px;
 }
 
 #info2{
@@ -219,4 +221,11 @@ img{
 	font-family: "Nanum Gothic", sans-serif;
 	font-size: 13px;
 	text-align: right;
+	margin-top: 13px;
+	margin-bottom: 13px;
+}
+
+.copyright{
+	margin-top: 13px;
+	margin-bottom: 13px;
 }

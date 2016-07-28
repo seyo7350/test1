@@ -20,7 +20,7 @@
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
-			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;join<br>
+			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join</a><br>
 			shopping bag<br>
 			mypage&nbsp;&nbsp;/&nbsp;&nbsp;home
 		</div>
