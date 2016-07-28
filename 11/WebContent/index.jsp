@@ -26,9 +26,9 @@
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product_detail.jsp">OUTER</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOP
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp">TOP</a>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
 			<br>
