@@ -8,6 +8,7 @@
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
+<link rel="stylesheet" href="css/login.css">
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="js/textRolling.js"></script>
@@ -16,11 +17,11 @@
 
 
 </head>
-<body>
+<body link="rgb(73, 67, 70)" alink="rgb(73, 67, 70)" vlink="rgb(73, 67, 70)">
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
-			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;join<br>
+			login&nbsp;&nbsp;/&nbsp;&nbsp;join<br>
 			shopping bag<br>
 			mypage&nbsp;&nbsp;/&nbsp;&nbsp;home
 		</div>
@@ -57,43 +58,49 @@
 	</div>	
 	<div class="container_middle">
 		<div class="content">
-			<div class="rolling">
-				<div class="rolling_title">
-					<ul>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;">please read me;</li>
-					</ul>
+			
+					
+<div class="title_logo" align="center" style="margin-top: 50px;"><a href="http://www.cherrykoko.com"><img src="image/apple.png"/></a></div>
+		
+	<div class="wrapper">
+		<div class="main"> <!-- 로고와 로그인창이 들어올 영역 -->
+			<div class="logo">	<!-- 로고 이미지 영역 -->
+			
+			</div>
+			<div class="login_box">
+			
+				<div class="input_login1">
+				<!-- <iframe scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:91px;height:30px;"
+     src="http://www.clocklink.com/html5embed.php?clock=008&timezone=KoreaRepublicof_Seoul&color=gray&size=91&Title=&Message=&Target=&From=2016,1,1,0,0,0&Color=gray">
+     </iframe> -->
+				<img src="image/logo.png" />				
 				</div>
-				<div class="rolling_text">
-					<ul id="scroll">
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">공지사항 111111111111111111</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">222222222222222222222위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">333333333333333333위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">444444444444444위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">555555555555555555위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">6666666666666666위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">7777777777777777777위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">888888888888888888위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">9999999999999999999위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">1000000000000000위</a></li>
-					</ul>
+				<div class="input_login">
+					<input type="text" placeholder="아이디">
+				</div>
+				<div class="input_login">
+					<input type="password" placeholder="비밀번호"> 
+				</div>
+				<div class="check">
+					<label><input type="checkbox">아이디 저장</label>
+				</div>
+				
+				<div class="login">
+					<input type="submit" value="로그인">
+				</div>
+				
+			
+				<div class="last">
+					<div class="join" ><a href="http://www.naver.com" style="color: #f5f5f5;">회원가입</a></div>
+					<div class="search" ><a href="http://www.google.com" style="color: #f5f5f5;">비밀번호 찾기</a></div>
 				</div>
 			</div>
-			<!-- content -->
-			<!-- 여기에 삽입 -->
-			<div id="main">
-				<div class="widget_main_visual_area"> 
-	   				<ul class="slider">	      
-					  <li><img src="image/main1.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main2.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main3.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main4.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main5.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main6.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main7.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main8.jpg" style="width: 1155px;"/></li>
-					</ul>
-				</div>
-			</div>
+		</div>
+	<p align="center">
+	<img src="image/info.jpg">
+	</p>
+	</div>
+			
 		</div>
 	</div>
 	<div class="container_footer">
