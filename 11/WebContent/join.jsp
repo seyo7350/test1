@@ -283,7 +283,7 @@ select {
 						<a href='index.jsp'><img src="image/cancel_btn.jpg" width="90px" style="vertical-align: top;"/></a>
 					</p>
 				</form>
-dsfdf
+
 
 
 			</div>
