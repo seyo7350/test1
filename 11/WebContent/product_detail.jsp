@@ -57,43 +57,95 @@
 	</div>	
 	<div class="container_middle">
 		<div class="content">
-			<div class="rolling">
-				<div class="rolling_title">
-					<ul>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;">please read me;</li>
-					</ul>
-				</div>
-				<div class="rolling_text">
-					<ul id="scroll">
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">공지사항 111111111111111111</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">222222222222222222222위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">333333333333333333위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">444444444444444위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">555555555555555555위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">6666666666666666위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">7777777777777777777위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">888888888888888888위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">9999999999999999999위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">1000000000000000위</a></li>
-					</ul>
-				</div>
-			</div>
 			<!-- content -->
-			<!-- 여기에 삽입 -->
-			<div id="main">
-				<div class="widget_main_visual_area"> 
-	   				<ul class="slider">	      
-					  <li><img src="image/main1.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main2.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main3.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main4.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main5.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main6.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main7.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main8.jpg" style="width: 1155px;"/></li>
-					</ul>
-				</div>
+			<div id="contnent">
+				<div id="productDetail">
+					<div class="page_path">
+						<h3>현재위치</h3>
+					</div>
+					<div class="page-body">
+						<div class="thumb-info">
+							<div class="thumb-wrap">
+								<div class="thumb">
+									<img src ="image/002001003874.jpg" alt=""/>
+								</div>
+							</div>
+							 <!--  .thumb-wrap  -->
+							 <form name="form1" id="form1" action="basket.jsp" method="post">
+								<div class="info">
+									<h3 class="tit-prd">상품명</h3>
+								<div class="table-opt">
+									<table summary="판매가격, 적립금, 주문수량, 옵션, 사이즈">
+									<colgroup>
+										<col width="90">
+										<col width="*">
+									</colgroup>
+									<tbody>
+										<tr>
+											<th scope="row">
+												<div class="tb-left">code</div>
+											<th>
+											<td>
+												<div class="prd-price detail_info_right">코드번호</div>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">
+												<div class="tb-left">price</div>
+											<th>
+											<td>
+												<div class="prd-price detail_info_right">가격넣는곳</div>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">
+												<div class="tb-left">mileage</div>
+											<th>
+											<td>
+												<div class="prd-price detail_info_right">마일리지 넣는 곳</div>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">
+												<div class="tb-left">color</div>
+											<th>
+											<td>
+												<div class="detail_info_right">
+													<span id="MK_opt_0">
+		    											<input type="hidden" id="optionlist_0" name="optionlist[]" value="">
+		    												<select id="MK_p_s_0" onchange="p_add_product(this)" p_opt_cnt="0" mandatory="Y">
+		       													<option value="">--옵션 선택--</option>
+		        												<option value="0" price="29000" opt_price="0" opt_title="black/블랙" stock_cnt="-1">black/블랙</option>
+		    												</select>
+		    										</span>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="3">
+												<div class="MK_optAddWrap">
+													<div id="MK_innerOptWrap">
+														<div id="MK_innerOptTotal">
+															<span class="MK_txt-total">총 상품 금액</span>
+															<strong class="MK_total" id="MK_p_total">0</strong>
+															<span class="MK_txt-won">원</span>
+														</div>
+													</div>
+												</div>
+												<!-- .MK_optAddWrap --> 
+											</td>
+										</tr>	
+									</tbody>
+									</table> 
+								</div>
+								<!-- .table-opt -->
+							</div>
+							
+						</div>
+					</div>
 			</div>
+		</div>
+			
 		</div>
 	</div>
 	<div class="container_footer">

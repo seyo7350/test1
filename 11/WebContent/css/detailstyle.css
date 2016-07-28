@@ -1,0 +1,124 @@
+@CHARSET "UTF-8";
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+tr{
+	display: table-row;
+	vertical-align: inherit;
+}
+div {
+    display: block;
+}
+form{
+	overflow: hidden;
+} 
+.info{
+	clear: both;
+}
+.tb-left{
+	text-align: left;
+}
+
+.tb-left, tb-center, tb-right{
+	padding: 0px 10px 0px 10px;
+}
+.detail_info_right {
+    text-align: right;
+   float: right; 
+}
+.thumb-info, .thumb-wrap, table-opt{
+	overflow: hidden;
+}
+.shopping_tip {
+	background-color: #f8f8f8;
+	padding: 15px;
+}
+
+.shopping_tip h2 {
+	padding: 0 0 5px 0;
+}
+
+.shopping_tip p.text_area {
+	font-size: 11.5px;
+	letter-spacing: 1;
+	color: #686868;
+}
+#productDetail .thumb-info .info tit-prd{
+	margin: 0 0 10px;
+	padding: 0 5px 5px 2px;
+	font-size: 24px;
+	font-family: "Nanum Gothic", "나눔고딕", "malgun gothic", arial, dotum, sans-serif !important;
+	font-weight: 700;
+	color: #525252; 
+}
+#productDetail .thumb-info .info {
+    float: right;
+    width: 394px;
+    margin-right: 131px;
+}
+#productDetail .thumb-info .thumb-wrap {
+    float: left;
+    margin-left: 122px;
+    width: 436px;
+    text-align: center;
+    margin-right: 131px; 
+}
+#productDetail .thumb-info .info .tit-prd {
+    font-size: 24px;
+    font-weight: 700;
+    color: rgb(82, 82, 82);
+    font-family: "Nanum Gothic", 나눔고딕, "malgun gothic", arial, dotum, sans-serif;
+    margin: 0px 0px 10px;
+    padding: 0px 5px 5px 2px;
+}
+#productDetail .thumb-info .info .table-opt td {
+    color: #6a6a6a;
+}
+#productDetail .thumb-info .info .table-opt th{
+	font-weight: bold !important;
+	font-size: 12px;
+	color: #525252;	
+}
+#productDetail .thumb-info .info .table-opt th, #productDetail .thumb-info .info .table-opt td {
+    font-size: 12px;
+    font-family: "Nanum Gothic", 나눔고딕, "malgun gothic", arial, dotum, sans-serif;
+    padding: 5px 0px 4px 0px;
+}
+#productDetail .thumb-info{
+	position: relative;
+	width: 100%;
+	margin-bottom: 80px;
+}
+#productDetail .thumb-info .info .table-opt{
+	width: 100%;
+	margin-top: 10px;
+	padding:  5px 0px 5px 5px;
+}
+.MK_optAddWrap{
+	color: 3666;
+	font-size: 11px;
+	line-height: 13px;
+	content: Dotum;
+}
+#MK_innerOptWrap{
+	margin-top: 10px;
+	border-top: 1px solid #dedcdc;
+	background-color: #f9f9f9;
+}
+#MK_innerOptTotal{
+	padding: 10px 5px;
+	font-size: 12px;
+	color: #333;
+	text-align: right;
+}
+
+table{
+	width: 394px;
+	height: 161px;
+	border-collapse: collapse;
+	font-size: 12px;
+	line-height: 1.25;
+	color: #8a8a8a;
+	font-family: Dotum, AppleGothic, Helvetica, sans-serif;
+}
