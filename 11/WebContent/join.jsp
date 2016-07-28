@@ -73,7 +73,7 @@ select {
 	<div class="side">
 		<div class="side_inner">
 			<div class="side_inner_top">
-				<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='legi.jsp'>join<br> 
+				<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join<br> 
 				shopping bag<br>mypage&nbsp;&nbsp;/&nbsp;&nbsp;home 
 			</div>
 			<div class="side_inner_middle">
@@ -108,7 +108,7 @@ select {
 				</p>
 				<p style="color: rgb(248, 194, 143);">일반회원</p>
 				<hr style="border: soild 1px #8a8a8a;">
-				<form action="legiAF.jsp" method="post">
+				<form action="joinAF.jsp" method="post">
 					<!--이름입력  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>이름 :
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
