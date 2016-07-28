@@ -83,7 +83,7 @@
 						개인정보관리책임자: 지동헌 | Contact help@cherrykoko.com for more information.<br>
 	                </p>
 	                <p class="copyright" style="text-align: right;"><img src="http://img29.makeshop.co.kr/design/cherry07/trend9/cherrycoco/imgs/footer_copy_img.png" /></p>
-	            </div>	           
+	            </div>          
 	        </div>
 		</div>		
 	</div><!-- container_footer -->
