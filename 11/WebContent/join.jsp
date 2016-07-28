@@ -108,29 +108,34 @@ select {
 				</p>
 				<p style="color: rgb(248, 194, 143);">일반회원</p>
 				<hr style="border: soild 1px #8a8a8a;">
+				
 				<form action="joinAF.jsp" method="post">
 					<!--이름입력  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>이름 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</a> <input type="text" name="name" onkeyup="noSpaceForm(this)" /> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>이름 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	</a> 
+					<input type="text" name="name" onkeyup="noSpaceForm(this)" /> <br><br>
+					
 					<!--아이디입력  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>아이디 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <input
-						type="text" name="id" onkeyup="noSpaceForm(this)" /> <input
-						type="hidden" name="checkid" value=0> <img
-						src="image/overlap_btn.jpg" width="50px" /> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>아이디 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> 
+					<input type="text" name="id" onkeyup="noSpaceForm(this)" /> 
+					<img	src="image/overlap_btn.jpg" width="50px" /> <br><br>
+					
 					<!--비밀번호입력  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>비밀번호 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <input type="password"
-						name="password" onkeyup="noSpaceForm(this)" /> <a
-						style="font-size: 8px">*영문 대소문자/숫자/특수문자를 혼용하여 10~16자</a> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>비밀번호 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+					<input type="password"	name="password" onkeyup="noSpaceForm(this)" /> 
+					<a	style="font-size: 8px">*영문 대소문자/숫자/특수문자를 혼용하여 10~16자</a> <br><br>
+					
 					<!--비밀번호 확인 -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>비밀번호 확인
-						:&nbsp;&nbsp;</a> <input type="password" name="Chk_password"
-						onkeyup="noSpaceForm(this)" /> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>비밀번호 확인	:&nbsp;&nbsp;</a> 
+					<input type="password" name="Chk_password" onkeyup="noSpaceForm(this)" /> <br><br>
+					
 					<!--생일 성별 -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>생년월일 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>생년월일 :	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					
 					<!--태어난 년도 선택  -->
 					<select name="year">
 						<%
@@ -162,19 +167,14 @@ select {
 						<%
 							}
 						%>
-					</select><a>일</a> <br>
-					<!--성별-->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>성별
-						:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-					<input type="radio" name="gender" value="male" checked="checked"><a
-						style="font-size: 10px">남성</a> <input type="radio" name="gender"
-						value="female"><a style="font-size: 10px">여성</a> <br>
+					</select><a>일</a> <br><br>
+													
 					<!--우편번호-->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>우편번호
-						:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>우편번호:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 					<!--우편번호 찾기  -->
-					<input type="text" name="zip" id="zip" readonly="readonly">
-					<img src="image/address_btn.jpg" width="70px" onclick="findZip()"><br>
+					<input type="text" name="postcode" id="postcode" readonly="readonly">
+					<img src="image/address_btn.jpg" width="70px" onclick="findZip()"><br><br>
 
 					<div id="wrap"
 						style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 0; position: relative">
@@ -184,10 +184,9 @@ select {
 							style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
 							onclick="foldDaumPostcode()" alt="접기 버튼">
 					</div>
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>집주소 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</a> <input type="text" size="42" name="address1" readonly="readonly"
-						id="sample3_address" class="d_form large">
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>집주소 :	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+					<input type="text" size="42" name="address1" readonly="readonly"	id="sample3_address" class="d_form large">
 
 					<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 					<script>
@@ -233,7 +232,7 @@ select {
 											}
 
 											// 우편번호와 주소 정보를 해당 필드에 넣는다.
-											document.getElementById('zip').value = data.zonecode; //5자리 새우편번호 사용
+											document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
 											document
 													.getElementById('sample3_address').value = fullAddr;
 
@@ -258,56 +257,27 @@ select {
 						}
 					</script>
 
-					<br>
+					<br><br>
 					<!--상세주소  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>상세주소 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <input
-						type="text" name="address2" /> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>상세주소 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> 
+					<input type="text" name="address2" /> <br><br>
+					
 					<!--연락처  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>연락처 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <input
-						type="text" name="phone" onkeyup="noSpaceForm(this)" /> <a
-						style="font-size: 8px">*숫자만 입력해주세요</a> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a>
+				    <a>연락처 :	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+				    <input type="text" name="phone" onkeyup="noSpaceForm(this)" /> 
+				    <a	style="font-size: 8px">*숫자만 입력해주세요</a> <br><br>
+				    
 					<!--이메일  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>이메일 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <input
-						type="text" size="10" name="email1" onkeyup="noSpaceForm(this)" />
-					<a>&nbsp;<b>@</b>&nbsp;
-					</a> <input type="text" size="6" name="email2" id="email2"
-						onkeyup="noSpaceForm(this)" style="font-size: 8px;" disabled
-						value="naver.com" />
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>이메일 :	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+					<input type="text" size="10" name="email1" onkeyup="noSpaceForm(this)" />
+					<a>&nbsp;<b>@</b>&nbsp;	</a> 
+					<input type="text" size="10" name="email2" id="email2" onkeyup="noSpaceForm(this)" style="font-size: 8px;"/>
 
-					<!--도메인 선택  -->
-					<select name="selectEmail" id="selectEmail">
-						<option value="naver.com" selected="selected">naver.com</option>
-						<option value="hotmail.com">hotmail.com</option>
-						<option value="outlook.com">outlook.com</option>
-						<option value="nate.com">nate.com</option>
-						<option value="gmail.com">gmail.com</option>
-						<option value="hanmail.net">hanmail.net</option>
-						<option value="chol.com">chol.com</option>
-						<option value="1">직접입력</option>
-					</select>
-
-					<script type="text/javascript">
-						//이메일 입력방식 선택
-						$('#selectEmail').change(function() {
-							$("#selectEmail option:selected").each(function() {
-
-								if ($(this).val() == '1') { //직접입력일 경우
-									$("#email2").val(''); //값 초기화
-									$("#email2").attr("disabled", false); //활성화
-								} else { //직접입력이 아닐경우
-									$("#email2").val($(this).text()); //선택값 입력
-									$("#email2").attr("disabled", true); //비활성화
-								}
-							});
-						});
-					</script>
-
-					<img src="image/overlap_btn.jpg" width="50px" /> <a
-						style="font-size: 8px">*한메일(hanmail.net) 사용시 정보 메일이 수신이 안될 수
-						있습니다.</a> <br>
+					<img src="image/overlap_btn.jpg" width="50px" /> 
+					<a	style="font-size: 8px">*한메일(hanmail.net) 사용시 정보 메일이 수신이 안될 수	있습니다.</a> <br><br>
 					<p align="center">
 						<input TYPE="IMAGE" src="image/ok_btn.jpg" name="submit"	value="submit" width="90px" /> &nbsp;&nbsp;
 						<a href='index.jsp'><img src="image/cancel_btn.jpg" width="90px" style="vertical-align: top;"/></a>
