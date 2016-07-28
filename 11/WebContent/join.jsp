@@ -112,22 +112,22 @@ select {
 					<!--이름입력  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>이름 :
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</a> <input type="text" name="name" onkeyup="noSpaceForm(this)" /> <br>
+					</a> <input type="text" name="name" onkeyup="noSpaceForm(this)" /> <br><br>
 					<!--아이디입력  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>아이디 :
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <input
 						type="text" name="id" onkeyup="noSpaceForm(this)" /> <input
 						type="hidden" name="checkid" value=0> <img
-						src="image/overlap_btn.jpg" width="50px" /> <br>
+						src="image/overlap_btn.jpg" width="50px" /> <br><br>
 					<!--비밀번호입력  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>비밀번호 :
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <input type="password"
 						name="password" onkeyup="noSpaceForm(this)" /> <a
-						style="font-size: 8px">*영문 대소문자/숫자/특수문자를 혼용하여 10~16자</a> <br>
+						style="font-size: 8px">*영문 대소문자/숫자/특수문자를 혼용하여 10~16자</a> <br><br>
 					<!--비밀번호 확인 -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>비밀번호 확인
 						:&nbsp;&nbsp;</a> <input type="password" name="Chk_password"
-						onkeyup="noSpaceForm(this)" /> <br>
+						onkeyup="noSpaceForm(this)" /> <br><br>
 					<!--생일 성별 -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>생년월일 :
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
@@ -162,19 +162,20 @@ select {
 						<%
 							}
 						%>
-					</select><a>일</a> <br>
+					</select><a>일</a> <br><br>
 					<!--성별-->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>성별
 						:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 					<input type="radio" name="gender" value="male" checked="checked"><a
 						style="font-size: 10px">남성</a> <input type="radio" name="gender"
-						value="female"><a style="font-size: 10px">여성</a> <br>
+						value="female"><a style="font-size: 10px">여성</a> <br><br>
+						
 					<!--우편번호-->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>우편번호
-						:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>우편번호:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 					<!--우편번호 찾기  -->
 					<input type="text" name="zip" id="zip" readonly="readonly">
-					<img src="image/address_btn.jpg" width="70px" onclick="findZip()"><br>
+					<img src="image/address_btn.jpg" width="70px" onclick="findZip()"><br><br>
 
 					<div id="wrap"
 						style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 0; position: relative">
@@ -257,17 +258,19 @@ select {
 							element_wrap.style.display = 'block';
 						}
 					</script>
-
-					<br>
+					<br><br>
+					
 					<!--상세주소  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>상세주소 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <input
-						type="text" name="address2" /> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>상세주소 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> 
+					<input type="text" name="address2" /> <br><br>
+					
 					<!--연락처  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>연락처 :
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <input
 						type="text" name="phone" onkeyup="noSpaceForm(this)" /> <a
-						style="font-size: 8px">*숫자만 입력해주세요</a> <br>
+						style="font-size: 8px">*숫자만 입력해주세요</a> <br><br>
+					
 					<!--이메일  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>이메일 :
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <input
@@ -307,7 +310,8 @@ select {
 
 					<img src="image/overlap_btn.jpg" width="50px" /> <a
 						style="font-size: 8px">*한메일(hanmail.net) 사용시 정보 메일이 수신이 안될 수
-						있습니다.</a> <br>
+						있습니다.</a> <br><br>
+						
 					<p align="center">
 						<input TYPE="IMAGE" src="image/ok_btn.jpg" name="submit"	value="submit" width="90px" /> &nbsp;&nbsp;
 						<a href='index.jsp'><img src="image/cancel_btn.jpg" width="90px" style="vertical-align: top;"/></a>
