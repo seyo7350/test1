@@ -46,6 +46,15 @@ body{
 	margin: 0px;
 }
 
+.side a{
+	text-decoration: none;
+	color: rgb(51, 51, 51);
+}
+
+.side a:HOVER{
+	opacity: 0.8;
+}
+
 .side_inner{
 	position: fixed;
 	width: 220px;
