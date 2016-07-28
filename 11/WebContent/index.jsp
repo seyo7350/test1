@@ -20,15 +20,15 @@
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
-			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;join<br>
+			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join</a><br>
 			shopping bag<br>
 			mypage&nbsp;&nbsp;/&nbsp;&nbsp;home
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product_detail.jsp">OUTER</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOP
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp">TOP</a>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
 			<br>
