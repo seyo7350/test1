@@ -65,8 +65,12 @@ public class memberDAO implements iMemberDAO {
 	}
 	
 	
-	
+	//중복확인
 
+
+
+	
+	
 		//로그 메소드1
 		public void log(String msg) {
 			// TODO Auto-generated method stub
@@ -74,7 +78,7 @@ public class memberDAO implements iMemberDAO {
 				System.out.println(getClass()+":" + msg);
 			}
 		}
-
+		
 		//로그 메소드2
 		public void log(String msg, Exception e) {
 			// TODO Auto-generated method stub

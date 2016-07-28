@@ -66,6 +66,16 @@ select {
 			return false;
 		}
 	}
+	
+	function checkid(){
+		var sid = document.form.id.value
+		if(sid==""){
+			alert("아이디를 입력해주세요");
+		}else{
+			
+		}
+
+	}
 </script>
 
 </head>
@@ -109,7 +119,7 @@ select {
 				<p style="color: rgb(248, 194, 143);">일반회원</p>
 				<hr style="border: soild 1px #8a8a8a;">
 				
-				<form action="joinAF.jsp" method="post">
+				<form action="joinAF.jsp" method="post" name ="form">
 					<!--이름입력  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
 					<a>이름 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	</a> 
