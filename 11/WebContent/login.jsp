@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
-<link rel="stylesheet" href="css/login.css">
+
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="js/textRolling.js"></script>
@@ -17,7 +17,7 @@
 
 
 </head>
-<body link="rgb(73, 67, 70)" alink="rgb(73, 67, 70)" vlink="rgb(73, 67, 70)">
+<body>
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
@@ -59,45 +59,7 @@
 	<div class="container_middle">
 		<div class="content">
 			
-		
-	<div class="wrapper">
-		<div class="main"> <!-- 로고와 로그인창이 들어올 영역 -->
-			<div class="logo">	<!-- 로고 이미지 영역 -->
-			
-			</div>
-			<div class="login_box">
-			
-				<div class="input_login1">
-				<!-- <iframe scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:91px;height:30px;"
-     src="http://www.clocklink.com/html5embed.php?clock=008&timezone=KoreaRepublicof_Seoul&color=gray&size=91&Title=&Message=&Target=&From=2016,1,1,0,0,0&Color=gray">
-     </iframe> -->
-				<img src="image/logo.png" />			
-				</div>
-				<div class="input_login">
-					<input type="text" placeholder="아이디">
-				</div>
-				<div class="input_login">
-					<input type="password" placeholder="비밀번호"> 
-				</div>
-				<div class="check">
-					<label><input type="checkbox">아이디 저장</label>
-				</div>
-				
-				<div class="login">
-					<input type="submit" value="로그인">
-				</div>
-				
-			
-				<div class="last">
-					<div class="join" ><a href="http://www.naver.com" style="color: #f5f5f5;">회원가입</a></div>
-					<div class="search" ><a href="http://www.google.com" style="color: #f5f5f5;">비밀번호 찾기</a></div>
-				</div>
-			</div>
-		</div>
-	<p align="center">
-	<img src="image/info.jpg">
-	</p>
-	</div>
+		<jsp:include page="login.html"></jsp:include>
 			
 		</div>
 	</div>
@@ -108,13 +70,13 @@
 	                GUIDE/개인정보취급방침/..
 	            </ul> -->
 	            <div class="address">
-					<p style="text-align: right; color: #6c6c6c; font-weight: bold; font-style: italic;">
+					<p id="info1">
 						CALL 1600 - 7255<br>
 						MON-FRI AM 10:00 - PM 5:00 / SAT AM 10:00 - PM 1:00<br>
 						LUNCHI TIME PM 1:00 - 2:00 / SUN/HOLYDAY CLOSED<br><br>
 						_BANK_ : WOORI 1005-501-330632, ....
 					</p>
-	                <p style="text-align: right; color: #9c9c9c;">
+	                <p id="info2">
 	                	법인명(상호): (주)체리코코  | 대표자(성명): 지동헌 | 사업자 등록번호 안내: [215-87-15936] | 통신판매업 신고 제 2011 - 서울강남 - 03186호<br>
 						전화: 1600-7255 | 주소: 서울특별시 강남구 신사동 517-4 M SPACE 빌딩 2층 (강남대로158길 26) -(주)체리코코 <br>
 						교환 & 반품 주소 : 서울 성북구 종암동 57-39번지 CJ대한통운 종암대리점 (주)체리코코 <br>
