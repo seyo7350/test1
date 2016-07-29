@@ -1,4 +1,32 @@
 package member;
+/*
+--테이블 생성
+create table member_table(
+      member_seq number(8) primary key,
+      member_name varchar2(50) not null,
+      member_id varchar2(50) not null,
+      member_password varchar2(50) not null,
+      member_postcode varchar2(50) not null,
+      member_address varchar2(50) not null,
+      member_addressDetail varchar2(50) not null,
+      member_email varchar2(50) unique,
+      member_regidate date not null,
+      member_point number(30) not null,
+      auth number(1) not null,
+      del number(1) not null
+  );
+
+ create sequence seq_member start with 1 increment by 1;
+      
+-- 확인용
+ select * from member_table;
+ 
+-- 삭제
+ drop table member_table
+ cascade constraint;
+
+ drop sequence seq_member;
+*/
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,18 +41,21 @@ public class memberDTO {
 	private String member_address;
 	private String member_addressDetail;
 	private String member_email;
+	private String member_phone;
+	private String member_birthday;
 	private Date member_regidate;
 	private int member_point;
-	private int member_auth;
-	private int member_del;
+	private int member_auth;    //1은 일반고객, 0이 관리자
+	private int member_del;     //0은 일반고객, 1은 탈퇴고객
 	
 	//기본 생성자
 	public memberDTO(){}
-
-	//회원가입용 생성자
+	
+	//전체
 	public memberDTO(int member_seq, String member_name, String member_id, String member_password,
 			String member_postcode, String member_address, String member_addressDetail, String member_email,
-			Date member_regidate, int member_point, int member_auth, int member_del) {
+			String member_phone, String member_birthday, Date member_regidate, int member_point, int member_auth,
+			int member_del) {
 		this.member_seq = member_seq;
 		this.member_name = member_name;
 		this.member_id = member_id;
@@ -33,24 +64,41 @@ public class memberDTO {
 		this.member_address = member_address;
 		this.member_addressDetail = member_addressDetail;
 		this.member_email = member_email;
+		this.member_phone = member_phone;
+		this.member_birthday = member_birthday;
 		this.member_regidate = member_regidate;
 		this.member_point = member_point;
 		this.member_auth = member_auth;
 		this.member_del = member_del;
 	}
 
-	//toString
+	//가입자용
+	public memberDTO(String member_name, String member_id, String member_password, String member_postcode,
+			String member_address, String member_addressDetail, String member_email, String member_phone,
+			String member_birthday) {
+		this.member_name = member_name;
+		this.member_id = member_id;
+		this.member_password = member_password;
+		this.member_postcode = member_postcode;
+		this.member_address = member_address;
+		this.member_addressDetail = member_addressDetail;
+		this.member_email = member_email;
+		this.member_phone = member_phone;
+		this.member_birthday = member_birthday;
+	}
+	
+    //toSting
 	@Override
 	public String toString() {
 		return "memberDTO [member_seq=" + member_seq + ", member_name=" + member_name + ", member_id=" + member_id
 				+ ", member_password=" + member_password + ", member_postcode=" + member_postcode + ", member_address="
 				+ member_address + ", member_addressDetail=" + member_addressDetail + ", member_email=" + member_email
-				+ ", member_regidate=" + member_regidate + ", member_point=" + member_point + ", member_auth="
-				+ member_auth + ", member_del=" + member_del + "]";
+				+ ", member_phone=" + member_phone + ", member_birthday=" + member_birthday + ", member_regidate="
+				+ member_regidate + ", member_point=" + member_point + ", member_auth=" + member_auth + ", member_del="
+				+ member_del + "]";
 	}
 
-	
-	//세터, 게터
+	//세터 게터
 	public int getMember_seq() {
 		return member_seq;
 	}
@@ -115,6 +163,22 @@ public class memberDTO {
 		this.member_email = member_email;
 	}
 
+	public String getMember_phone() {
+		return member_phone;
+	}
+
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
+	}
+
+	public String getMember_birthday() {
+		return member_birthday;
+	}
+
+	public void setMember_birthday(String member_birthday) {
+		this.member_birthday = member_birthday;
+	}
+
 	public Date getMember_regidate() {
 		return member_regidate;
 	}
@@ -147,9 +211,11 @@ public class memberDTO {
 		this.member_del = member_del;
 	}
 	
+	
+
+
 
 	
 	
-
 	
 }

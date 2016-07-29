@@ -1,3 +1,5 @@
+<%@ page import="member.memberDTO" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -67,6 +69,22 @@ input[type=password] { size: 30; font-size: 15px;}
 		<div class="container_middle">
 			<div class="content">
 
+<%
+Object ologin = session.getAttribute("login");
+memberDTO mem = null;
+
+if(ologin == null){
+	%>
+	<script>
+	  alert("로그인을 해주세요");
+	  location.href="login.jsp";
+	</script>
+	<%
+	return;
+}
+ mem = (memberDTO)ologin;
+%>
+
 				<form action="member_Update2.jsp" method="post" >
 <table width="700px">
    <tr>
@@ -83,8 +101,8 @@ input[type=password] { size: 30; font-size: 15px;}
    </tr>
    <tr bgcolor="#f4f4f4";>
        <td>  
-          <a style="font-size: 15px">아이디 불러오기 함수적용</a><br><br>
-          <input type="password" onkeyup="noSpaceForm(this)"; placeholder="비밀번호" />
+          <a style="font-size: 15px">아이디  : &nbsp;&nbsp;<%=mem.getMember_id() %></a><br><br>
+          <input type="password" name = "password"  onkeyup="noSpaceForm(this)"; placeholder="비밀번호" />
       </td>
   </tr>
 
