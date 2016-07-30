@@ -1,11 +1,5 @@
-<%@ page import="member.memberDAO" %>
-<%@ page import="member.memberDTO" %>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    <% request.setCharacterEncoding("utf-8"); %>
-    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,24 +9,19 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
 
+
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="js/textRolling.js"></script>
 <script src="js/jquery.bxslider.js"></script>
 <script src="js/jquery.bxslider.min.js"></script>
 
-<style type="text/css"> 
-table { border-collapse:collapse; border:3px solid lightgray; } 
-
-a  {font-size: 12px; color:gray;}
-
-</style> 
 
 </head>
 <body>
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
-			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='legi.jsp'>join<br>
+			login&nbsp;&nbsp;/&nbsp;&nbsp;join<br>
 			shopping bag<br>
 			mypage&nbsp;&nbsp;/&nbsp;&nbsp;home
 		</div>
@@ -57,55 +46,9 @@ a  {font-size: 12px; color:gray;}
 	</div>
 </div>
 
-<!--위에거 수정금지  -->
- <%! //메소드 모음 
-//1분을 01분으로 나타나게 만드는 메소드
-public String two(String msg){
-	return msg.trim().length()<2 ? "0"+msg : msg.trim();
-}
-%>
- 
- <%
-String name = request.getParameter("name");
-String id = request.getParameter("id");
-String password = request.getParameter("password");
-String Chk_password = request.getParameter("Chk_password");
-
-String year = request.getParameter("year");
-String smonth = request.getParameter("month");
-int month = Integer.parseInt(smonth);
-String sday = request.getParameter("day");
-int day = Integer.parseInt(sday);
-String birthday = year+two(month+"")+two(day+"");
-
-String postcode = request.getParameter("postcode");
-String address1 = request.getParameter("address1");
-String address2 = request.getParameter("address2");
-
-String phone = request.getParameter("phone");
-String email = request.getParameter("email");
 
 
-memberDAO mdao = memberDAO.getInstance();
-
-boolean isS = mdao.addMember(new memberDTO(name, id, password, postcode, address1, address2, email, phone, birthday));
- if(isS){
-	%>
-	<script type="text/javascript">
-	alert("회원가입이 완료되었습니다.");
-	</script>
-	<%
-}else{
-	%>
-	<script type="text/javascript">
-	alert("회원가입 중 오류가 발생하였습니다. 정보를 제대로 기입하셨는지 확인하시고 이상이 있으면 관리자에게 문의하세요.");
-	location.href="join.jsp";
-	</script>
-	<%
-}
-%>     
-			
-<!--위에거 수정금지  -->
+      
       
 <div class="container">
 	<div class="container_top">
@@ -116,25 +59,8 @@ boolean isS = mdao.addMember(new memberDTO(name, id, password, postcode, address
 	<div class="container_middle">
 		<div class="content">
 			
-<p style="text-align: center; background-color:rgb(214,214,214);" ><strong>회원가입 완료</strong></p>
-<table align="center"  >
-<col width ="150"><col width ="400">
- <tr>
-      <td rowspan="4"> <img src ="image/legiAF.JPG" /> </td>
-      <td> <a><%=name %>님의 회원가입이 성공적으로 이루어졌습니다.</a></td>
- </tr>
-  <tr>
-    <td> <a>APPLEKOKO 안에서 즐거운 쇼핑 되세요.</a> </td>
- </tr>
-  <tr>
-    <td><a style="color: red;"><%=name %>님의 축하적립금은 2000원 입니다.</a></td>
- </tr>
-   <tr>
-    <td> <a>감사합니다.</a> </td>
- </tr>
-</table>
+		<jsp:include page="qna.html"></jsp:include>
 			
- <!--아래거 수정금지  --> 	
 		</div>
 	</div>
 	<div class="container_footer">
@@ -144,20 +70,20 @@ boolean isS = mdao.addMember(new memberDTO(name, id, password, postcode, address
 	                GUIDE/개인정보취급방침/..
 	            </ul> -->
 	            <div class="address">
-					<p style="text-align: right; color: #6c6c6c; font-weight: bold; font-style: italic;">
+					<p id="info1">
 						CALL 1600 - 7255<br>
 						MON-FRI AM 10:00 - PM 5:00 / SAT AM 10:00 - PM 1:00<br>
 						LUNCHI TIME PM 1:00 - 2:00 / SUN/HOLYDAY CLOSED<br><br>
 						_BANK_ : WOORI 1005-501-330632, ....
 					</p>
-	                <p style="text-align: right; color: #9c9c9c;">
+	                <p id="info2">
 	                	법인명(상호): (주)체리코코  | 대표자(성명): 지동헌 | 사업자 등록번호 안내: [215-87-15936] | 통신판매업 신고 제 2011 - 서울강남 - 03186호<br>
 						전화: 1600-7255 | 주소: 서울특별시 강남구 신사동 517-4 M SPACE 빌딩 2층 (강남대로158길 26) -(주)체리코코 <br>
 						교환 & 반품 주소 : 서울 성북구 종암동 57-39번지 CJ대한통운 종암대리점 (주)체리코코 <br>
 						개인정보관리책임자: 지동헌 | Contact help@cherrykoko.com for more information.<br>
 	                </p>
 	                <p class="copyright" style="text-align: right;"><img src="http://img29.makeshop.co.kr/design/cherry07/trend9/cherrycoco/imgs/footer_copy_img.png" /></p>
-	            </div>	           
+	            </div>          
 	        </div>
 		</div>		
 	</div><!-- container_footer -->

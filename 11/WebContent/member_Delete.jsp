@@ -1,5 +1,3 @@
-<%@ page import="member.memberDTO" %>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -69,23 +67,7 @@ input[type=password] { size: 30; font-size: 15px;}
 		<div class="container_middle">
 			<div class="content">
 
-<%
-Object ologin = session.getAttribute("login");
-memberDTO mem = null;
-
-if(ologin == null){
-	%>
-	<script>
-	  alert("로그인을 해주세요");
-	  location.href="login.jsp";
-	</script>
-	<%
-	return;
-}
- mem = (memberDTO)ologin;
-%>
-
-				<form action="member_Update2.jsp" method="post" >
+				<form action="member_DeleteAF.jsp" method="post" >
 <table width="700px">
    <tr>
       <td> 
@@ -94,22 +76,21 @@ if(ologin == null){
    </tr>
    <tr>
        <td>  
-         <a>저희 쇼핑몰에서는 회원님의 소중한 개인정보를 안전하게 보호하고</a><br>
-         <a>개인정보 도용으로 인한 피해를 예방하기 위하여 비밀번호를 확인합니다.</a><br>
-         <a>비밀번호는 타인에게 노출되지 않도록 주의해주세요.</a><br><br>
+         <a>탈퇴시 보유하신 포인트는 삭제됩니다. </a><br>
+         <a>탈퇴를 원하시면 비밀번호를 입력해 주세요. </a><br><br>
        </td>
    </tr>
    <tr bgcolor="#f4f4f4";>
        <td>  
-          <a style="font-size: 15px">아이디  : &nbsp;&nbsp;<%=mem.getMember_id() %></a><br><br>
-          <input type="password" name = "password"  onkeyup="noSpaceForm(this)"; placeholder="비밀번호" />
+          <a style="font-size: 15px">아이디 불러오기 함수적용</a><br><br>
+          <input type="password" onkeyup="noSpaceForm(this)"; placeholder="비밀번호" />
       </td>
   </tr>
 
   <tr>
      <td class="td">  
         <p align="center"><input  TYPE="IMAGE" src="image/update_confirm.gif" name="submit" value="submit" style="outline-style:none" width="90px" />
-        &nbsp;&nbsp;<a href='mypage.jsp'><img src="image/update_cancel.gif"  width="90px" style="outline-style:none; vertical-align: top;"/></p>
+        &nbsp;&nbsp;<a href='index.jsp'><img src="image/update_cancel.gif"  width="90px" style="outline-style:none; vertical-align: top;"/></p>
       </td>
   </tr>
 </table>

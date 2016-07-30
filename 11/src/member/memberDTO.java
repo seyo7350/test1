@@ -45,8 +45,9 @@ public class memberDTO {
 	private String member_birthday;
 	private Date member_regidate;
 	private int member_point;
-	private int member_auth;
-	private int member_del;
+	private int member_auth;    //1은 일반고객, 0이 관리자
+	private int member_del;     //0은 일반고객, 1은 탈퇴고객
+
 	
 	//기본 생성자
 	public memberDTO(){}

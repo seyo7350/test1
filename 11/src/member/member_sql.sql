@@ -20,10 +20,14 @@ create table member_table(
    
    
 -- 확인용
- select * from member_table;
+ select * from member_table order by member_seq;
  
 -- 삭제
  drop table member_table
  cascade constraint;
 
  drop sequence seq_member;
+
+--
+SELECT member_id FROM member_table GROUP BY member_id HAVING COUNT(*) > 1
+ORDER BY membe1r_id ;

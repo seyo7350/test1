@@ -1,3 +1,5 @@
+<%@ page import="member.memberDAO" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -46,6 +48,15 @@ input[type=password] {
 	border-bottom: 1px soild gray;
 }
 
+input[type=email] {
+	size: 30;
+	font-size: 12px;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	border-bottom: 1px soild gray;
+}
+
 img {
 	vertical-align: middle;
 	outline-style: none;
@@ -54,6 +65,14 @@ img {
 select {
 	font-size: 10px;
 }
+
+input[type=button]  {
+   color: white;
+   background-color:lightgray;
+   border: none;
+   font-size:8pt;
+   height:20px;'
+   }
 </style>
 
 <script>
@@ -67,16 +86,161 @@ select {
 		}
 	}
 	
-	function checkid(){
-		var sid = document.form.id.value
-		if(sid==""){
-			alert("아이디를 입력해주세요");
-		}else{
-			
-		}
-
+	function email_check(email) {
+		var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+	    return (email != '' && email != 'undefined' && regex.test(email) === true);
+	}
+	
+	function pwd_check(password){
+		
 	}
 </script>
+
+<script type="text/javascript">
+//아이디 중복 여부를 판단
+function openConfirmId(user){
+	//아이디를 입력했는지 검사
+	if(user.id.value==''){
+		alert('아이디를 입력하세요!!');
+		return;
+	}
+
+	//url과 사용자 입력 id를 조합
+	var url = 'confirmId.jsp?id=' + user.id.value;
+	
+	//새로운 윈도우를 열기
+	open(url, 'confirm', 'toolbar=no,scrollbars=no,resizable=no,width=300,height=200');
+}
+
+//이메일 중복 여부를 판단
+function openConfirmEmail(user){
+	//아이디를 입력했는지 검사
+	if(user.email.value==''){
+		alert('email을 입력하세요!!');
+		return;
+	}
+	
+	if ( !email_check(user.email.value) ) {
+		alert('	올바른 이메일 형식이 아닙니다.');
+		user.email.focus();
+		return ;
+	}	
+	//url과 사용자 입력 id를 조합
+	var url = 'confirmEmail.jsp?email=' + user.email.value;
+	
+	//새로운 윈도우를 열기
+	open(url, 'confirm', 'toolbar=no,scrollbars=no,resizable=no,width=300,height=200');
+}
+
+//연락처 숫자 입력
+function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				return false;
+		}
+function removeChar(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+		}
+	
+//회원 가입시 예외처리 확인
+function checkIt() {
+	var user = document.form;
+	if (user.name.value == '') {
+		alert('이름을 입력하세요!');
+		user.name.focus();
+		return false;
+	}
+	if (user.id.value == '') {
+		alert('아이디를 입력하세요!');
+		user.id.focus();
+		return false;
+	}
+	
+	// 폼 전송시 아이디 중복체크 확인
+	if (user.id_check_confirm.value == "false") // 기본값은 false
+	{
+	alert("아이디 중복 체크를 하지 않았습니다");
+	return false;
+	}
+	
+	if (user.password.value == '') {
+		alert('	비밀번호를 입력하세요!');
+		user.password.focus();
+		return false;
+	}
+
+	var check = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+
+	if (!check.test(user.password.value)) {    
+		alert("비밀번호는 문자, 숫자, 특수문자의 조합으로 8~20자리로 입력해주세요.");
+        return false;
+	} 
+		
+	if (user.password.value == user.id.value) {
+		alert('	비밀번호는 아이디와 똑같이 설정할 수 없습니다!');
+		user.password.focus();
+		return false;
+	}
+	
+	if (user.Chk_password.value == '') {
+		alert('	비밀번호 확인을 입력하세요!');
+		user.Chk_password.focus();
+		return false;
+	}
+	
+	if (user.Chk_password.value != user.password.value) {
+		alert('	비밀번호와 비밀번호 확인이 다릅니다. 확인하세요!');
+		user.Chk_password.focus();
+		return false;
+	}
+	
+	if (user.postcode.value =="" ) {
+		alert('	우편번호 및 집주소를 입력하세요!');
+		user.postcode.focus();
+		return false;
+	}
+	if (user.address2.value =="" ) {
+		alert('	상세주소를 입력하세요!');
+		user.address2.focus();
+		return false;
+	}
+	
+	if (user.phone.value =="" ) {
+		alert('	연락처를 입력하세요!');
+		user.phone.focus();
+		return false;
+	}
+		
+	if (user.email.value =="") {
+		alert('	이메일 계정을 입력하세요!');
+		user.email.focus();
+		return false;
+	}
+	
+	if ( !email_check(user.email.value) ) {
+		alert('	올바른 이메일 형식이 아닙니다.');
+		user.email.focus();
+		return false;
+	}	
+	
+	// 폼 전송시 이메일 중복체크 확인
+	if (user.email_check_confirm.value == "false") // 기본값은 false
+	{
+	alert("이메일 중복 체크를 하지 않았습니다");
+	return false;
+	}
+}
+
+</script>
+
 
 </head>
 <body>
@@ -100,10 +264,6 @@ select {
 		</div>
 	</div>
 
-
-
-
-
 	<div class="container">
 		<div class="container_top">
 			<div class="logo">
@@ -119,7 +279,7 @@ select {
 				<p style="color: rgb(248, 194, 143);">일반회원</p>
 				<hr style="border: soild 1px #8a8a8a;">
 				
-				<form action="joinAF.jsp" method="post" name ="form">
+				<form action="joinAF.jsp" method="post" name ="form" onsubmit="return checkIt()">
 					<!--이름입력  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
 					<a>이름 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	</a> 
@@ -128,19 +288,21 @@ select {
 					<!--아이디입력  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
 					<a>아이디 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> 
-					<input type="text" name="id" onkeyup="noSpaceForm(this)" /> 
-					<img	src="image/overlap_btn.jpg" width="50px" /> <br><br>
-					
+					<input type="text" name="id" onkeyup="noSpaceForm(this)" maxlength="20"/> 
+					<input type="button" name="confirm_id" value="ID 중복확인" onclick="openConfirmId(this.form)"> 
+					<input type="hidden" name="id_check_confirm" value="false">
+					<a	style="font-size: 8px">*아이디는 최대 12자까지 가능합니다.</a><br><br>
+							
 					<!--비밀번호입력  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
 					<a>비밀번호 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
-					<input type="password"	name="password" onkeyup="noSpaceForm(this)" /> 
-					<a	style="font-size: 8px">*영문 대소문자/숫자/특수문자를 혼용하여 10~16자</a> <br><br>
+					<input type="password"	name="password" onkeyup="noSpaceForm(this)" maxlength='20' /> 
+					<a	style="font-size: 8px">*영문/숫자/특수문자를 혼용하여 8~20자</a> <br><br>
 					
 					<!--비밀번호 확인 -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
 					<a>비밀번호 확인	:&nbsp;&nbsp;</a> 
-					<input type="password" name="Chk_password" onkeyup="noSpaceForm(this)" /> <br><br>
+					<input type="password" name="Chk_password" onkeyup="noSpaceForm(this)" maxlength='20' /> <br><br>
 					
 					<!--생일 성별 -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
@@ -184,7 +346,7 @@ select {
 					<a>우편번호:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 					<!--우편번호 찾기  -->
 					<input type="text" name="postcode" id="postcode" readonly="readonly">
-					<img src="image/address_btn.jpg" width="70px" onclick="findZip()"><br><br>
+					<input type="button"  value="우편번호 검색" onclick="findZip()"/><br><br>
 
 					<div id="wrap"
 						style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 0; position: relative">
@@ -276,17 +438,16 @@ select {
 					<!--연락처  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a>
 				    <a>연락처 :	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
-				    <input type="text" name="phone" onkeyup="noSpaceForm(this)" /> 
-				    <a	style="font-size: 8px">*숫자만 입력해주세요</a> <br><br>
+				    <input type="text" name="phone" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode:disabled;'/> 
+				    <a	style="font-size: 8px">*숫자만 입력가능합니다.</a> <br><br>
+				    
 				    
 					<!--이메일  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
 					<a>이메일 :	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
-					<input type="text" size="10" name="email1" onkeyup="noSpaceForm(this)" />
-					<a>&nbsp;<b>@</b>&nbsp;	</a> 
-					<input type="text" size="10" name="email2" id="email2" onkeyup="noSpaceForm(this)" style="font-size: 8px;"/>
-
-					<img src="image/overlap_btn.jpg" width="50px" /> 
+					<input type="text" name="email" onkeyup="noSpaceForm(this)" />
+					<input type="button" name="confirm_email" value="email 중복확인" onclick="openConfirmEmail(this.form)"/>
+					<input type="hidden" name="email_check_confirm" value="false">
 					<a	style="font-size: 8px">*한메일(hanmail.net) 사용시 정보 메일이 수신이 안될 수	있습니다.</a> <br><br>
 					<p align="center">
 						<input TYPE="IMAGE" src="image/ok_btn.jpg" name="submit"	value="submit" width="90px" /> &nbsp;&nbsp;
