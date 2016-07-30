@@ -148,16 +148,18 @@ function removeChar(event) {
 				return;
 			else
 				event.target.value = event.target.value.replace(/[^0-9]/g, "");
-		}
+}
 	
 //회원 가입시 예외처리 확인
 function checkIt() {
 	var user = document.form;
+	
 	if (user.name.value == '') {
 		alert('이름을 입력하세요!');
 		user.name.focus();
 		return false;
 	}
+	
 	if (user.id.value == '') {
 		alert('아이디를 입력하세요!');
 		user.id.focus();
