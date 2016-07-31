@@ -22,12 +22,26 @@ String password = request.getParameter("password");
 memberDAO mdao = memberDAO.getInstance();
 memberDTO mem = mdao.login(new memberDTO(0, null, id, password, null, null, null, null, null, null, null, 0, 0, 0));
 
-if(mem != null && !mem.getMember_id().equals("")){
+if(mem != null && !mem.getMember_id().equals("")&&mem.getMember_del()==0&&mem.getMember_auth()==1){
 	session.setAttribute("login", mem);
 	%>
 	<script type="text/javascript">
 	alert("로그인 되었습니다. 환영합니다.");
 	location.href="index.jsp";
+	</script>
+	<%
+}else if(mem != null && !mem.getMember_id().equals("")&&mem.getMember_del()==1&&mem.getMember_auth()==1){
+	%>
+	<script type="text/javascript">
+	alert("탈퇴한 회원입니다. 탈퇴 취소를 원하시면 관리자에게 문의해주세요");
+	location.href="index.jsp";
+	</script>
+<%
+}else if(mem != null && !mem.getMember_id().equals("")&&mem.getMember_auth()==0){
+	%>
+	<script type="text/javascript">
+	alert("관리자님 안녕하세요");
+	location.href="index_admin.jsp";
 	</script>
 	<%
 }else{

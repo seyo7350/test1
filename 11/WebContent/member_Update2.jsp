@@ -1,3 +1,6 @@
+<%@ page import="member.memberDTO" %>
+<%@ page import="member.memberDAO" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -46,6 +49,15 @@ input[type=password] {
 	border-bottom: 1px soild gray;
 }
 
+input[type=email] {
+	size: 30;
+	font-size: 12px;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	border-bottom: 1px soild gray;
+}
+
 img {
 	vertical-align: middle;
 	outline-style: none;
@@ -54,6 +66,14 @@ img {
 select {
 	font-size: 10px;
 }
+
+input[type=button]  {
+   color: white;
+   background-color:lightgray;
+   border: none;
+   font-size:8pt;
+   height:20px;'
+   }
 </style>
 
 <script>
@@ -66,7 +86,130 @@ select {
 			return false;
 		}
 	}
+	
+	function email_check(email) {
+		var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+	    return (email != '' && email != 'undefined' && regex.test(email) === true);
+	}
+	
+	function pwd_check(password){
+		
+	}
 </script>
+
+<script type="text/javascript">
+//이메일 중복 여부를 판단
+function openConfirmEmail(user){
+	//이메일을 입력했는지 검사
+	if(user.email.value==''){
+		alert('email을 입력하세요!!');
+		return;
+	}
+	
+	if ( !email_check(user.email.value) ) {
+		alert('	올바른 이메일 형식이 아닙니다.');
+		user.email.focus();
+		return ;
+	}	
+	//url과 사용자 입력 id를 조합
+	var url = 'confirmEmail2.jsp?email=' + user.email.value;
+	
+	//새로운 윈도우를 열기
+	open(url, 'confirm', 'toolbar=no,scrollbars=no,resizable=no,width=300,height=200');
+}
+
+//연락처 숫자 입력
+function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				return false;
+		}
+function removeChar(event) {
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
+	
+//회원 가입시 예외처리 확인
+function checkIt() {
+	var user = document.form;
+		
+	if (user.password.value == '') {
+		alert('	비밀번호를 입력하세요!');
+		user.password.focus();
+		return false;
+	}
+
+	var check = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+
+	if (!check.test(user.password.value)) {    
+		alert("비밀번호는 문자, 숫자, 특수문자의 조합으로 8~20자리로 입력해주세요.");
+        return false;
+	} 
+		
+	if (user.password.value == user.id.value) {
+		alert('	비밀번호는 아이디와 똑같이 설정할 수 없습니다!');
+		user.password.focus();
+		return false;
+	}
+	
+	if (user.Chk_password.value == '') {
+		alert('	비밀번호 확인을 입력하세요!');
+		user.Chk_password.focus();
+		return false;
+	}
+	
+	if (user.Chk_password.value != user.password.value) {
+		alert('	비밀번호와 비밀번호 확인이 다릅니다. 확인하세요!');
+		user.Chk_password.focus();
+		return false;
+	}
+	
+	if (user.postcode.value =="" ) {
+		alert('	우편번호 및 집주소를 입력하세요!');
+		user.postcode.focus();
+		return false;
+	}
+	if (user.address2.value =="" ) {
+		alert('	상세주소를 입력하세요!');
+		user.address2.focus();
+		return false;
+	}
+	
+	if (user.phone.value =="" ) {
+		alert('	연락처를 입력하세요!');
+		user.phone.focus();
+		return false;
+	}
+		
+	if (user.email.value =="") {
+		alert('	이메일 계정을 입력하세요!');
+		user.email.focus();
+		return false;
+	}
+	
+	if ( !email_check(user.email.value) ) {
+		alert('	올바른 이메일 형식이 아닙니다.');
+		user.email.focus();
+		return false;
+	}	
+	
+	// 폼 전송시 이메일 중복체크 확인
+	if (user.email_check_confirm.value == "false") // 기본값은 false
+	{
+	alert("이메일 중복 체크를 하지 않았습니다");
+	return false;
+	}
+}
+
+</script>
+
 
 </head>
 <body>
@@ -90,10 +233,6 @@ select {
 		</div>
 	</div>
 
-
-
-
-
 	<div class="container">
 		<div class="container_top">
 			<div class="logo">
@@ -103,41 +242,78 @@ select {
 		<div class="container_middle">
 			<div class="content">
 
+<%
+Object ologin = session.getAttribute("login");
+memberDTO mem = null;
+
+if(ologin == null){
+	%>
+	<script>
+	  alert("로그인을 해주세요");
+	  location.href="login.jsp";
+	</script>
+	<%
+	return;
+}
+ mem = (memberDTO)ologin;
+ 
+ String sbirthday = mem.getMember_birthday();
+ String syear = sbirthday.substring(0,4);
+ int year = Integer.parseInt(syear);
+ String smonth = sbirthday.substring(4,6);
+ int month = Integer.parseInt(smonth);
+ String sday = sbirthday.substring(6,8);
+ int day = Integer.parseInt(sday);
+%>
+
 				<p align="center">
 					<img src="image/join_img.jpg" width="700px" />
 				</p>
-				<p style="color: rgb(248, 194, 143);">일반회원</p>
+				<p style="color: rgb(248, 194, 143);">회원정보 수정</p>
 				<hr style="border: soild 1px #8a8a8a;">
 				
-				<form action="member_UpdateAF.jsp" method="post">
+				<form action="member_UpdateAF.jsp" method="post" name ="form" onsubmit="return checkIt()">
 					<!--이름입력  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>이름 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</a> <input type="text" name="name" onkeyup="noSpaceForm(this)" /> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>이름 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	</a> 
+					<input type="text" name="name" readonly="readonly" value="<%=mem.getMember_name()%>" /> <br><br>
+					
 					<!--아이디입력  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>아이디 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <input
-						type="text" name="id" onkeyup="noSpaceForm(this)" /> <input
-						type="hidden" name="checkid" value=0> <img
-						src="image/overlap_btn.jpg" width="50px" /> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>아이디 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> 
+					<input type="text" name="id" readonly="readonly" value="<%=mem.getMember_id()%>"> 
+					<br><br>
+							
 					<!--비밀번호입력  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>비밀번호 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <input type="password"
-						name="password" onkeyup="noSpaceForm(this)" /> <a
-						style="font-size: 8px">*영문 대소문자/숫자/특수문자를 혼용하여 10~16자</a> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>비밀번호 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+					<input type="password"	name="password" onkeyup="noSpaceForm(this)" maxlength='20' /> 
+					<a	style="font-size: 8px">*영문/숫자/특수문자를 혼용하여 8~20자</a> <br><br>
+					
 					<!--비밀번호 확인 -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>비밀번호 확인
-						:&nbsp;&nbsp;</a> <input type="password" name="Chk_password"
-						onkeyup="noSpaceForm(this)" /> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>비밀번호 확인	:&nbsp;&nbsp;</a> 
+					<input type="password" name="Chk_password" onkeyup="noSpaceForm(this)" maxlength='20' /> <br><br>
+					
 					<!--생일 성별 -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>생년월일 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>생년월일 :	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					
 					<!--태어난 년도 선택  -->
 					<select name="year">
 						<%
 							for (int i = 1920; i <= 2016; i++) {
+						    if(year==i){
 						%>
-						<option <%=(i + "")%> value="<%=i%>"><%=i%></option>
+						
+						<option <%=(i + "")%> value="<%=i%>" selected="selected"><%=i%></option>
+						<%
+							}else{
+						%>	
+						<option <%=(i + "")%> value="<%=i%>"><%=i%></option>	
+						<%
+							}
+						%>
 						<%
 							}
 						%>
@@ -147,35 +323,48 @@ select {
 					<select name="month">
 						<%
 							for (int i = 1; i <= 12; i++) {
-						%>
-						<option <%=(i + "")%> value="<%=i%>"><%=i%></option>
-						<%
-							}
-						%>
+							    if(month==i){
+									%>
+									
+									<option <%=(i + "")%> value="<%=i%>" selected="selected"><%=i%></option>
+									<%
+										}else{
+									%>	
+									<option <%=(i + "")%> value="<%=i%>"><%=i%></option>	
+									<%
+										}
+									%>
+									<%
+										}
+									%>
 					</select><a>월</a> &nbsp;
 
 					<!--태어난 일 선택  -->
 					<select name="day">
 						<%
 							for (int i = 1; i <= 31; i++) {
-						%>
-						<option <%=(i + "")%> value="<%=i%>"><%=i%></option>
-						<%
-							}
-						%>
-					</select><a>일</a> <br>
-					<!--성별-->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>성별
-						:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-					<input type="radio" name="gender" value="male" checked="checked"><a
-						style="font-size: 10px">남성</a> <input type="radio" name="gender"
-						value="female"><a style="font-size: 10px">여성</a> <br>
+							    if(day==i){
+									%>
+									
+									<option <%=(i + "")%> value="<%=i%>" selected="selected"><%=i%></option>
+									<%
+										}else{
+									%>	
+									<option <%=(i + "")%> value="<%=i%>"><%=i%></option>	
+									<%
+										}
+									%>
+									<%
+										}
+									%>
+					</select><a>일</a> <br><br>
+													
 					<!--우편번호-->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>우편번호
-						:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>우편번호:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 					<!--우편번호 찾기  -->
-					<input type="text" name="zip" id="zip" readonly="readonly">
-					<img src="image/address_btn.jpg" width="70px" onclick="findZip()"><br>
+					<input type="text" name="postcode" id="postcode" readonly="readonly"  value="<%=mem.getMember_postcode()%>" >
+					<input type="button"  value="우편번호 검색" onclick="findZip()"/><br><br>
 
 					<div id="wrap"
 						style="display: none; border: 1px solid; width: 500px; height: 300px; margin: 5px 0; position: relative">
@@ -185,10 +374,9 @@ select {
 							style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
 							onclick="foldDaumPostcode()" alt="접기 버튼">
 					</div>
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>집주소 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					</a> <input type="text" size="42" name="address1" readonly="readonly"
-						id="sample3_address" class="d_form large">
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>집주소 :	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+					<input type="text" size="42" name="address1" readonly="readonly"	 value="<%=mem.getMember_address()%>"id="sample3_address" class="d_form large">
 
 					<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 					<script>
@@ -234,7 +422,7 @@ select {
 											}
 
 											// 우편번호와 주소 정보를 해당 필드에 넣는다.
-											document.getElementById('zip').value = data.zonecode; //5자리 새우편번호 사용
+											document.getElementById('postcode').value = data.zonecode; //5자리 새우편번호 사용
 											document
 													.getElementById('sample3_address').value = fullAddr;
 
@@ -259,63 +447,34 @@ select {
 						}
 					</script>
 
-					<br>
+					<br><br>
 					<!--상세주소  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>상세주소 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> <input
-						type="text" name="address2" /> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>상세주소 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </a> 
+					<input type="text" name="address2" value="<%=mem.getMember_addressDetail()%>"/> <br><br>
+					
 					<!--연락처  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>연락처 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <input
-						type="text" name="phone" onkeyup="noSpaceForm(this)" /> <a
-						style="font-size: 8px">*숫자만 입력해주세요</a> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a>
+				    <a>연락처 :	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+				    <input type="text" name="phone" value="<%=mem.getMember_phone()%>" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode:disabled;'/> 
+				    <a	style="font-size: 8px">*숫자만 입력가능합니다.</a> <br><br>
+				    
+				    
 					<!--이메일  -->
-					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> <a>이메일 :
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <input
-						type="text" size="10" name="email1" onkeyup="noSpaceForm(this)" />
-					<a>&nbsp;<b>@</b>&nbsp;
-					</a> <input type="text" size="6" name="email2" id="email2"
-						onkeyup="noSpaceForm(this)" style="font-size: 8px;" disabled
-						value="naver.com" />
-
-					<!--도메인 선택  -->
-					<select name="selectEmail" id="selectEmail">
-						<option value="naver.com" selected="selected">naver.com</option>
-						<option value="hotmail.com">hotmail.com</option>
-						<option value="outlook.com">outlook.com</option>
-						<option value="nate.com">nate.com</option>
-						<option value="gmail.com">gmail.com</option>
-						<option value="hanmail.net">hanmail.net</option>
-						<option value="chol.com">chol.com</option>
-						<option value="1">직접입력</option>
-					</select>
-
-					<script type="text/javascript">
-						//이메일 입력방식 선택
-						$('#selectEmail').change(function() {
-							$("#selectEmail option:selected").each(function() {
-
-								if ($(this).val() == '1') { //직접입력일 경우
-									$("#email2").val(''); //값 초기화
-									$("#email2").attr("disabled", false); //활성화
-								} else { //직접입력이 아닐경우
-									$("#email2").val($(this).text()); //선택값 입력
-									$("#email2").attr("disabled", true); //비활성화
-								}
-							});
-						});
-					</script>
-
-					<img src="image/overlap_btn.jpg" width="50px" /> <a
-						style="font-size: 8px">*한메일(hanmail.net) 사용시 정보 메일이 수신이 안될 수
-						있습니다.</a> <br>
+					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
+					<a>이메일 :	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+					<input type="text" name="email" onkeyup="noSpaceForm(this)" value="<%=mem.getMember_email() %>" />
+					<input type="button" name="confirm_email" value="email 중복확인" onclick="openConfirmEmail(this.form)"/>
+					<input type="hidden" name="email_check_confirm" value="false">
+					<a	style="font-size: 8px">*한메일(hanmail.net) 사용시 정보 메일이 수신이 안될 수	있습니다.</a> <br><br>
+								
+				<input type="hidden" name="seq" value="<%=mem.getMember_seq()%>">
+				
 					<p align="center">
 						<input TYPE="IMAGE" src="image/ok_btn.jpg" name="submit"	value="submit" width="90px" /> &nbsp;&nbsp;
 						<a href='index.jsp'><img src="image/cancel_btn.jpg" width="90px" style="vertical-align: top;"/></a>
 					</p>
 				</form>
-
-
 
 			</div>
 		</div>

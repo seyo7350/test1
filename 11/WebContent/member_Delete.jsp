@@ -1,3 +1,6 @@
+<%@ page import="member.memberDTO" %>
+<%@ page import="member.memberDAO" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -27,7 +30,7 @@ function noSpaceForm(obj) { // 공백사용못하게
 
 <style type="text/css">
 form { margin: 0 auto;  /* 회원관리 폼 700px로 고정 및 가운데 정렬 */width:700px;}
-a {font-size: 12px; color:gray;}
+a {font-size: 18px; color:gray;}
 table {border-collapse:collapse; text-align:center; border:3px solid lightgray;  align: center;} 
 td{padding-bottom: 15px; padding-top: 15px; }
 input {outline-style:none;}
@@ -66,8 +69,22 @@ input[type=password] { size: 30; font-size: 15px;}
 		</div>
 		<div class="container_middle">
 			<div class="content">
+<%
+Object ologin = session.getAttribute("login");
+memberDTO mem = null;
 
-				<form action="member_DeleteAF.jsp" method="post" >
+if(ologin == null){
+	%>
+	<script>
+	  alert("로그인을 해주세요");
+	  location.href="login.jsp";
+	</script>
+	<%
+	return;
+}
+ mem = (memberDTO)ologin;
+%>
+<form action="member_DeleteAF.jsp" method="post" >
 <table width="700px">
    <tr>
       <td> 
@@ -76,14 +93,16 @@ input[type=password] { size: 30; font-size: 15px;}
    </tr>
    <tr>
        <td>  
-         <a>탈퇴시 보유하신 포인트는 삭제됩니다. </a><br>
+         <a>탈퇴시 보유하신 </a><a style="color: red;">포인트는 삭제됩니다. </a><br>
          <a>탈퇴를 원하시면 비밀번호를 입력해 주세요. </a><br><br>
        </td>
    </tr>
    <tr bgcolor="#f4f4f4";>
        <td>  
-          <a style="font-size: 15px">아이디 불러오기 함수적용</a><br><br>
-          <input type="password" onkeyup="noSpaceForm(this)"; placeholder="비밀번호" />
+          <a style="font-size: 15px">아이디  : &nbsp;&nbsp;<%=mem.getMember_id()%></a><br><br>
+          <input type="password" name="password" onkeyup="noSpaceForm(this)"; placeholder="비밀번호" />
+           <input type="hidden" name="id" value="<%=mem.getMember_id()%>">
+          <input type="hidden" name="seq" value="<%=mem.getMember_seq()%>">
       </td>
   </tr>
 
@@ -96,9 +115,6 @@ input[type=password] { size: 30; font-size: 15px;}
 </table>
 </form>
 				
-				
-
-
 
 			</div>
 		</div>

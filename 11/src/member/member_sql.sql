@@ -18,6 +18,11 @@ create table member_table(
  
    create sequence seq_member start with 1 increment by 1;
    
+ --관리자 id 추가
+insert into member_table (member_seq, member_name, member_id, member_password, member_postcode, member_address, member_addressDetail,
+member_email, member_phone, member_birthday, member_regidate, member_point, member_auth, member_del)
+values(seq_member.nextval, '관리자', 'admin', 'admin', '00000', '회사', '사무실', '애플코코@이메일', '0100001234', '20160801', sysdate, 99999, 0, 0);
+   
    
 -- 확인용
  select * from member_table order by member_seq;
@@ -28,6 +33,3 @@ create table member_table(
 
  drop sequence seq_member;
 
---
-SELECT member_id FROM member_table GROUP BY member_id HAVING COUNT(*) > 1
-ORDER BY membe1r_id ;

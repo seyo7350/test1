@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import DBControl.DBclose;
 import DBControl.DBconnection;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import DBControl.DBclose;
 import DBControl.DBconnection;
@@ -190,6 +193,192 @@ public class memberDAO implements iMemberDAO {
 			return x;
 	}
 	
+	//회원정보 수정
+	@Override
+	public boolean updateMember(String password, String postcode, String address,
+			String addressDetail, String email, String phone, String birthday, int seq) {
+		
+		String sql = " update member_table set member_password=?, "
+				     + " member_postcode=?, member_address=?, member_addressDetail=?, "
+				     + " member_email=?, member_phone=?, member_birthday=? "
+				     + " where member_seq=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		
+		try{
+			conn=DBconnection.makeConnection();
+			log("2/6 성공 - 정보 수정");
+			
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, password);
+			psmt.setString(2, postcode);
+			psmt.setString(3, address);
+			psmt.setString(4, addressDetail);
+			psmt.setString(5, email);
+			psmt.setString(6, phone);
+			psmt.setString(7, birthday);
+			psmt.setInt(8, seq);
+			log("3/6 성공 - 정보 수정");
+			
+			count=psmt.executeUpdate();
+			log("4/6 성공 - 정보 수정");
+			
+		}catch(SQLException e){
+			log("정보 수정 - 실패"+ e);
+		}finally{
+			DBclose.close(psmt, conn, rs);
+			log("5/6 성공 - 정보 수정");
+		}
+		return count>0?true:false;
+	}
+
+	
+	//회원 탈퇴
+	@Override
+	public boolean deleteMember(int seq) {
+		
+		String sql = " update member_table set member_del =1 where member_seq=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		try{
+			conn=DBconnection.makeConnection();
+			log("2/6 성공 - 탈퇴");
+			
+			psmt=conn.prepareStatement(sql);
+			psmt.setInt(1, seq);
+			log("3/6 성공 - 탈퇴");
+			
+			count=psmt.executeUpdate();
+			log("4/6 성공 - 탈퇴");
+			
+		}catch(SQLException e){
+			log("탈퇴 - 실패"+ e);
+		}finally{
+			DBclose.close(psmt, conn, rs);
+			log("5/6 성공 - 탈퇴");
+		}
+		return count>0?true:false;
+	}
+	
+	//회원 리스트 관련
+	@Override
+	public List<memberDTO> getMemberList() {
+		
+		String sql = " select member_seq, member_name, member_id, member_password, "
+			     	 + " member_postcode, member_address, member_addressDetail, member_email, "
+			     	 + " member_phone, member_birthday,  member_regidate, member_point, member_auth, member_del "
+			     	 + " from member_table order by member_seq ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<memberDTO> memberlist = new ArrayList<memberDTO>();
+		
+		try{
+			conn=DBconnection.makeConnection();
+			log("2/6 성공 - 회원리스트");
+			
+			psmt=conn.prepareStatement(sql);
+			log("3/6 성공 - 회원리스트");
+			
+			rs=psmt.executeQuery();
+			log("4/6 성공 - 회원리스트");
+			
+			while(rs.next()){
+				int i =1;
+				memberDTO mdto = new memberDTO(
+						rs.getInt(i++),      //seq
+						rs.getString(i++),  //name
+						rs.getString(i++),  //id
+						rs.getString(i++),  //pwd
+						rs.getString(i++),  //postcode
+						rs.getString(i++),  //address
+						rs.getString(i++),  //addressDetail
+						rs.getString(i++),  //email
+						rs.getString(i++),  //phone
+						rs.getString(i++),  //birthday
+						rs.getDate(i++),    //regidate
+						rs.getInt(i++),      //point
+						rs.getInt(i++),      //auth
+						rs.getInt(i++)       //del
+						);
+				memberlist.add(mdto);
+			}
+			log("5/6 성공 - 회원리스트");
+			
+		}catch(SQLException e){
+			log("회원리스트 - 실패"+ e);
+		}finally{
+			DBclose.close(psmt, conn, rs);
+			log("6/6 성공 - 회원리스트");
+		}
+		return memberlist;
+	}
+	
+	
+	//회원정보 불러오기
+	@Override
+	public memberDTO getMember(int seq) {
+		
+		String sql = " select member_seq, member_name, member_id, member_password, "
+		     	 + " member_postcode, member_address, member_addressDetail, member_email, "
+		     	 + " member_phone, member_birthday,  member_regidate, member_point, member_auth, member_del "
+		     	 + " from member_table where member_seq=? ";
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		memberDTO dto = null;
+		
+		try{
+			conn=DBconnection.makeConnection();
+			log("2/6 성공 - 회원 정보 보기");
+			
+			psmt=conn.prepareStatement(sql);
+			psmt.setInt(1, seq);
+			log("3/6 성공 - 회원 정보 보기");
+			
+			rs=psmt.executeQuery();
+			log("4/6 성공 - 회원 정보 보기");
+			
+			while(rs.next()){
+				int i =1;
+				dto= new memberDTO(
+						rs.getInt(i++),      //seq
+						rs.getString(i++),  //name
+						rs.getString(i++),  //id
+						rs.getString(i++),  //pwd
+						rs.getString(i++),  //postcode
+						rs.getString(i++),  //address
+						rs.getString(i++),  //addressDetail
+						rs.getString(i++),  //email
+						rs.getString(i++),  //phone
+						rs.getString(i++),  //birthday
+						rs.getDate(i++),    //regidate
+						rs.getInt(i++),      //point
+						rs.getInt(i++),      //auth
+						rs.getInt(i++)       //del
+						);
+			}
+			log("5/6 성공 - 회원 정보 보기");
+			
+		}catch(SQLException e){
+			log("회원 정보 보기 - 실패"+ e);
+		}finally{
+			DBclose.close(psmt, conn, rs);
+			log("6/6 성공 - 회원 정보 보기");
+		}
+		return dto;
+	}
 	
 	
 	

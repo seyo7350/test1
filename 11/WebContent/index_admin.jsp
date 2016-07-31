@@ -15,6 +15,9 @@
 	<tr>
 		<td align="center"><button onclick="location.href='product_order_list.jsp'">결제 목록</button></td>
 	</tr>
+	<tr>
+		<td align="center"><button onclick="location.href='admin_member.jsp'">회원정보 보기</button></td>
+	</tr>
 </table>
 </body>
 </html>

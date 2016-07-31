@@ -1,4 +1,5 @@
 <%@ page import="member.memberDTO" %>
+<%@ page import="member.memberDAO" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -25,6 +26,19 @@ function noSpaceForm(obj) { // 공백사용못하게
         return false;
     }
 }
+
+//정보 처리 요청 확인
+function checkIt() {
+	var user = document.form;
+	
+	if (user.password.value == '') {
+		alert('	비밀번호를 입력하세요!');
+		user.password.focus();
+		return false;
+	}
+}
+
+
 </script>
 
 <style type="text/css">
@@ -85,7 +99,7 @@ if(ologin == null){
  mem = (memberDTO)ologin;
 %>
 
-				<form action="member_Update2.jsp" method="post" >
+<form action="confirmpw.jsp" name= "form" method="post" onsubmit="return checkIt()">
 <table width="700px">
    <tr>
       <td> 
@@ -103,6 +117,7 @@ if(ologin == null){
        <td>  
           <a style="font-size: 15px">아이디  : &nbsp;&nbsp;<%=mem.getMember_id() %></a><br><br>
           <input type="password" name = "password"  onkeyup="noSpaceForm(this)"; placeholder="비밀번호" />
+          <input type="hidden" name="id" value="<%=mem.getMember_id() %>"/>
       </td>
   </tr>
 

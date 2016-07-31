@@ -114,7 +114,7 @@ function openConfirmId(user){
 
 //이메일 중복 여부를 판단
 function openConfirmEmail(user){
-	//아이디를 입력했는지 검사
+	//이메일을 입력했는지 검사
 	if(user.email.value==''){
 		alert('email을 입력하세요!!');
 		return;
@@ -306,7 +306,7 @@ function checkIt() {
 					<a>비밀번호 확인	:&nbsp;&nbsp;</a> 
 					<input type="password" name="Chk_password" onkeyup="noSpaceForm(this)" maxlength='20' /> <br><br>
 					
-					<!--생일 성별 -->
+					<!--생일 -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
 					<a>생년월일 :	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 					
