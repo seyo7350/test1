@@ -7,7 +7,7 @@
 <title>admin_index</title>
 </head>
 <body>
-<h1>admin page</h1>
+<h1>admin_page</h1>
 <table border="1"align="center">
 	<tr>
 		<td align="center"><button onclick="location.href='product_add.jsp'">상품 등록</button></td>
