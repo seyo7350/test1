@@ -27,5 +27,17 @@ public interface iMemberDAO {
 	
 	//회원정보 불러오기
 	memberDTO getMember(int seq);
+	
+	//관리자 정보 수정
+	boolean adminUpdate(int seq, int point, int del);
+	
+	//관리자 계정 추가
+	boolean addAdmin(memberDTO mdto);
+	
+	//탈퇴회원 DB불러오기
+	List<memberDTO> getdeleteMember();
+	
+	//탈퇴회원 DB정리
+	boolean deleteDB();
 
 }

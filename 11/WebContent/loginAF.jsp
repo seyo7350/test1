@@ -37,11 +37,19 @@ if(mem != null && !mem.getMember_id().equals("")&&mem.getMember_del()==0&&mem.ge
 	location.href="index.jsp";
 	</script>
 <%
-}else if(mem != null && !mem.getMember_id().equals("")&&mem.getMember_auth()==0){
+}else if(mem != null && !mem.getMember_id().equals("")&&mem.getMember_auth()==0&&mem.getMember_del()==0){
+	session.setAttribute("login", mem);
 	%>
 	<script type="text/javascript">
 	alert("관리자님 안녕하세요");
 	location.href="index_admin.jsp";
+	</script>
+	<%
+}else if(mem != null && !mem.getMember_id().equals("")&&mem.getMember_auth()==0&&mem.getMember_del()==1){
+%>
+	<script type="text/javascript">
+	alert("삭제된 관리자계정입니다.");
+	location.href="index.jsp";
 	</script>
 	<%
 }else{

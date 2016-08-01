@@ -94,6 +94,8 @@ if(ologin == null){
    <tr>
        <td>  
          <a>탈퇴시 보유하신 </a><a style="color: red;">포인트는 삭제됩니다. </a><br>
+         <a>또한 주기적으로 회원정보를 업데이트 하기 때문에 </a><br>
+         <a style="color: red;">탈퇴 철회가 안될 수도 있습니다. </a><br>
          <a>탈퇴를 원하시면 비밀번호를 입력해 주세요. </a><br><br>
        </td>
    </tr>

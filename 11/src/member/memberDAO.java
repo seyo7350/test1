@@ -380,6 +380,163 @@ public class memberDAO implements iMemberDAO {
 		return dto;
 	}
 	
+	//관리자 회원정보 수정
+	@Override
+	public boolean adminUpdate(int point, int del, int seq) {
+		String sql = " update member_table set member_point=?, member_del=? "
+				     + " where member_seq=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		
+		try{
+			conn=DBconnection.makeConnection();
+			log("2/6 성공 - 관리자 정보 수정");
+			
+			psmt=conn.prepareStatement(sql);
+			psmt.setInt(1, point);
+			psmt.setInt(2, del);
+			psmt.setInt(3, seq);
+			log("3/6 성공 - 관리자 정보 수정");
+			
+			count=psmt.executeUpdate();
+			log("4/6 성공 - 관리자 정보 수정");
+			
+		}catch(SQLException e){
+			log("관리자 정보 수정 - 실패"+ e);
+		}finally{
+			DBclose.close(psmt, conn, rs);
+			log("5/6 성공 - 관리자 정보 수정");
+		}
+		return count>0?true:false;
+	}
+	
+	
+	//관리자 계정 추가
+	@Override
+	public boolean addAdmin(memberDTO mdto) {
+	   String sql =  " insert into member_table "
+			     + " (member_seq, member_name, member_id, member_password, member_postcode, member_address, member_addressDetail, "
+			     + " member_email, member_phone, member_birthday, member_regidate, member_point, member_auth, member_del ) "
+			     + " values(seq_member.nextval, ?, ?, ?, '00000', '회사', '사무실', ?, '0100001234', '20160801', sysdate, 99999, 0, 0) ";
+	
+	Connection conn = null;
+	PreparedStatement psmt= null;
+	ResultSet rs = null;
+	
+	int count = 0;
+		
+	try{
+		conn=DBconnection.makeConnection();
+		log("2/6 성공 - 관리자 추가");
+		
+		psmt=conn.prepareStatement(sql);
+		psmt.setString(1, mdto.getMember_name());
+		psmt.setString(2, mdto.getMember_id());
+		psmt.setString(3, mdto.getMember_password());
+		psmt.setString(4, mdto.getMember_email());
+		
+		log("3/6 성공 - 관리자 추가");
+		
+		count=psmt.executeUpdate();
+		log("4/6 성공 - 관리자 추가");
+		
+	}catch(SQLException e){
+		log("관리자 추가 - 실패"+ e);
+	}finally{
+		DBclose.close(psmt, conn, rs);
+		log("5/6 성공 - 관리자 추가");
+	}
+	return count>0?true:false;
+}
+	
+	//탈퇴 회원 DB불러오기
+	@Override
+	public List<memberDTO> getdeleteMember() {
+		String sql = " select member_seq, member_name, member_id, member_password, "
+		     	 + " member_postcode, member_address, member_addressDetail, member_email, "
+		     	 + " member_phone, member_birthday,  member_regidate, member_point, member_auth, member_del "
+		     	 + " from member_table where member_del=1 order by member_seq ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<memberDTO> delete_memberlist = new ArrayList<memberDTO>();
+		
+		try{
+			conn=DBconnection.makeConnection();
+			log("2/6 성공 - 탈회 회원 보기");
+			
+			psmt=conn.prepareStatement(sql);
+			log("3/6 성공 - 탈회 회원 보기");
+			
+			rs=psmt.executeQuery();
+			log("4/6 성공 - 탈회 회원 보기");
+			
+			while(rs.next()){
+				int i =1;
+				memberDTO mdto = new memberDTO(
+						rs.getInt(i++),      //seq
+						rs.getString(i++),  //name
+						rs.getString(i++),  //id
+						rs.getString(i++),  //pwd
+						rs.getString(i++),  //postcode
+						rs.getString(i++),  //address
+						rs.getString(i++),  //addressDetail
+						rs.getString(i++),  //email
+						rs.getString(i++),  //phone
+						rs.getString(i++),  //birthday
+						rs.getDate(i++),    //regidate
+						rs.getInt(i++),      //point
+						rs.getInt(i++),      //auth
+						rs.getInt(i++)       //del
+						);
+				delete_memberlist.add(mdto);
+			}
+			log("5/6 성공 - 탈회 회원 보기");
+			
+		}catch(SQLException e){
+			log("탈회 회원 보기 - 실패"+ e);
+		}finally{
+			DBclose.close(psmt, conn, rs);
+			log("6/6 성공 -탈회 회원 보기");
+		}
+		return delete_memberlist;
+	}
+	
+	//DB정리
+	@Override
+	public boolean deleteDB() {
+		String sql = " delete from member_table where member_del=1 ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		int count =0;
+		
+		try{
+			conn=DBconnection.makeConnection();
+			log("2/6 성공 - DB정리");
+			
+			psmt=conn.prepareStatement(sql);
+			log("3/6 성공 - DB정리");
+			
+			count=psmt.executeUpdate();
+			log("4/6 성공 - DB정리");
+			
+		}catch(SQLException e){
+			log("DB정리 - 실패"+ e);
+		}finally{
+			DBclose.close(psmt, conn, rs);
+			log("5/6 성공 - DB정리");
+		}
+		return count>0?true:false;
+	}
 	
 	
 		//로그 메소드1
@@ -389,6 +546,8 @@ public class memberDAO implements iMemberDAO {
 				System.out.println(getClass()+":" + msg);
 			}
 		}
+
+		
 
 		//로그 메소드2
 		public void log(String msg, Exception e) {
