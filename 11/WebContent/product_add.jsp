@@ -17,7 +17,6 @@ $(document).ready(function(){
 		
 		alert(cnt);
 		
-		
 		var indexa = $('tr').index($(this).parent().parent());
 		
 		for(var i = 0; i < cnt; i++){
@@ -87,9 +86,11 @@ $(document).ready(function(){
 				</select>
 			</td>
 		</tr>
-		<tr>
+		<tr id="gif_image">
 			<th>gif이미지</th>
-			<td></td>
+			<td><input type="file" name="product_photo_gif">
+				<input type="button" id="add_gif_image" value="사진추가">
+			</td>
 		</tr>
 		<tr>
 			<th>미리보기이미지</th>
