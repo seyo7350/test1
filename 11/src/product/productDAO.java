@@ -98,7 +98,7 @@ public class productDAO implements iproductDAO {
 		String sql1 = " insert into product_table "
 				+ " (product_seq, product_name, product_price, product_point, product_option_count, "
 				+ " product_info_about, product_info_detail_tip, product_info_size_tip, product_info_washing_tip, "
-				+ " product_photo_gif, product_photo_main, product_photo_detail_main, product_photo_detail, "
+				+ " product_photo_gif, product_photo_main, product_photo_detail_main, product_photo_detail_count, "
 				+ " product_style_code, product_regiDate, product_del) "
 				+ " values "
 				+ " (seq_product_table.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, 0) ";
@@ -187,7 +187,7 @@ public class productDAO implements iproductDAO {
 	public productDTO getProduct(int product_seq) {
 		String sql = " select product_seq, product_name, product_price, product_point, product_option_count, "
 				+ " product_info_about, product_info_detail_tip, product_info_size_tip, product_info_washing_tip, "
-				+ " product_photo_gif, product_photo_main, product_photo_detail_main, product_photo_detail, "
+				+ " product_photo_gif, product_photo_main, product_photo_detail_main, product_photo_detail_count, "
 				+ " product_style_code, product_regiDate, product_del "
 				+ " from product_table "
 				+ " where product_seq = ? ";

@@ -1,4 +1,3 @@
-
 <%@page import="java.util.List"%>
 <%@page import="product.productOptionDTO"%>
 <%@page import="product.productDTO"%>
@@ -14,11 +13,16 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/detailstyle.css">
 
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="js/option.js"></script>
+
+
 </head>
 <body>
 
 <%
 String product_seq_string = request.getParameter("product_seq");
+System.out.println(product_seq_string);
 int product_seq = Integer.parseInt(product_seq_string);
 
 productDAO pdao = productDAO.getInstance();
@@ -64,15 +68,12 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 		<div class="content">
 			<!-- content -->
 			<div id="contnent">
-				<div id="productDetail">
-					<div class="page_path">
-						<h3>현재위치</h3>
-					</div>
+				<div id="productDetail">					
 					<div class="page-body">
 						<div class="thumb-info">
 							<div class="thumb-wrap">
 								<div class="thumb">
-									<img src ="upload/product/1/<%=pdto.getProduct_photo_main()%>" alt=""/>
+									<img src ="upload/product/1/<%=pdto.getProduct_photo_detail_main()%>" alt=""/>
 								</div>
 							</div>
 							 <!--  .thumb-wrap  -->
@@ -107,7 +108,7 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 												<div class="tb-left">mileage</div>
 											<th>
 											<td>
-												<div class="prd-price detail_info_right"><%=pdto.getProduct_price()%></div>
+												<div class="prd-price detail_info_right"><%=pdto.getProduct_point()%></div>
 											</td>
 										</tr>
 										<tr>
@@ -118,13 +119,13 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 												<div class="detail_info_right">
 													<span id="MK_opt_0">
 		    											<input type="hidden" id="optionlist_0" name="optionlist[]" value="">
-		    												<select id="MK_p_s_0" onchange="p_add_product(this)" p_opt_cnt="<%=poList.size()%>" mandatory="Y">
+		    												<select id="MK_p_s_0" onchange="add_product(this)" p_opt_cnt="<%=poList.size()%>">
 		       													<option value="">--옵션 선택--</option>
 		       													<%
 		       													for(int i = 0; i < poList.size(); i++){
 		       														productOptionDTO podto = poList.get(i);
 		       														%>
-			       													<option value="0" price="29000" opt_price="0" opt_title="<%=%>" stock_cnt="-1">black/블랙</option>
+			       													<option value="0" price="32000" opt_title="ivory/아이보리" amount="-1">ivory/아이보리</option>
 			       													<%
 		       													}
 		       													%>		        												
@@ -137,6 +138,30 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 											<td colspan="3">
 												<div class="MK_optAddWrap">
 													<div id="MK_innerOptWrap">
+														<div id="MK_innerOptScroll">
+															<ul class="MK_inner-opt-cm" id="MK_innerOpt_01">
+																<!-- <li price="32000" opt_price="0" optionindex="ivory/아이보리|" id="MK_li_0">
+																	<span class="MK_p-name">ivory/아이보리</span>
+																	<div class="MK_qty-ctrl">
+																		<input type="text" class="MK_count" value="1" id="MK_p_cnt_0" style="ime-mode:disabled;">
+																		<a href="javascript:change_amount('+', '0');" class="MK_btn-up">
+																			<img src="image/basket_up.gif" border="0">
+																		</a>
+																		<a href="javascript:change_amount('-', '0');" class="MK_btn-dw">
+																			<img src="image/basket_down.gif" border="0">
+																		</a>
+																	</div>
+																	<strong class="MK_price">
+																		<span id="MK_p_price_0">
+																		32,000원
+																		</span>
+																	</strong>
+																	<a class="MK_btn-del" href="javascript:del_product('0');" id="MK_btn_del_0">
+																		<img src="image/btn_del.gif">
+																	</a>
+																</li> -->
+															</ul>
+														</div>
 														<div id="MK_innerOptTotal">
 															<span class="MK_txt-total">총 상품 금액</span>
 															<strong class="MK_total" id="MK_p_total">0</strong>
@@ -163,8 +188,12 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 									</p>
 							</div>
 							<div class="prd-btns">
-                            	<a href="buy.jsp" id="buyBtn"><img src="image/detail_buy_bt_over.png" alt="주문하기" title="주문하기"></a>
-					    		<a href="cart.jsp" id="cartBtn"><img src="image/detail_cart_bt_over.png" alt="장바구니 담기" title="장바구니 담기"></a>
+                            	<a href="buy.jsp" id="buyBtn">
+                            		<img src="image/detail_buy_bt.png" alt="주문하기" title="주문하기" onmouseover='src="upload/product/1/<%=pdto.getProduct_photo_main()%>"' onmouseout="src='upload/product/1/<%=pdto.getProduct_photo_gif()%>'">
+                            	</a>
+					    		<a href="cart.jsp" id="cartBtn">
+					    			<img src="image/detail_cart_bt.png" alt="장바구니 담기" title="장바구니 담기">
+					    		</a>
                 			</div>
                 		</div>
                 		<!--  .info  -->
@@ -187,7 +216,7 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 									<!--    width="90%"      -->
 									<center>
 										<img alt="yes! we are cherrykoko"
-											src="http://cherry07.img12.kr/product/160711_C66PWOP140/1.jpg">
+											src="upload/product/<%=pdto.getProduct_seq()%>/1.jpg">
 										<br>
 										<br>
 										<font color="#646464" face="굴림"><span
@@ -195,33 +224,37 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 											<br>
 											<font color="#000000" face="돋움" size="2"><b>ABOUT
 												</b></font><br>
-											<br>하나만 입어도 드레스한 느낌으로 모던하면서 간편하게 즐기실 수 있는 원피스를 소개할께요<br>
+											<!-- <br>하나만 입어도 드레스한 느낌으로 모던하면서 간편하게 즐기실 수 있는 원피스를 소개할께요<br>
 											<br>심플하고 깔끔한 핏감으로 누구나 페미닌하게 즐기실 수 있는 멋스러운 아이구요<br>
-											<br>모델 지원양은 발목 살짝 위로 올라오는 기장감으로 마무리 되었어요^^<br>
+											<br>모델 지원양은 발목 살짝 위로 올라오는 기장감으로 마무리 되었어요^^<br> -->
+											<%=pdto.getProduct_info_about()%>
 											<br>
 											<br>
 											<font color="#000000" face="돋움" size="2"><b>DETAIL
 														TIP </b></font><br>
-											<br>하나만 입어도 드레스한 느낌으로 모던하면서 간편하게 즐기실 수 있는 원피스를 소개할께요<br>
+											<!-- <br>하나만 입어도 드레스한 느낌으로 모던하면서 간편하게 즐기실 수 있는 원피스를 소개할께요<br>
 											<br>심플하고 깔끔한 핏감으로 누구나 페미닌하게 즐기실 수 있는 멋스러운 아이구요<br>
-											<br>모델 지원양은 발목 살짝 위로 올라오는 기장감으로 마무리 되었어요^^<br>
+											<br>모델 지원양은 발목 살짝 위로 올라오는 기장감으로 마무리 되었어요^^<br> -->
+											<%=pdto.getProduct_info_detail()%>
 											<br>
 											<br>
 											<font color="#000000" face="돋움" size="2"><b>SIZE
 														TIP </b></font><br>
-											<br>원 사이즈 제품이에요! 평소 55 사이즈 착용하는 지원양은 여유있게 잘 맞았구요~<br>
-											<br>66사이즈 고객님까지 안정감있게 잘 맞으실꺼같아요 !<br>
+											<!-- <br>원 사이즈 제품이에요! 평소 55 사이즈 착용하는 지원양은 여유있게 잘 맞았구요~<br>
+											<br>66사이즈 고객님까지 안정감있게 잘 맞으실꺼같아요 !<br> -->
+											<%=pdto.getProduct_info_size_tip()%>
 											<br>
 											<br>
 											<font color="#000000" face="돋움" size="2"><b>WASHING
 														TIP </b></font><br>
-											<br>물에 젖으면 강도가 50%정도 감소되므로 세탁시 비누나 중성세제를 사용하여 <br>
+											<!-- <br>물에 젖으면 강도가 50%정도 감소되므로 세탁시 비누나 중성세제를 사용하여 <br>
 											<br>비틀거나 짜지말고 손으로 조물조물 하여 세탁하세요.<br>
-											<br>세탁기를 사용할 시에는 반드시 세탁망에 넣어 단시간에 탈수 후 건조하시면 되요.<br>
+											<br>세탁기를 사용할 시에는 반드시 세탁망에 넣어 단시간에 탈수 후 건조하시면 되요.<br> -->
+											<%=pdto.getProduct_info_washing_tip()%>
 											<br></span></font>
 									</center>
 									<center>
-										<img height="250"
+										<!-- <img height="250"
 											src="http://cherry07.img12.kr/product/aaa.jpg"><br>
 										<br>
 										<img alt="yes! we are cherrykoko"
@@ -298,8 +331,26 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 										<br>
 										<img alt="yes! we are cherrykoko"
 											src="http://cherry07.img12.kr/product/160711_C66PWOP140/14.jpg"><br>
+										<br> -->
+										<%
+										for(int i = 2; i <= pdto.getProduct_photo_detail_count(); i++){
+											%>
+											<img height="400"
+												src="image/aaa.jpg"><br>
+											<br>
+											<img alt="yes! we are applekoko"
+												src="upload/product/<%=pdto.getProduct_seq()%>/<%=i%>.jpg"><br>
+											<br>											
+											<%	
+										}
+										%>
 										<br>
-										
+										<br>
+										<br>
+										<br>
+										<br>
+										<br>
+									</center>										
 								</div>
 							</div>
 		</div>
@@ -311,188 +362,7 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 	</div>
 </div>
 
-<script type="text/javascript">
-function p_add_product(obj) {
-    u_li_opt_index = '';
-    opt_index_connect_string = '|';
 
-    p_opt_cnt = parseInt(obj.getAttribute('p_opt_cnt'), 10);
-
-    if (obj.value == '') {
-        //alert("옵션을 선택하세요.");
-        //옵션 선택을 눌렀을때.. 하위 옵션 초기화
-        if (document.getElementById('MK_p_s_' + p_opt_cnt) && document.getElementById('MK_p_s_' + p_opt_cnt).selectedIndex == 0 ) {
-            for (i = p_opt_cnt + 1; i <= opt_cnt; i++) {
-                if (document.getElementById('MK_p_s_' + i)) {
-                    document.getElementById('MK_p_s_' + i).selectedIndex = 0;
-                }
-            }
-        }
-        return;
-    }
-
-    if (p_opt_cnt == 0 && (option_type == 'NU' || option_type == 'NL') && optionprice.length > 0) {//2단옵션(NU, NL) 가격 변동형 일때 판매가 처리
-        i = 0;
-        j = document.getElementById('MK_p_s_'+ i).selectedIndex;
-        sellprice = parseInt(arrOptionPrice[j-1], 10);
-        if (isNaN(sellprice)) {
-            sellprice = parseInt(arrOptionPrice[0], 10);
-        }
-        if (document.getElementById('pricevalue')) {
-            orisellprice = parseInt(oriarrOptionPrice[j-1], 10);
-            if (isNaN(orisellprice)) {
-                orisellprice = parseInt(oriarrOptionPrice[0], 10);
-            }
-            if (isNaN(orisellprice) === false) {
-                document.getElementById('pricevalue').innerHTML = number_format(orisellprice);
-            }
-        }
-
-		// 판매가 할인율
-		if (document.getElementById('discount_percent_span')) {
-			if (obj.options[j].getAttribute('discount_percent')) {
-				var discount_percent_arr = obj.options[j].getAttribute('discount_percent').split(',');
-				var discount_percent = discount_percent_arr[j-1];
-
-				document.getElementById("discount_percent_span").innerHTML = discount_percent;
-			}
-		}
-    }
-
-    if (p_opt_cnt <= opt_cnt) {
-        u_li     = '';
-        u_li_opt = '';
-        u_price  = 0;
-        for (i = 0; i < p_opt_cnt; i++) {
-            if (document.getElementById('MK_p_s_' + i) && document.getElementById('MK_p_s_' + i).selectedIndex == 0) {
-                alert(((shop_language == 'eng') ? "Please select the top option first." : "상위 옵션을 먼저 선택해주세요."));
-                document.getElementById('MK_p_s_' + p_opt_cnt).selectedIndex = 0;
-                return;
-            }
-
-            j = document.getElementById('MK_p_s_' + i).selectedIndex;
-            u_li += document.getElementById('MK_p_s_' + i).options[j].value + '_';
-            u_li_opt += document.getElementById('MK_p_s_' + i).options[j].getAttribute('opt_title') + ', ';
-            u_li_opt_index += document.getElementById('MK_p_s_' + i).options[j].getAttribute('opt_title') + opt_index_connect_string;
-            u_price += parseInt(document.getElementById('MK_p_s_' + i).options[j].getAttribute('opt_price'), 10);
-            stock = document.getElementById('MK_p_s_' + i).options[j].getAttribute('stock_cnt'); 
-
-            if (document.getElementById('optionlist_' + i)) {
-                document.getElementById('optionlist_' + i).value = document.getElementById('MK_p_s_' + i).options[j].getAttribute('opt_title');
-            }
-
-            //optioncode = optioncode + document.getElementById('MK_p_s_' + i).options[j].value + ',';
-            optioncode[i] = document.getElementById('MK_p_s_' + i).options[j].value;
-            //document.form1.optioncode.value = optioncode;
-            if (stock != '' && stock == 0 ) {
-                alert(((shop_language == 'eng') ? "Out of stock." : "품절된 상품입니다."));
-                return;
-            }
-        }
-
-        j = document.getElementById('MK_p_s_' + p_opt_cnt).selectedIndex;
-        u_li += document.getElementById('MK_p_s_' + p_opt_cnt).options[j].value;
-        u_li_opt += document.getElementById('MK_p_s_' + p_opt_cnt).options[j].getAttribute('opt_title');
-        u_li_opt_index += document.getElementById('MK_p_s_' + p_opt_cnt).options[j].getAttribute('opt_title') + opt_index_connect_string;
-        u_price += parseInt(document.getElementById('MK_p_s_' + p_opt_cnt).options[j].getAttribute('opt_price'), 10);
-        stock = document.getElementById('MK_p_s_' + p_opt_cnt).options[j].getAttribute('stock_cnt'); 
-
-        if (document.getElementById('optionlist_' + i)) {
-            document.getElementById('optionlist_' + i).value = document.getElementById('MK_p_s_' + i).options[j].getAttribute('opt_title');
-        }
-
-        //optioncode = optioncode + document.getElementById('MK_p_s_' + i).options[j].value + ',';
-        optioncode[i] = document.getElementById('MK_p_s_' + i).options[j].value;
-        //document.form1.optioncode.value = optioncode;
-
-        if (stock != '' && stock == 0 ) { //상품 자체가 품절일때
-            alert(((shop_language == 'eng') ? "Out of stock." : "품절된 상품입니다."));
-            for (i = i; i <= opt_cnt; i++) {
-                document.getElementById('MK_p_s_' + i).selectedIndex = 0;
-                if (document.getElementById('optionlist_' + i)) {
-                    document.getElementById('optionlist_' + i).value = '';
-                }
-                optioncode[i] = '-1';
-            }
-            return;
-        }
-
-        if (p_opt_cnt != opt_cnt) {
-            for (i = p_opt_cnt + 1; i <= opt_cnt; i++) {
-                if (document.getElementById('MK_p_s_' + i)) {
-                    document.getElementById('MK_p_s_' + i).selectedIndex = 0;
-                }
-            }
-
-            if (option_type == 'NL') {
-                change_option_stock(product_uid, option_type, u_li, 1);
-            } else if (option_type == 'PS') {
-                change_option_stock(product_uid, option_type, u_li, p_opt_cnt + 1);
-            }
-            return;
-        }
-    }
-
-    if (document.getElementById('MK_li_' + u_li) != null) {
-        alert(((shop_language == 'eng') ? "It has already been added." : "이미 추가되었습니다"));
-        return;
-    }
-
-    if (isNaN(u_price)) {
-        u_price = 0;
-    }
-
-    if (option_type == 'PP') {
-        price = (parseInt(sellprice, 10) * miniq) + u_price;
-        elem = document.createElement('li');
-        elem.setAttribute('price', sellprice);
-        elem.setAttribute('opt_price', u_price);
-    } else {
-        price = (parseInt(sellprice, 10) + u_price) * miniq;
-        elem = document.createElement('li');
-        elem.setAttribute('price', parseInt(sellprice, 10) + u_price);
-        elem.setAttribute('opt_price', 0);
-    }
-    elem.setAttribute('optionindex', u_li_opt_index);
-    elem.setAttribute('id', 'MK_li_' + u_li);
-    // 모바일에서는 마크업이 다름
-    var _option = Array();
-    if (is_mobile_use === true) {
-        _option.push('<span class="MK_p-name">' + u_li_opt + '</span>');
-        _option.push('<div class="MK_qty-ctrl">');
-        _option.push('<input type="tel" class="MK_count" value="' + miniq + '" id="MK_p_cnt_' + u_li + '" style="ime-mode:disabled;" onkeypress="return numbersonly(event, false);" onfocusout="p_chk_amount(\'' + u_li + '\');">');
-        if (template_m_setid > 0) {
-            _option.push('<a href="javascript:p_change_amount(\'+\', \'' + u_li + '\');" class="btn-type-02 box-gradient-02 box-shadow-02">');
-            _option.push('<span>+1</span>');
-            _option.push('</a>');
-            _option.push('<a href="javascript:p_change_amount(\'-\', \'' + u_li + '\');" class="btn-type-02 box-gradient-02 box-shadow-02">');
-            _option.push('<span>-1</span>');
-            _option.push('</a>');
-        }
-        _option.push('</div>');
-        _option.push('<strong class="MK_price"><span id="MK_p_price_' + u_li + '">' + number_format(price) + '</span>원</strong>');
-        _option.push('<a class="MK_btn-del" href="javascript:p_del_product(\'' + u_li + '\');" id="MK_btn_del_' + u_li + '"><img src="/m/skin/basic/images/icon/icon_option_remove.gif" alt="삭제" border="0" /></a>');
-    } else {
-        _option.push('<span class="MK_p-name">' + u_li_opt + '</span>');
-        _option.push('<div class="MK_qty-ctrl">');
-        _option.push('<input type="text" class="MK_count" value="' + miniq + '" id="MK_p_cnt_' + u_li + '" style="ime-mode:disabled;" onkeypress="return numbersonly(event, false);" onfocusout="p_chk_amount(\'' + u_li + '\');" />');
-        _option.push('<a href="javascript:p_change_amount(\'+\', \'' + u_li + '\');" class="MK_btn-up">');
-        _option.push('<img src="/images/common/basket_up.gif" alt="수량증가" border="0" />');
-        _option.push('</a>');
-        _option.push('<a href="javascript:p_change_amount(\'-\', \'' + u_li + '\');" class="MK_btn-dw">');
-        _option.push('<img src="/images/common/basket_down.gif" alt="수량감소" border="0" />');
-        _option.push('</a>');
-        _option.push('</div>');
-        _option.push('<strong class="MK_price"><span id="MK_p_price_' + u_li + '">' + number_format(price) + '</span>원</strong>');
-        _option.push('<a class="MK_btn-del" href="javascript:p_del_product(\'' + u_li + '\');" id="MK_btn_del_' + u_li + '"><img src="/board/images/btn_comment_del.gif" alt="삭제" border="0" /></a>');
-    }
-    elem.innerHTML = _option.join("\n");
-    document.getElementById('MK_innerOpt_01').appendChild(elem);
-    p_cal_total('+', price);
-    p_check_scroll('+');
-    arr_li_code[u_li] = u_li;
-}
-</script>
 
 
 </body>

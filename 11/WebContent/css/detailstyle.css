@@ -133,7 +133,7 @@ form{
 #productDetail .thumb-info .info .table-opt th, #productDetail .thumb-info .info .table-opt td {
     font-size: 12px;
     font-family: "Nanum Gothic", 나눔고딕, "malgun gothic", arial, dotum, sans-serif;
-    padding: 5px 0px 4px 0px;
+    padding: 5px 0px 5px 0px;
 }
 #productDetail .thumb-info{
 	position: relative;
@@ -143,7 +143,7 @@ form{
 #productDetail .thumb-info .info .table-opt{
 	width: 100%;
 	margin-top: 10px;
-	padding:  5px 0px 5px 5px;
+	padding:  5px 0px 5px 0px;
 }
 .MK_optAddWrap{
 	color: 3666;
@@ -172,3 +172,92 @@ table{
 	color: #8a8a8a;
 	font-family: Dotum, AppleGothic, Helvetica, sans-serif;
 }
+
+#MK_innerOptWrap .MK_inner-opt-cm li .MK_qty-ctrl, #MK_innerOptWrap .MK_inner-opt-cm li .MK_price, #MK_innerOptWrap .MK_inner-opt-cm li .MK_btn-del {
+    position: absolute;
+}
+
+.MK_optAddWrap, .MK_optAddWrap * {
+    margin: 0;
+    padding: 0;
+}
+
+.MK_optAddWrap {
+    color: #666;
+    font-size: 11px;
+    line-height: 13px;
+    font-family: Dotum;
+}
+
+#MK_innerOptWrap .MK_inner-opt-cm li {
+    position: relative;
+    min-height: 13px;
+    _height: 13px;
+    padding: 8px 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.MK_optAddWrap li {
+    list-style: none;
+}
+
+.MK_p-name {
+    margin-right: 140px;
+}
+
+.MK_p-name {
+    margin-right: 140px;
+}
+
+.MK_qty-ctrl {
+    width: 50px;
+    top: 3px;
+    right: 90px;
+}
+
+input.MK_count {
+    width: 30px;
+    height: 16px;
+    line-height: 16px;
+    padding: 2px 0 0 2px;
+}
+
+#MK_innerOptWrap #MK_innerOpt_01 li .MK_qty-ctrl a.MK_btn-up {
+    top: 2px;
+}
+
+#MK_innerOptWrap #MK_innerOpt_01 li .MK_qty-ctrl a {
+    position: absolute;
+    right: 0px;
+    font-size: 0;
+    line-height: 0;
+}
+
+.MK_qty-ctrl a.MK_btn-dw {
+    top: 12px;
+}
+
+.MK_qty-ctrl a {
+    position: absolute;
+    right: 0px;
+    font-size: 0;
+    line-height: 0;
+}
+
+#MK_innerOptWrap .MK_inner-opt-cm li .MK_price {
+    right: 20px;
+    top: 10px;
+    color: #666;
+}
+
+#MK_innerOptWrap .MK_inner-opt-cm li .MK_price {
+    right: 20px;
+    top: 10px;
+    color: #666;
+}
+
+#MK_innerOptWrap .MK_inner-opt-cm li .MK_btn-del {
+    right: 5px;
+    top: 8px;
+}
+

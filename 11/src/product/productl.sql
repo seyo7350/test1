@@ -48,6 +48,7 @@ create table product_table(
 	product_info_washing_tip varchar2(1000) not null,
 	product_photo_gif varchar2(1000) not null,
 	product_photo_main varchar2(1000) not null,
+	product_photo_detail_main varchar2(1000) not null,
 	product_photo_detail_count number(3) not null,
 	product_style_code number(3) not null,
 	product_regiDate date not null,
