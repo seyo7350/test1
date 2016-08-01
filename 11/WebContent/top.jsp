@@ -1,3 +1,8 @@
+<%@page import="java.util.List"%>
+<%@page import="product.productOptionDTO"%>
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="product.productDTO"%>
+<%@page import="product.productDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -15,9 +20,30 @@
 <script src="js/jquery.bxslider.js"></script>
 <script src="js/jquery.bxslider.min.js"></script>
 
-
 </head>
 <body>
+
+<%-- <%
+Object ologin = session.getAttribute("login");
+memberDTO mem = null;
+if(ologin == null){
+	%>
+	<script type="text/javascript">
+	alert('로그인 하십시오');
+	location.href = 'index.jsp';
+	</script>
+	<%
+	return;
+}
+mem = (memberDTO)ologin;
+%> --%>
+
+<%
+productDAO pdao = productDAO.getInstance();
+List<productDTO> pList = pdao.getProductList();
+System.out.println(pList.size());
+%>
+
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
@@ -59,251 +85,52 @@
 	<div class="container_middle">
 		<div class="content">
 			<div class="item-list">
-            <ul class="prdlist">
-               <li class="item">
-                  <div class="box">
-                     <a href="product_detail.jsp" class="prdimg">
-                     <img src="image/1370000000103.gif" alt="이미지 없음" onmouseover='src="image/0020030030002.jpg"'onmouseout='src="image/1370000000103.gif"'/></a>
-                  <div class="product_contents_info">
-                     <p class="name">
-                        <a href="product_detail">love some, ops</a>
-                     </p>
-                     <ul class="product_list_item">
-                        <li>
-                           <strong class="title title_price">판매가:</strong>
-                           <span class="product_price" style="text-align: center;">32,000 won</span>
-                        </li>
-                        <li class="color_type">
-                           <strong class="title title_color">색상 :</strong>
-                           <span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: #f6efe4; border:1px solid #c3c3c3;"></span>
-                        </li>
-                     </ul>
-                  </div>
-                  </div>
-               </li>
-               
-               <li class="item">
-                  <div class="box">
-                     <a href="product_detail" class="prdimg">
-                     <img src="image/1370000000103.gif" alt="이미지 없음" onmouseover='src="image/0020030030002.jpg"'onmouseout='src="image/1370000000103.gif"'/></a>
-                  <div class="product_contents_info">
-                     <p class="name">
-                        <a href="product_detail">love some, ops</a>
-                     </p>
-                     <ul class="product_list_item">
-                        <li>
-                           <strong class="title title_price">판매가:</strong>
-                           <span class="product_price" style="text-align: center;">32,000 won</span>
-                        </li>
-                        <li class="color_type">
-                           <strong class="title title_color">색상 :</strong>
-                           <span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: #f6efe4; border:1px solid #c3c3c3;"></span>
-                        </li>
-                     </ul>
-                  </div>
-                  </div>
-               </li>
-               
-               <li class="item">
-                  <div class="box">
-                     <a href="product_detail" class="prdimg">
-                     <img src="image/1370000000103.gif" alt="이미지 없음" onmouseover='src="image/0020030030002.jpg"'onmouseout='src="image/1370000000103.gif"'/></a>
-                  <div class="product_contents_info">
-                     <p class="name">
-                        <a href="product_detail">love some, ops</a>
-                     </p>
-                     <ul class="product_list_item">
-                        <li>
-                           <strong class="title title_price">판매가:</strong>
-                           <span class="product_price" style="text-align: center;">32,000 won</span>
-                        </li>
-                        <li class="color_type">
-                           <strong class="title title_color">색상 :</strong>
-                           <span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: #f6efe4; border:1px solid #c3c3c3;"></span>
-                        </li>
-                     </ul>
-                  </div>
-                  </div>
-               </li>
-               
-               <li class="item">
-                  <div class="box">
-                     <a href="product_detail" class="prdimg">
-                     <img src="image/1370000000103.gif" alt="이미지 없음" onmouseover='src="image/0020030030002.jpg"'onmouseout='src="image/1370000000103.gif"'/></a>
-                  <div class="product_contents_info">
-                     <p class="name">
-                        <a href="product_detail">love some, ops</a>
-                     </p>
-                     <ul class="product_list_item">
-                        <li>
-                           <strong class="title title_price">판매가:</strong>
-                           <span class="product_price" style="text-align: center;">32,000 won</span>
-                        </li>
-                        <li class="color_type">
-                           <strong class="title title_color">색상 :</strong>
-                           <span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: #f6efe4; border:1px solid #c3c3c3;"></span>
-                        </li>
-                     </ul>
-                  </div>
-                  </div>
-               </li>
-               
-               <li class="item">
-                  <div class="box">
-                     <a href="product_detail" class="prdimg">
-                     <img src="image/1370000000103.gif" alt="이미지 없음" onmouseover='src="image/0020030030002.jpg"'onmouseout='src="image/1370000000103.gif"'/></a>
-                  <div class="product_contents_info">
-                     <p class="name">
-                        <a href="product_detail">love some, ops</a>
-                     </p>
-                     <ul class="product_list_item">
-                        <li>
-                           <strong class="title title_price">판매가:</strong>
-                           <span class="product_price" style="text-align: center;">32,000 won</span>
-                        </li>
-                        <li class="color_type">
-                           <strong class="title title_color">색상 :</strong>
-                           <span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: #f6efe4; border:1px solid #c3c3c3;"></span>
-                        </li>
-                     </ul>
-                  </div>
-                  </div>
-               </li>
-               
-                <li class="item">
-                  <div class="box">
-                     <a href="product_detail" class="prdimg">
-                     <img src="image/1370000000103.gif" alt="이미지 없음" onmouseover='src="image/0020030030002.jpg"'onmouseout='src="image/1370000000103.gif"'/></a>
-                  <div class="product_contents_info">
-                     <p class="name">
-                        <a href="product_detail">love some, ops</a>
-                     </p>
-                     <ul class="product_list_item">
-                        <li>
-                           <strong class="title title_price">판매가:</strong>
-                           <span class="product_price" style="text-align: center;">32,000 won</span>
-                        </li>
-                        <li class="color_type">
-                           <strong class="title title_color">색상 :</strong>
-                           <span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: #f6efe4; border:1px solid #c3c3c3;"></span>
-                        </li>
-                     </ul>
-                  </div>
-                  </div>
-               </li>
-               
-               <li class="item">
-                  <div class="box">
-                     <a href="product_detail" class="prdimg">
-                     <img src="image/1370000000103.gif" alt="이미지 없음" onmouseover='src="image/0020030030002.jpg"'onmouseout='src="image/1370000000103.gif"'/></a>
-                  <div class="product_contents_info">
-                     <p class="name">
-                        <a href="product_detail">love some, ops</a>
-                     </p>
-                     <ul class="product_list_item">
-                        <li>
-                           <strong class="title title_price">판매가:</strong>
-                           <span class="product_price" style="text-align: center;">32,000 won</span>
-                        </li>
-                        <li class="color_type">
-                           <strong class="title title_color">색상 :</strong>
-                           <span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: #f6efe4; border:1px solid #c3c3c3;"></span>
-                        </li>
-                     </ul>
-                  </div>
-                  </div>
-               </li>
-               
-               <li class="item">
-                  <div class="box">
-                     <a href="product_detail" class="prdimg">
-                     <img src="image/1370000000103.gif" alt="이미지 없음" onmouseover='src="image/0020030030002.jpg"'onmouseout='src="image/1370000000103.gif"'/></a>
-                  <div class="product_contents_info">
-                     <p class="name">
-                        <a href="product_detail">love some, ops</a>
-                     </p>
-                     <ul class="product_list_item">
-                        <li>
-                           <strong class="title title_price">판매가:</strong>
-                           <span class="product_price" style="text-align: center;">32,000 won</span>
-                        </li>
-                        <li class="color_type">
-                           <strong class="title title_color">색상 :</strong>
-                           <span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: #f6efe4; border:1px solid #c3c3c3;"></span>
-                        </li>
-                     </ul>
-                  </div>
-                  </div>
-               </li>
-               
-               <li class="item">
-                  <div class="box">
-                     <a href="product_detail" class="prdimg">
-                     <img src="image/1370000000103.gif" alt="이미지 없음" onmouseover='src="image/0020030030002.jpg"'onmouseout='src="image/1370000000103.gif"'/></a>
-                  <div class="product_contents_info">
-                     <p class="name">
-                        <a href="product_detail">love some, ops</a>
-                     </p>
-                     <ul class="product_list_item">
-                        <li>
-                           <strong class="title title_price">판매가:</strong>
-                           <span class="product_price" style="text-align: center;">32,000 won</span>
-                        </li>
-                        <li class="color_type">
-                           <strong class="title title_color">색상 :</strong>
-                           <span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: #f6efe4; border:1px solid #c3c3c3;"></span>
-                        </li>
-                     </ul>
-                  </div>
-                  </div>
-               </li>
-               
-               <li class="item">
-                  <div class="box">
-                     <a href="product_detail" class="prdimg">
-                     <img src="image/1370000000103.gif" alt="이미지 없음" onmouseover='src="image/0020030030002.jpg"'onmouseout='src="image/1370000000103.gif"'/></a>
-                  <div class="product_contents_info">
-                     <p class="name">
-                        <a href="product_detail">love some, ops</a>
-                     </p>
-                     <ul class="product_list_item">
-                        <li>
-                           <strong class="title title_price">판매가:</strong>
-                           <span class="product_price" style="text-align: center;">32,000 won</span>
-                        </li>
-                        <li class="color_type">
-                           <strong class="title title_color">색상 :</strong>
-                           <span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: #f6efe4; border:1px solid #c3c3c3;"></span>
-                        </li>
-                     </ul>
-                  </div>
-                  </div>
-               </li>
-               
-               <li class="item">
-                  <div class="box">
-                     <a href="product_detail.jsp" class="prdimg">
-                     <img src="image/1370000000103.gif" alt="이미지 없음" onmouseover='src="image/0020030030002.jpg"'onmouseout='src="image/1370000000103.gif"'/></a>
-                  <div class="product_contents_info">
-                     <p class="name">
-                        <a href="product_detail">love some, ops</a>
-                     </p>
-                     <ul class="product_list_item">
-                        <li>
-                           <strong class="title title_price">판매가:</strong>
-                           <span class="product_price" style="text-align: center;">32,000 won</span>
-                        </li>
-                        <li class="color_type">
-                           <strong class="title title_color">색상 :</strong>
-                           <span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: #f6efe4; border:1px solid #c3c3c3;"></span>
-                        </li>
-                     </ul>
-                  </div>
-                  </div>
-               </li>
-               
-            </ul>   
-         </div>
+				<ul class="prdlist">
+				<%
+				for(int i = 0; i < pList.size(); i++){
+					productDTO pdto = pList.get(i);					
+					List<productOptionDTO> poList =  pdao.getProductOptionList(pdto.getProduct_seq());
+					%>
+					<li class="item">
+                  		<div class="box">
+                    		<a href="product_detail.jsp?product_seq=<%=pdto.getProduct_seq()%>" class="prdimg">
+                    			<img src="upload/product/1/<%=pdto.getProduct_photo_gif()%>" alt="이미지 없음" onmouseover='src="upload/product/1/<%=pdto.getProduct_photo_main()%>"' onmouseout="src='upload/product/1/<%=pdto.getProduct_photo_gif()%>'"/>
+                    		</a>
+                  			<div class="product_contents_info">
+                  				<p class="name">
+                        			<a href="product_detail?product_seq=<%=pdto.getProduct_seq()%>"><%=pdto.getProduct_name()%></a>
+                     			</p>
+                     			<ul class="product_list_item">
+                        			<li>
+                           				<strong class="title title_price">판매가:</strong>
+                           				<span class="product_price" style="text-align: center;">
+                           				<%
+                           				int price = pdto.getProduct_price();
+                           				DecimalFormat df = new DecimalFormat("###,###,###");                           				
+                           				%>
+                           				<%=df.format(price)%>원
+                           				</span>
+                        			</li>
+                        			<li class="color_type">
+                           				<strong class="title title_color">색상 :</strong>
+                           				<%
+                           				for(int j = 0; j < poList.size(); j++){
+                           					productOptionDTO podto = poList.get(i);
+                           					%>
+                           					<span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: <%=podto.getProductOption_colorCode()%>; border:1px solid #c3c3c3;"></span>
+                           					<%
+                           				}
+                           				%>
+                        			</li>
+                     			</ul>
+                  			</div>
+                  		</div>
+               		</li>
+					<%
+				}
+				%>
+				</ul>
+        	</div>
 		</div>
 	</div>
 	<div class="container_footer">
