@@ -15,12 +15,17 @@ $(document).ready(function(){
 	$('#product_option_count').change(function() {
 		var s = "";
 		
-		alert(cnt);
+		/* alert(cnt); */
 		
 		
 		var indexa = $('tr').index($(this).parent().parent());
 		
+		
 		for(var i = 0; i < cnt; i++){
+			$('tr:eq('+(indexa+1)+')').remove();
+		}
+		
+		for(var i = 0; i < cnt/4; i++){
 			$('tr:eq('+(indexa+1)+')').remove();
 		}
 		
