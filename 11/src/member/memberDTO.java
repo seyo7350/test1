@@ -88,6 +88,14 @@ public class memberDTO {
 		this.member_birthday = member_birthday;
 	}
 	
+	//관리자 가입자용
+	public memberDTO(String member_name, String member_id, String member_password, String member_email) {
+		this.member_name = member_name;
+		this.member_id = member_id;
+		this.member_password = member_password;
+		this.member_email = member_email;
+	}
+	
     //toSting
 	@Override
 	public String toString() {
@@ -98,6 +106,9 @@ public class memberDTO {
 				+ member_regidate + ", member_point=" + member_point + ", member_auth=" + member_auth + ", member_del="
 				+ member_del + "]";
 	}
+
+
+
 
 	//세터 게터
 	public int getMember_seq() {

@@ -94,11 +94,6 @@ table tr:hover td{
 	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
 	background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
 }
-
-input {
-	outline-style: none;
-}
-
 input[type=text] {
 	size: 30;
 	font-size: 12px;
@@ -114,9 +109,25 @@ input[type=submit]  {
    border: none;
    font-size:15px;
    }
+   input[type=button]  {
+   color: white;
+   background-color:lightgray;
+   border: none;
+   font-size:8pt;
+   height:20px;'
+   }
 </style>
-
-
+<script>
+	function noSpaceForm(obj) { // 공백사용못하게
+		var str_space = /\s/; // 공백체크
+		if (str_space.exec(obj.value)) { //공백 체크
+			alert("해당 항목에는 공백을 사용할수 없습니다.");
+			obj.focus();
+			obj.value = obj.value.replace(' ', ''); // 공백제거
+			return false;
+		}
+	}
+</script>
 
 </head>
 <body>
@@ -137,36 +148,47 @@ if(ologin == null && mem.getMember_auth()==1){
 %>
 <%
 memberDAO dao = memberDAO.getInstance();
-List<memberDTO> memberlist = dao.getMemberList();
-
-String sseq = request.getParameter("seq");
-int seq = Integer.parseInt(sseq);
-memberDTO dto = dao.getMember(seq);
-
-String sbirthday = dto.getMember_birthday();
-String syear = sbirthday.substring(0,4);
-String smonth = sbirthday.substring(4,6);
-String sday = sbirthday.substring(6,8);
-String birthday=syear+"-" + smonth+"-" + sday; 
+List<memberDTO> delete_memberlist = dao.getdeleteMember();
 %>
 
-<h2 style="text-align: center;">회원 정보 보기/수정</h2>
+<h2 style="text-align: center;">탈퇴 신청 회원 정보 보기/수정</h2>
 
-<form name="form1">
+<form name="form1" action = "admin_deleteAF.jsp">
 <table align="left">
-<col width="70"><col width="150"><col width="150"><col width="150">
+<col width="35"><col width="120"><col width="120"><col width="120">
+<col width="75"><col width="30"><col width="400"><col width="300">
+<col width="100"><col width="200"><col width="200"><col width="100"><col width="100">
 <tr>
-   <th>번호</th><th>회원아이디</th><th>회원이름</th><th>관리자여부</th>
+   <th>고객번호</th><th>이름</th><th>아이디</th><th>비밀번호</th>
+   <th>생년월일</th><th>우편번호</th><th>집주소</th><th>상세주소</th>
+   <th>연락처</th><th>이메일</th><th>가입일</th><th>포인트</th><th>관리자여부</th>
 </tr>
 
 <%
-   for(int i =0 ; i < memberlist.size(); i++){
-	   memberDTO mdto = memberlist.get(i);
+   if(delete_memberlist ==null || delete_memberlist.size()==0){
+    	%>
+	  <script>
+	  alert("탈퇴 신청 회원이 없습니다.");
+	  location.href="index_admin.jsp";
+	</script>
+	   <%
+   }
+   for(int i =0 ; i < delete_memberlist.size(); i++){
+	   memberDTO mdto = delete_memberlist.get(i);
 	   %>
 	   <tr>
-	   <td name="seq"><%=mdto.getMember_seq()%></td>
-	   <td><a href = "admin_member.jsp?seq=<%=mdto.getMember_seq()%>"/> <%=mdto.getMember_id()%></td>
+	   <td><%=mdto.getMember_seq()%></td>
 	   <td><%=mdto.getMember_name()%></td>
+	   <td><a href = "admin_member.jsp?seq=<%=mdto.getMember_seq()%>"/><%=mdto.getMember_id()%></td>
+	   <td><%=mdto.getMember_password()%></td>
+	   <td><%=mdto.getMember_birthday()%></td>
+	   <td><%=mdto.getMember_postcode()%></td>
+	   <td><%=mdto.getMember_address()%></td>
+	   <td><%=mdto.getMember_addressDetail()%></td>
+	   <td><%=mdto.getMember_phone()%></td>
+	   <td><%=mdto.getMember_email()%></td>
+	   <td><%=mdto.getMember_regidate()%></td>
+	   <td><%=mdto.getMember_point()%></td>
 	   <td><% if(mdto.getMember_auth()==1){
 	           %> 일반회원 <%
                     }else{
@@ -176,85 +198,17 @@ String birthday=syear+"-" + smonth+"-" + sday;
 	  <%
 	   }
 %>
-</table>
-</form>
-
-<form action="admin_memberAF.jsp" name="form2">
-<table align="center">
-<col width="150"><col width="400">
-<tr>
-   <th>고객번호</th><td><%=seq %></td>
-</tr>
-<tr>
-   <th>이름</th><td><%=dto.getMember_name() %></td>
-</tr>
-<tr>
-   <th>아이디</th><td><%=dto.getMember_id()%></td>
-</tr>
-<tr>
-   <th>비밀번호</th><td><%=dto.getMember_password()%></td>
-</tr>
-<tr>
-   <th>생년월일</th><td><%=birthday %></td>
-</tr>
-<tr>
-   <th>우편번호</th><td><%=dto.getMember_postcode()%></td>
-</tr>
-<tr>
-   <th>집주소</th><td><%=dto.getMember_address()%></td>
-</tr>
-<tr>
-   <th>상세주소</th><td><%=dto.getMember_addressDetail()%></td>
-</tr>
-<tr>
-   <th>연락처</th><td><%=dto.getMember_phone()%></td>
-</tr>
-<tr>
-   <th>이메일</th><td><%=dto.getMember_email()%></td>
-</tr>
-<tr>
-   <th>가입일</th>
-   <td><%=dto.getMember_regidate()%></td>
-</tr>
-<tr>
-   <th>포인트 (수정가능)</th>
-   <td><input type="text" name="point" value="<%=dto.getMember_point()%>" /></td>
-</tr>
-<tr>
-   <th>관리자여부</th>
-   <td><% if(dto.getMember_auth()==1){
-	           %> 일반회원 <%
-                    }else{
-               %>관리자<%
-               }%></td>
-</tr>
-<tr>
-   <th>탈퇴여부 (수정가능)</th>
-   <td>
-   <%
-   if(dto.getMember_del()==1){
-	   %>
-	   <input type="radio" name="del" value="1" checked="checked"> 탈퇴회원
-	   <input type="radio" name="del" value="0">회원
-	   <%
-   }else{
-   %>
-   <input type="radio" name="del" value="1">탈퇴회원
-   <input type="radio" name="del" value="0" checked="checked">회원
-   <%
-   }
-   %>
-   </td>
-</tr>
-<tr>
-<td colspan="2">
-<input type="hidden" name="seq" value="<%=seq %>"/>
+<tr><td colspan="13">
 <p align="center">
-<input type="submit"  value="회원정보 수정"  /> 
-</p></td>
-</tr>
-</table>
+DB정리를 원하시면 비밀번호를 입력하신 후 ok버튼을 클릭하세요 &nbsp;&nbsp;&nbsp;&nbsp;
+<input type="text" name ="password" onkeyup="noSpaceForm(this)" placeholder="비밀번호 입력"/><br><br>
 
+<input type="hidden" name ="id" value="<%=mem.getMember_id() %>"/>
+<input TYPE="IMAGE" src="image/ok_btn.jpg" name="submit"	value="submit" width="90px" /> &nbsp;&nbsp;
+<a href='index_admin.jsp'><img src="image/cancel_btn.jpg" width="90px" style="vertical-align: top;"/></a>
+</p></td></tr>
+
+</table>
 </form>
 
 </body>

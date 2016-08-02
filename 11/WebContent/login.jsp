@@ -86,6 +86,7 @@
 	                <p class="copyright" style="text-align: right;"><img src="http://img29.makeshop.co.kr/design/cherry07/trend9/cherrycoco/imgs/footer_copy_img.png" /></p>
 	            </div>          
 	        </div>
+	        
 		</div>		
 	</div><!-- container_footer -->
 </div>

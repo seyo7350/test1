@@ -1,6 +1,3 @@
-<%@ page import="member.memberDTO" %>
-<%@ page import="member.memberDAO" %>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>koko</title>
-
+<link href="css/notice.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
 
@@ -16,36 +13,14 @@
 <script src="js/textRolling.js"></script>
 <script src="js/jquery.bxslider.js"></script>
 <script src="js/jquery.bxslider.min.js"></script>
-<script>
-function noSpaceForm(obj) { // 공백사용못하게
-    var str_space = /\s/;  // 공백체크
-    if(str_space.exec(obj.value)) { //공백 체크
-        alert("해당 항목에는 공백을 사용할수 없습니다.");
-        obj.focus();
-        obj.value = obj.value.replace(' ',''); // 공백제거
-        return false;
-    }
-}
-</script>
-
-<style type="text/css">
-form { margin: 0 auto;  /* 회원관리 폼 700px로 고정 및 가운데 정렬 */width:700px;}
-a {font-size: 18px; color:gray;}
-table {border-collapse:collapse; text-align:center; border:3px solid lightgray;  align: center;} 
-td{padding-bottom: 15px; padding-top: 15px; }
-input {outline-style:none;}
-input[type=password] { size: 30; font-size: 15px;}
-</style> 
-
-
-
 </head>
 <body>
 	<div class="side">
 		<div class="side_inner">
 			<div class="side_inner_top">
-				<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join<br> 
-				shopping bag<br>mypage&nbsp;&nbsp;/&nbsp;&nbsp;home 
+				<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a
+					href='join.jsp'>join<br> shopping bag<br>mypage&nbsp;&nbsp;/&nbsp;&nbsp;home
+				
 			</div>
 			<div class="side_inner_middle">
 				<hr>
@@ -69,54 +44,63 @@ input[type=password] { size: 30; font-size: 15px;}
 		</div>
 		<div class="container_middle">
 			<div class="content">
-<%
-Object ologin = session.getAttribute("login");
-memberDTO mem = null;
 
-if(ologin == null){
-	%>
-	<script>
-	  alert("로그인을 해주세요");
-	  location.href="login.jsp";
-	</script>
-	<%
-	return;
-}
- mem = (memberDTO)ologin;
-%>
-<form action="member_DeleteAF.jsp" method="post" >
-<table width="700px">
-   <tr>
-      <td> 
-       <img src ="image/reconfirm_pwd.gif" /><br><br>
-    </td>
-   </tr>
-   <tr>
-       <td>  
-         <a>탈퇴시 보유하신 </a><a style="color: red;">포인트는 삭제됩니다. </a><br>
-         <a>또한 주기적으로 회원정보를 업데이트 하기 때문에 </a><br>
-         <a style="color: red;">탈퇴 철회가 안될 수도 있습니다. </a><br>
-         <a>탈퇴를 원하시면 비밀번호를 입력해 주세요. </a><br><br>
-       </td>
-   </tr>
-   <tr bgcolor="#f4f4f4";>
-       <td>  
-          <a style="font-size: 15px">아이디  : &nbsp;&nbsp;<%=mem.getMember_id()%></a><br><br>
-          <input type="password" name="password" onkeyup="noSpaceForm(this)"; placeholder="비밀번호" />
-           <input type="hidden" name="id" value="<%=mem.getMember_id()%>">
-          <input type="hidden" name="seq" value="<%=mem.getMember_seq()%>">
-      </td>
-  </tr>
+				<p align="center">
+					<img src="image/notice.jpg"  width='100%';/>
+				</p>
 
-  <tr>
-     <td class="td">  
-        <p align="center"><input  TYPE="IMAGE" src="image/update_confirm.gif" name="submit" value="submit" style="outline-style:none" width="90px" />
-        &nbsp;&nbsp;<a href='index.jsp'><img src="image/update_cancel.gif"  width="90px" style="outline-style:none; vertical-align: top;"/></p>
-      </td>
-  </tr>
-</table>
-</form>
-				
+				<div id="contentWrapper">
+        <div id="contentWrap">
+<span></span>            <div id="content">
+                <div id="myHistory" class="section_myhistory">
+
+                    <div class="page-body">
+
+                        <div class="table-d2-list">
+							<table summary="번호, 게시판, 제목, 날짜, hit수">
+                                <caption></caption>
+                                <colgroup>
+                                    <col width="65">
+                                     <col width="*">
+                                    <col width="100">
+                                    <col width="100">
+                                    <col width="65">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="row"><div class="tb-center">번호</div></th>
+                                        <th scope="row"><div class="tb-center">제목</div></th>
+                                        <th scope="row"><div class="tb-center">작성자</div></th>
+                                        <th scope="row"><div class="tb-center">날짜</div></th>
+                                        <th scope="row"><div class="tb-center">hit수</div></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5"><div class="tb-center">작성된 게시글이 없습니다.</div></td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5"><div class="tb-center">작성된 습니다.</div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+					<div class="page custom_paging">
+							<p class="first"><a href="javascript:;">[처음]</a></p>
+							<p class="prev"><a href="javascript:;">[이전]</a></p>
+							<ol>
+														</ol>
+							<p class="next"><a href="javascript:;">[다음]</a></p>
+							<p class="last"><a href="javascript:;">[끝]</a></p>
+						</div>
+		    </div><!-- .page-body -->
+                </div><!-- #myHistory -->
+            </div><!-- #content -->
+        </div><!-- #contentWrap -->
+    </div>
 
 			</div>
 		</div>
@@ -131,8 +115,7 @@ if(ologin == null){
 							style="text-align: right; color: #6c6c6c; font-weight: bold; font-style: italic;">
 							CALL 1600 - 7255<br> MON-FRI AM 10:00 - PM 5:00 / SAT AM
 							10:00 - PM 1:00<br> LUNCHI TIME PM 1:00 - 2:00 / SUN/HOLYDAY
-							CLOSED<br>
-							<br> _BANK_ : WOORI 1005-501-330632, ....
+							CLOSED<br> <br> _BANK_ : WOORI 1005-501-330632, ....
 						</p>
 						<p style="text-align: right; color: #9c9c9c;">
 							법인명(상호): (주)체리코코 | 대표자(성명): 지동헌 | 사업자 등록번호 안내: [215-87-15936] |

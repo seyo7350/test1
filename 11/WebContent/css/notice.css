@@ -1,0 +1,285 @@
+@CHARSET "UTF-8";
+
+
+html, body, pre, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, li, ol, th, td, p, blockquote, form, fieldset, legend, menu, nav, section, hgroup, article, header, aside, footer, input, select, textarea, button {
+    margin: 0;
+    padding: 0;
+}
+
+body, h1, h2, h3, h4, h5, h6, table, input, select, textarea {
+    font-size: 12px;
+    line-height: 1.25;
+    color: #8a8a8a;
+    font-family: Dotum, AppleGothic, Helvetica, sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    word-wrap: break-word;
+    word-break: keep-all;
+}
+
+.section_myHistory {
+    width: 935px;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    font-family: dotum;
+}
+
+#container {
+    width: 1280px;
+    margin: 0;
+    zoom: 1;
+    background-color: #fff;
+}
+
+body {
+    font-family: 'Nanum Gothic', '?섎닎怨좊뵓', 'malgun gothic', arial, dotum, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #f5f5f5;
+}
+
+#myHistory .table-d2-
+{
+    margin-top: 30px;
+    border-top: 0;
+    border-bottom: 3px solid #d0d0d0;
+}
+
+div {
+    display: block;
+}
+
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+    margin: 0;
+}
+
+caption {
+    display: table-caption;
+    text-align: -webkit-center;
+    border-bottom: 3px solid #f1bb97f;
+}
+
+colgroup {
+    display: table-column-group;
+}
+
+col[Attributes Style] {
+    width: 70px;
+}
+user agent stylesheet
+col {
+    display: table-column;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+#myHistory .table-d2-list {
+    margin-top: 30px;
+    border-top: 0;
+    border-top-width: 0px;
+    border-top-style: initial;
+    border-top-color: initial;
+    border-bottom: 3px solid #d0d0d0;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(208, 208, 208);
+}
+
+
+#myHistory .table-d2-list thead th {
+    border-top: 3px solid #f1bb97;
+    border-bottom: 1px solid #d9d9d9;
+    background-color: #fff;
+    font-weight: normal;
+    color: #735238;
+    font-size: 11px;
+}
+
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.tb-center {
+    text-align: center;
+}
+.tb-left, .tb-center, .tb-right {
+    padding: 0 10px;
+}
+
+.custom_paging {
+    clear: both;
+    position: relative;
+    padding: 20px 0 25px;
+    margin: 0;
+    text-align: center;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+    border-bottom: none !important;
+    background: none !important;
+}
+
+
+
+#myHistory .foot-dsc {
+    margin-top: 20px;
+}
+
+.table-d2-list tbody td {
+    padding: 6px 0 5px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+
+
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+.t-box-msg {
+    padding: 10px 20px;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    border: 5px solid #ededed;
+    border-top-color: rgb(237, 237, 237);
+    border-top-style: solid;
+    border-top-width: 5px;
+    border-right-color: rgb(237, 237, 237);
+    border-right-style: solid;
+    border-right-width: 5px;
+    border-bottom-color: rgb(237, 237, 237);
+    border-bottom-style: solid;
+    border-bottom-width: 5px;
+    border-left-color: rgb(237, 237, 237);
+    border-left-style: solid;
+    border-left-width: 5px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+
+ul.mypage_menu_tabs {
+    overflow: hidden;
+    margin: 0 0 120px;
+    padding: 0 0 7px 0;
+    border-bottom: 4px solid #e5e5e5;
+    background: url("image/slash.png") no-repeat right 2px;
+}
+
+#container #content {
+    position: relative;
+    padding-top: 0;
+    margin: 0 auto;
+    padding: 0px 62.5px;
+}
+user agent stylesheet
+div {
+    display: block;
+}
+
+#container {
+    width: 1280px;
+    margin: 0;
+    zoom: 1;
+    background-color: #fff;
+}
+
+img{
+	vertical-align: top;
+	
+}
+
+img, fieldset, button{
+	
+	border: 0 none;
+
+}
+
+myHistory .page-body {
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 740px;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+}
+
+.table-d2-list thead th {
+    padding: 6px 0;
+    background-color: #ededed;
+    border-bottom: 2px solid #cdcdcd;
+}
+
+.custom_paging p.prev a {
+    width: 14px;
+    height: 14px;
+    background: url('image/step_arrow_pre.png') center center no-repeat;
+    text-indent: -9999px;
+}
+.custom_paging p a {
+    display: inline-block;
+    padding: 8px !important;
+    font-size: 0;
+    line-height: 0;
+    color: #888;
+}
+
+.custom_paging p.next a {
+    width: 14px;
+    height: 14px;
+    background: url('image/step_arrow_next.png') center center no-repeat;
+    text-indent: -9999px;
+}
+.custom_paging p a {
+    display: inline-block;
+    padding: 8px !important;
+    font-size: 0;
+    line-height: 0;
+    color: #888;
+}
+
+.custom_paging p, .custom_paging ol, .custom_paging li {
+    display: inline-block;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    vertical-align: top;
+}
+

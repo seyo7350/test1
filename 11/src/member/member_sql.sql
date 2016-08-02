@@ -26,6 +26,8 @@ values(seq_member.nextval, '관리자', 'admin', 'admin', '00000', '회사', '�
    
 -- 확인용
  select * from member_table order by member_seq;
+ --member_auth 0이 관리자, 1이 고객
+ --member_del 1이 탈퇴회원
  
 -- 삭제
  drop table member_table
