@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import notice.NoticeDetailCommand;
+import notice.NoticeListCommand;
+import notice.NoticeWriteCommand;
+
 
 
 /**
@@ -87,6 +91,33 @@ public class QnAFrontController extends HttpServlet {
 			nextPage = "qnaDetail.jsp";
 		}
 		
+		/////////////////////////////////////////////////////////////////////////////////
+				
+		// 공지사항 목록 보기
+		if(com.equals("/noticeList.do")){
+		icommand = new NoticeListCommand();
+		icommand.execute(request, response);
+		nextPage = "noticeListPage.jsp";
+		}
+		
+		// 공지사항 글 쓰기폼
+		if(com.equals("/noticeWriteUI.do")){
+		nextPage = "notice.jsp";
+		}
+		
+		// 공지사항 글 쓰기
+		if(com.equals("/noticeWrite.do")){
+		icommand = new NoticeWriteCommand();
+		icommand.execute(request, response);
+		nextPage = "noticeList.do";
+		}
+		
+		// 공지글 자세히 보기
+		if(com.equals("/noticeView.do")){
+		icommand = new NoticeDetailCommand();
+		icommand.execute(request, response);
+		nextPage = "noticeDetail.jsp";
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
 		
