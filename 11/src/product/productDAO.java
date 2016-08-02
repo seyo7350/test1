@@ -44,7 +44,7 @@ public class productDAO implements iproductDAO {
 	public List<productDTO> getProductList() {
 		String sql = " select product_seq, product_name, product_price, product_point, product_option_count, "
 				+ " product_info_about, product_info_detail_tip, product_info_size_tip, product_info_washing_tip, "
-				+ " product_photo_gif, product_photo_main, product_photo_detail_main, product_photo_detail_count, "
+				+ " product_photo_gif, product_photo_main, product_photo_detail_main, product_photo_detail, "
 				+ " product_style_code, product_regiDate, product_del "
 				+ " from product_table "
 				+ " order by product_seq desc ";
@@ -77,7 +77,7 @@ public class productDAO implements iproductDAO {
 						rs.getString(i++),		// product_photo_gif
 						rs.getString(i++),		// product_photo_main
 						rs.getString(i++),		// product_photo_detail_main
-						rs.getInt(i++),			// product_photo_detail_count
+						rs.getString(i++),		// product_photo_detail
 						rs.getInt(i++),			// product_style_code
 						rs.getDate(i++),		// product_regiDate
 						rs.getInt(i++)			// product_del
@@ -92,16 +92,16 @@ public class productDAO implements iproductDAO {
 		
 		return pList;
 	}
-
+	
 	@Override
-	public boolean insertProduct(productDTO pdto, productOptionDTO podto) {
+	public boolean insertProduct(productDTO pdto, List<productOptionDTO> product_list) {
 		String sql1 = " insert into product_table "
 				+ " (product_seq, product_name, product_price, product_point, product_option_count, "
 				+ " product_info_about, product_info_detail_tip, product_info_size_tip, product_info_washing_tip, "
-				+ " product_photo_gif, product_photo_main, product_photo_detail_main, product_photo_detail_count, "
+				+ " product_photo_gif, product_photo_main, product_photo_detail_main, product_photo_detail, "
 				+ " product_style_code, product_regiDate, product_del) "
 				+ " values "
-				+ " (seq_product_table.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, 0) ";
+				+ " (seq_product_table.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,sysdate, 0) ";
 		
 		String sql2 = " select nvl(max(product_seq), 0) from product_table ";
 		
@@ -120,65 +120,69 @@ public class productDAO implements iproductDAO {
 				
 		try {
 			conn = DBconnection.makeConnection();
-			
 			conn.setAutoCommit(false);
+			log("2/6 Success insertProduct");
 			
 			psmt = conn.prepareStatement(sql1);
+			System.out.println("cccccc");
+			
 			int i = 1;
 			psmt.setString(i++, pdto.getProduct_name());
 			psmt.setInt(i++, pdto.getProduct_price());
 			psmt.setInt(i++, pdto.getProduct_point());
 			psmt.setInt(i++, pdto.getProduct_option_count());
 			psmt.setString(i++, pdto.getProduct_info_about());
-			psmt.setString(i++, pdto.getProduct_info_detail());
+			psmt.setString(i++, pdto.getProduct_info_detail_tip());
 			psmt.setString(i++, pdto.getProduct_info_size_tip());
 			psmt.setString(i++, pdto.getProduct_info_washing_tip());
 			psmt.setString(i++, pdto.getProduct_photo_gif());
 			psmt.setString(i++, pdto.getProduct_photo_main());
 			psmt.setString(i++, pdto.getProduct_photo_detail_main());
-			psmt.setInt(i++, pdto.getProduct_photo_detail_count());
+			psmt.setString(i++, pdto.getProduct_photo_detail());
 			psmt.setInt(i++, pdto.getProduct_style_code());
-			count = psmt.executeUpdate();		
-			psmt.clearParameters();
-						
+			count = psmt.executeUpdate();	
+			System.out.println("cccccc");
+			psmt.clearParameters();			
+			
 			psmt = conn.prepareStatement(sql2);
 			rs = psmt.executeQuery();
+			System.out.println("cccccc");
 			if(rs.next()){
 				product_seq = rs.getInt(1);
 			}
+			System.out.println("product_seq="+product_seq);
 			psmt.clearParameters();			
-			
 			psmt = conn.prepareStatement(sql3);			
 			/*String[] getProduct_option_count = pdto.getProduct_option_count();*/
 			for(int j = 0; j < pdto.getProduct_option_count(); j++){
 				i = 1;
 				psmt.setInt(i++, product_seq);
-				psmt.setString(i++, podto.getProductOption_color());
-				psmt.setString(i++, podto.getProductOption_colorCode());
-				psmt.setInt(i++, podto.getProductOption_amount());
+				psmt.setString(i++, product_list.get(j).getProductOption_color());
+				psmt.setString(i++,	product_list.get(j).getProductOption_colorCode());
+				psmt.setInt(i++, product_list.get(j).getProductOption_amount());
 				psmt.addBatch();
 			}
+			log("3/6 Success insertProduct");
 			psmt.executeBatch();
+			log("4/6 Success insertProduct");
+			
 			conn.commit();			
 		} catch(SQLException e) {			
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log("Fail insertProduct",e);
 			}
 			log("insertProduct Fail", e);
 		} finally {			
 			try {
 				conn.setAutoCommit(true);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log("Fail insertProduct",e);
 			}			
 			DBclose.close(psmt, conn, rs);
 			log("6/6 success insertProduct");
 		}
-		
 		return count>0?true:false;
 	}
 
@@ -187,7 +191,7 @@ public class productDAO implements iproductDAO {
 	public productDTO getProduct(int product_seq) {
 		String sql = " select product_seq, product_name, product_price, product_point, product_option_count, "
 				+ " product_info_about, product_info_detail_tip, product_info_size_tip, product_info_washing_tip, "
-				+ " product_photo_gif, product_photo_main, product_photo_detail_main, product_photo_detail_count, "
+				+ " product_photo_gif, product_photo_main, product_photo_detail_main, product_photo_detail, "
 				+ " product_style_code, product_regiDate, product_del "
 				+ " from product_table "
 				+ " where product_seq = ? ";
@@ -219,7 +223,7 @@ public class productDAO implements iproductDAO {
 						rs.getString(i++),		// product_photo_gif
 						rs.getString(i++),		// product_photo_main
 						rs.getString(i++),		// product_photo_detail_main
-						rs.getInt(i++),			// product_photo_detail_count
+						rs.getString(i++),		// product_photo_detail
 						rs.getInt(i++),			// product_style_code
 						rs.getDate(i++),		// product_regiDate
 						rs.getInt(i++)			// product_del
@@ -277,6 +281,36 @@ public class productDAO implements iproductDAO {
 		}
 		
 		return poList;
+	}
+
+	@Override
+	public int getseq() {
+		
+		String sql = " select nvl(max(product_seq), 0) from product_table ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		int next_seq = -1;
+		log("2/6 Sucess getseq");
+		
+		try {
+			conn = DBconnection.makeConnection();	
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			log("3/6 Sucess getseq");
+			
+			while(rs.next()){
+				next_seq = rs.getInt(1);
+			}
+			log("4/6 Sucess getseq");
+			
+		}catch(SQLException e){
+			log("Fail getseq",e);
+		}
+		System.out.println(next_seq+1);
+		return next_seq+1;
 	}
 	
 	

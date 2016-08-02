@@ -1,6 +1,7 @@
-
+<%@page import="product.productDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +10,10 @@
 <title>상품 등록</title>
 </head>
 <body>
+<%
+productDAO dao = productDAO.getInstance();
+int seq	= dao.getseq();
+%>
 
 <script type="text/javascript">
 var option_count = 0;
@@ -47,8 +52,8 @@ $(document).ready(function(){
 		
 	});
 	
-	$('#product_image_count').change(function() {
-		if($('#product_image_count option:selected').val()==null){
+	$('#product_photo_detail_count').change(function() {
+		if($('#product_photo_detail_count option:selected').val()==null){
 			return;
 		}
 		
@@ -62,19 +67,19 @@ $(document).ready(function(){
 			$('tr:eq('+(indexb+1)+')').remove();
 		}
 		
-		for(var i=1; i<=$('#product_image_count option:selected').val(); i++){
-			s+="<tr><th>디테일이미지</th><td><input type='file' name='product_photo_detail" + i + "'></td><input type='hidden' name='image_count' value='" + $('#product_image_count option:selected').val() +"'></tr>";
+		for(var i=1; i<=$('#product_photo_detail_count option:selected').val(); i++){
+			s+="<tr><th>디테일이미지</th><td><input type='file' name='product_photo_detail" + i + "'></td><input type='hidden' name='image_count' value='" + $('#product_photo_detail_count option:selected').val() +"'></tr>";
 		}
 		$('#detail_cnt').after(s);
 		
-		image_count = $('#product_image_count option:selected').val();
+		image_count = $('#product_photo_detail_count option:selected').val();
 		
 	});
 });
 </script>
 
 <h1>상품등록</h1>
-<form action="product_addAf.jsp?seq=2" method="post" enctype="multipart/form-data">
+<form action="product_addAf.jsp?seq=<%=seq %>" method="post" enctype="multipart/form-data">
 	<table border="1">
 		<tr>
 			<th colspan="2">기본 사항</th>
@@ -141,7 +146,7 @@ $(document).ready(function(){
 		<tr id="detail_cnt">
 			<th>detail이미지 갯수</th>
 			<td>
-				<select id="product_image_count">
+				<select id="product_photo_detail_count">
 					<option value="">---갯수선택---</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -154,6 +159,10 @@ $(document).ready(function(){
 					<option value="9">9</option>
 				</select>
 			</td>
+		</tr>
+		<tr>
+			<th>STYLE CODE</th>
+			<td><input type="text" name="product_style_code"></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit" value="상품등록"></td>

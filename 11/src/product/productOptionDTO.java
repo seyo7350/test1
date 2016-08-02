@@ -10,7 +10,7 @@ create table productOption_table(
 	productOption_del number(1) not null
 )
 
-create sequence seq_productOption_table
+create sequence seq_productOption_tablenull
 start with 1 increment by 1;
 
 alter table productOption_table
@@ -20,12 +20,14 @@ references product_table(product_seq);
 
 
 public class productOptionDTO {
-	private int productOption_seq;
-	private int productOption_product_seq;
+	private int productOption_seq;				//시퀀스
+	private int productOption_product_seq;		//옵션 윗 어머니
 	private String productOption_color;			// 색깔이름
 	private String productOption_colorCode;		// #...
-	private int productOption_amount;
-	private int productOption_del;
+	private int productOption_amount;			//수량
+	private int productOption_del;				//삭제
+	
+	public productOptionDTO() {	}
 	
 	public productOptionDTO(int productOption_seq, int productOption_product_seq, String productOption_color,
 			String productOption_colorCode, int productOption_amount, int productOption_del) {

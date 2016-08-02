@@ -49,7 +49,7 @@ create table product_table(
 	product_photo_gif varchar2(1000) not null,
 	product_photo_main varchar2(1000) not null,
 	product_photo_detail_main varchar2(1000) not null,
-	product_photo_detail_count number(3) not null,
+	product_photo_detail varchar2(1000) not null,
 	product_style_code number(3) not null,
 	product_regiDate date not null,
 	product_del number(1) not null
@@ -57,7 +57,6 @@ create table product_table(
 
 create sequence seq_product_table
 start with 1 increment by 1;
-
 
 
 insert into productOption_table (productOption_seq, productOption_product_seq, productOption_color, 
@@ -88,3 +87,6 @@ start with 1 increment by 1;
 alter table productOption_table
 add constraint fk_productOption_product_seq foreign key(productOption_product_seq)
 references product_table(product_seq);
+
+select * from product_table
+select * from productOption_table
