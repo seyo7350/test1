@@ -78,7 +78,7 @@ String ext = name.substring(name.lastIndexOf(".")+1);
 String defaultPath = request.getServletContext().getRealPath("/");
 
 //파일 기본경로 _ 상세경로
-String path = defaultPath + "upload/" + File.separator;
+String path = defaultPath + "upload/pna/" + File.separator;
 
 File file = new File(path);
 if(!file.exists()) {
@@ -102,7 +102,7 @@ os.close();
 
 sFileInfo += "&bNewLine=true";    
 sFileInfo += "&sFileName=" + name;    
-sFileInfo += "&sFileURL=/smarteditor/upload/"+realname;
+sFileInfo += "&sFileURL=/11/upload/pna/"+realname;
 
 out.print(sFileInfo);
 %>

@@ -9,10 +9,17 @@
 <title>상품 등록</title>
 </head>
 <body>
+
 <script type="text/javascript">
-var cnt = 0;
+var option_count = 0;
+var image_count = 0;
+
 $(document).ready(function(){
 	$('#product_option_count').change(function() {
+		if($('#product_option_count option:selected').val()==null){
+			return;
+		}
+		
 		var s = "";
 		
 		/* alert(cnt); */
@@ -20,58 +27,54 @@ $(document).ready(function(){
 		var indexa = $('tr').index($(this).parent().parent());
 		
 		
-		for(var i = 0; i < cnt; i++){
+		for(var i = 0; i < option_count; i++){
 			$('tr:eq('+(indexa+1)+')').remove();
 		}
 		
-		for(var i = 0; i < cnt/4; i++){
+		for(var i = 0; i < option_count/4; i++){
 			$('tr:eq('+(indexa+1)+')').remove();
 		}
 		
 		for(var i=1; i<=$('#product_option_count option:selected').val(); i++){
-			s+="<tr><th colspan='2'>옵션 입력</th></tr>";
-			s+="<tr><th>COLOR</th><td><input type='text' name='productOption_color'></td></tr>";
-			s+="<tr><th>COLORCODE</th><td><input type='text' name='productOption_colorCode'></td></tr>";
-			s+="<tr><th>AMOUNT</th><td><input type='text' name='productOption_amount'></td><tr>";
+			s+="<tr><th colspan='2'>옵션 입력</th><input type='hidden' name='option_count' value='" + $('#product_option_count option:selected').val() +"'></tr>";
+			s+="<tr><th>COLOR</th><td><input type='text' name='productOption_color" + i + "'></td></tr>";
+			s+="<tr><th>COLORCODE</th><td><input type='text' name='productOption_colorCode" + i + "'></td></tr>";
+			s+="<tr><th>AMOUNT</th><td><input type='text' name='productOption_amount" + i + "'></td><tr>";
 		}
 		$('#option_cnt').after(s);
 		
-		cnt = 4*$('#product_option_count option:selected').val();
+		option_count = 4*$('#product_option_count option:selected').val();
 		
 	});
-});
-
-image_cnt = 0;
-$(document).ready(function(){
-	$('#product_option_count').change(function() {
+	
+	$('#product_image_count').change(function() {
+		if($('#product_image_count option:selected').val()==null){
+			return;
+		}
+		
 		var s = "";
 		
-		/* alert(cnt); */
 		
-		var indexa = $('tr').index($(this).parent().parent());
+		var indexb = $('tr').index($(this).parent().parent());
 		
 		
-		for(var i = 0; i < image_cnt; i++){
-			$('tr:eq('+(indexa+1)+')').remove();
+		for(var i = 0; i < image_count; i++){
+			$('tr:eq('+(indexb+1)+')').remove();
 		}
 		
-		for(var i = 0; i < image_cnt/4; i++){
-			$('tr:eq('+(indexa+1)+')').remove();
+		for(var i=1; i<=$('#product_image_count option:selected').val(); i++){
+			s+="<tr><th>디테일이미지</th><td><input type='file' name='product_photo_detail" + i + "'></td><input type='hidden' name='image_count' value='" + $('#product_image_count option:selected').val() +"'></tr>";
 		}
+		$('#detail_cnt').after(s);
 		
-		for(var i=1; i<=$('#product_option_count option:selected').val(); i++){
-			s+="<tr><th>image</th><td><input type='file' name='productOption_color'></td></tr>";
-		}
-		$('#option_cnt').after(s);
-		
-		cnt = 4*$('#product_option_count option:selected').val();
+		image_count = $('#product_image_count option:selected').val();
 		
 	});
 });
 </script>
 
 <h1>상품등록</h1>
-<form action="product_addAf">
+<form action="product_addAf.jsp?seq=2" method="post" enctype="multipart/form-data">
 	<table border="1">
 		<tr>
 			<th colspan="2">기본 사항</th>
@@ -133,7 +136,7 @@ $(document).ready(function(){
 		</tr>
 		<tr id="main_image">
 			<th>메인이미지</th>
-			<td><input type="file" name="product_photo_main"></td>
+			<td><input type="file" name="product_photo_detail_main"></td>
 		</tr>
 		<tr id="detail_cnt">
 			<th>detail이미지 갯수</th>
