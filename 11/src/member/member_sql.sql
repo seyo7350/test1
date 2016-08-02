@@ -22,7 +22,12 @@ create table member_table(
 insert into member_table (member_seq, member_name, member_id, member_password, member_postcode, member_address, member_addressDetail,
 member_email, member_phone, member_birthday, member_regidate, member_point, member_auth, member_del)
 values(seq_member.nextval, '관리자', 'admin', 'admin', '00000', '회사', '사무실', '애플코코@이메일', '0100001234', '20160801', sysdate, 99999, 0, 0);
-   
+
+
+-- 테스트용
+insert into member_table (member_seq, member_name, member_id, member_password, member_postcode, member_address, member_addressDetail,
+member_email, member_phone, member_birthday, member_regidate, member_point, member_auth, member_del)
+values(seq_member.nextval, '안세훈', 'aa', 'aa', '00001', '회사', '사무실', '애플코코@이메일11', '0100001234', '20160801', sysdate, 99999, 1, 0);
    
 -- 확인용
  select * from member_table order by member_seq;

@@ -22,13 +22,25 @@
 
 <%
 String product_seq_string = request.getParameter("product_seq");
-System.out.println(product_seq_string);
 int product_seq = Integer.parseInt(product_seq_string);
 
 productDAO pdao = productDAO.getInstance();
 productDTO pdto = pdao.getProduct(product_seq);
 List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 %>
+
+<script type="text/javascript">        
+function buy(){
+	document.formId.method = "post"     	// method 선택, get, post
+	document.formId.action = "buy.jsp";  	// submit 하기 위한 페이지 
+	document.formId.submit();
+}
+function cart(){
+	document.formId.method = "post"     	// method 선택, get, post
+	document.formId.action = "cart.jsp";  	// submit 하기 위한 페이지 
+	document.formId.submit();
+}
+</script>
 
 <div class="side">
 	<div class="side_inner">
@@ -93,6 +105,7 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 											<th>
 											<td>
 												<div class="prd-price detail_info_right"><%=pdto.getProduct_seq()%></div>
+                            					<input type="hidden" name="product_seq" value="<%=pdto.getProduct_seq()%>">
 											</td>
 										</tr>
 										<tr>
@@ -188,11 +201,11 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 									</p>
 							</div>
 							<div class="prd-btns">
-                            	<a href="buy.jsp" id="buyBtn">
-                            		<img src="image/detail_buy_bt.png" alt="주문하기" title="주문하기" onmouseover='src="upload/product/1/<%=pdto.getProduct_photo_main()%>"' onmouseout="src='upload/product/1/<%=pdto.getProduct_photo_gif()%>'">
+                            	<a href="javascript:buy();" id="buyBtn" style="text-decoration: none;">
+                            		<img src="image/detail_buy_bt.png" alt="주문하기" title="주문하기" onmouseover='src="image/detail_buy_bt_over.png"' onmouseout="src='image/detail_buy_bt.png'">
                             	</a>
-					    		<a href="cart.jsp" id="cartBtn">
-					    			<img src="image/detail_cart_bt.png" alt="장바구니 담기" title="장바구니 담기">
+					    		<a href="cart.jsp" id="cartBtn" style="text-decoration: none;">
+					    			<img src="image/detail_cart_bt.png" alt="장바구니 담기" title="장바구니 담기" onmouseover='src="image/detail_cart_bt_over.png"' onmouseout="src='image/detail_cart_bt.png'">
 					    		</a>
                 			</div>
                 		</div>

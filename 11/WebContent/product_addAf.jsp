@@ -34,7 +34,7 @@ if(!file.exists()) {
 //파일 크기 15MB로 제한
 int sizeLimit = 1024*1024*15;
 
-ArrayList saveFiles = new ArrayList();
+ArrayList<String> saveFiles = new ArrayList<String>();
 ArrayList origFiles = new ArrayList();
 
 //↓ request 객체,               ↓ 저장될 서버 경로,       ↓ 파일 최대 크기,    ↓ 인코딩 방식,       ↓ 같은 이름의 파일명 방지 처리
@@ -46,6 +46,17 @@ while(files.hasMoreElements()){
 	String name = (String)files.nextElement();
 	saveFiles.add(multi.getFilesystemName(name));
 	origFiles.add(multi.getOriginalFileName(name));
+}
+
+String f_ext = "";
+
+int j = 1;
+
+for(int i = 3; i < saveFiles.size(); i++){
+	File file1 = new File(savePath+"/"+saveFiles.get(i));
+	File file2 = new File(savePath+"/"+(j++)+saveFiles.get(i).substring(saveFiles.get(i).lastIndexOf(".")));
+	
+	file1.renameTo(file2);
 }
 
 String product_name = multi.getParameter("product_name");
