@@ -1,3 +1,4 @@
+var selected_option_cnt = 0;
 var total_price = 0;
 
 function number_format (number, decimals, dec_point, thousands_sep) {
@@ -58,9 +59,10 @@ function add_product(obj){
 	}
 	
 	for(var a = 0; a < document.getElementById('MK_innerOpt_01').children.length; a++){
-		document.getElementById('MK_innerOpt_01').children[a].getAttribute('id')=='MK_li_'+j;
-		alert('이미 추가된 옵션 입니다.');
-		return;
+		if(document.getElementById('MK_innerOpt_01').children[a].getAttribute('id')=='MK_li_'+j){
+			alert('이미 추가된 옵션 입니다.');
+			return;
+		}		
 	}
 	
 	total_price += parseInt(price);
@@ -73,7 +75,8 @@ function add_product(obj){
 	var _option = Array();
 	_option.push('<span class="MK_p-name">' + opt_title + '</span>');
 	_option.push('<div class="MK_qty-ctrl">');
-	_option.push('<input type="text" class="MK_count" value="1" id="MK_p_cnt_' + j + '" style="ime-mode:disabled;">');
+	_option.push('<input type="hidden" name="productOption_seq" value="'+j+'">');
+	_option.push('<input type="text" class="MK_count" value="1" name="MK_p_cnt_' + j + '" id="MK_p_cnt_' + j + '" style="ime-mode:disabled;">');
 	_option.push('<a href="javascript:change_amount(\'+\', \'' + j + '\');" class="MK_btn-up">');
 	_option.push('<img src="image/basket_up.gif" border="0">');
 	_option.push('</a>');
@@ -91,14 +94,31 @@ function add_product(obj){
 	_option.push('</a>');
 	elem.innerHTML = _option.join("\n");
 	document.getElementById('MK_innerOpt_01').appendChild(elem);
+	
+	selected_option_cnt++;
 }
 
 function del_product(code) {
     del_Elem = document.getElementById('MK_li_' + code);
     
     document.getElementById('MK_innerOpt_01').removeChild(del_Elem);
+    
+    selected_option_cnt--;
 }
 
 function cal_total(){
     document.getElementById('MK_p_total').innerHTML = number_format(total_price);
+}
+
+function addHidden(){
+	document.form1.selected_option_cnt.value = selected_option_cnt;
+}
+
+function gotoBuy(){
+	if(selected_option_cnt>0){
+		addHidden();
+		document.getElementById('form1').submit();
+	}else{
+		alert('선택된 옵션이 없습니다.');
+	}
 }

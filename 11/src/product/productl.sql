@@ -64,6 +64,10 @@ insert into productOption_table (productOption_seq, productOption_product_seq, p
 	productOption_colorCode, productOption_amount, productOption_del)
 values (seq_productOption_table.nextval, 1, 'ivory/아이보리', '#f6efe4', 100, 0)
 
+insert into productOption_table (productOption_seq, productOption_product_seq, productOption_color, 
+	productOption_colorCode, productOption_amount, productOption_del)
+values (seq_productOption_table.nextval, 1, 'black/블랙', '#ffffff', 100, 0)
+
 drop table productOption_table
 cascade constraint
 
