@@ -1,4 +1,4 @@
-package sist.co.controller;
+package qna;
 
 import java.io.IOException;
 
@@ -9,11 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sist.co.command.IQnACommand;
-import sist.co.command.QnADetailCommand;
-import sist.co.command.QnAListCommand;
-import sist.co.command.QnAPageCommand;
-import sist.co.command.QnAWriteCommand;
+
 
 /**
  * Servlet implementation class BbsFrontController

@@ -1,4 +1,4 @@
-package sist.co.command;
+package qna;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

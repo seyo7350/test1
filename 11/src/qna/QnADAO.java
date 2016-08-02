@@ -1,4 +1,4 @@
-package sist.co.dao;
+package qna;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import sist.co.dto.PageDTO;
-import sist.co.dto.QnADTO;
+
 
 public class QnADAO {
 	

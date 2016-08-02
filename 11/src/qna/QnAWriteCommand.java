@@ -1,11 +1,10 @@
-package sist.co.command;
+package qna;
 
 import java.io.UnsupportedEncodingException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sist.co.dao.QnADAO;
 
 public class QnAWriteCommand implements IQnACommand {
 

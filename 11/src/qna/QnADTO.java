@@ -1,4 +1,4 @@
-package sist.co.dto;
+package qna;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package sist.co.dao;
+package qna;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
