@@ -40,11 +40,42 @@ $(document).ready(function(){
 		
 	});
 });
+
+image_cnt = 0;
+$(document).ready(function(){
+	$('#product_option_count').change(function() {
+		var s = "";
+		
+		/* alert(cnt); */
+		
+		var indexa = $('tr').index($(this).parent().parent());
+		
+		
+		for(var i = 0; i < image_cnt; i++){
+			$('tr:eq('+(indexa+1)+')').remove();
+		}
+		
+		for(var i = 0; i < image_cnt/4; i++){
+			$('tr:eq('+(indexa+1)+')').remove();
+		}
+		
+		for(var i=1; i<=$('#product_option_count option:selected').val(); i++){
+			s+="<tr><th>image</th><td><input type='file' name='productOption_color'></td></tr>";
+		}
+		$('#option_cnt').after(s);
+		
+		cnt = 4*$('#product_option_count option:selected').val();
+		
+	});
+});
 </script>
 
 <h1>상품등록</h1>
 <form action="product_addAf">
 	<table border="1">
+		<tr>
+			<th colspan="2">기본 사항</th>
+		</tr>
 		<tr>
 			<th>상품명</th>
 			<td><input type="text" name="product_name"></td>
@@ -81,7 +112,8 @@ $(document).ready(function(){
 		</tr>
 		<tr id="option_cnt">
 			<th>옵션 갯수</th>
-			<td><select id="product_option_count">
+			<td>
+				<select id="product_option_count">
 					<option value="">---갯수선택---</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -93,21 +125,32 @@ $(document).ready(function(){
 		</tr>
 		<tr id="gif_image">
 			<th>gif이미지</th>
-			<td><input type="file" name="product_photo_gif">
-				<input type="button" id="add_gif_image" value="사진추가">
-			</td>
+			<td><input type="file" name="product_photo_gif"></td>
 		</tr>
-		<tr>
+		<tr id="main_image">
 			<th>미리보기이미지</th>
-			<td></td>
+			<td><input type="file" name="product_photo_main"></td>
 		</tr>
-		<tr>
+		<tr id="main_image">
 			<th>메인이미지</th>
-			<td></td>
+			<td><input type="file" name="product_photo_main"></td>
 		</tr>
-		<tr>
+		<tr id="detail_cnt">
 			<th>detail이미지 갯수</th>
-			<td></td>
+			<td>
+				<select id="product_image_count">
+					<option value="">---갯수선택---</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit" value="상품등록"></td>
