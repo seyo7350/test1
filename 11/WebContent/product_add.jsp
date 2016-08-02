@@ -1,6 +1,7 @@
-
+<%@page import="product.productDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +10,10 @@
 <title>상품 등록</title>
 </head>
 <body>
+<%
+productDAO dao = productDAO.getInstance();
+int seq	= dao.getseq();
+%>
 
 <script type="text/javascript">
 var option_count = 0;
@@ -74,7 +79,7 @@ $(document).ready(function(){
 </script>
 
 <h1>상품등록</h1>
-<form action="product_addAf.jsp?seq=2" method="post" enctype="multipart/form-data">
+<form action="product_addAf.jsp?seq=<%=seq %>" method="post" enctype="multipart/form-data">
 	<table border="1">
 		<tr>
 			<th colspan="2">기본 사항</th>

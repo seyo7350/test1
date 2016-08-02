@@ -93,8 +93,6 @@ public class productDAO implements iproductDAO {
 		return pList;
 	}
 	
-	
-
 	@Override
 	public boolean insertProduct(productDTO pdto, List<productOptionDTO> product_list) {
 		String sql1 = " insert into product_table "
@@ -283,6 +281,36 @@ public class productDAO implements iproductDAO {
 		}
 		
 		return poList;
+	}
+
+	@Override
+	public int getseq() {
+		
+		String sql = " select nvl(max(product_seq), 0) from product_table ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		int next_seq = -1;
+		log("2/6 Sucess getseq");
+		
+		try {
+			conn = DBconnection.makeConnection();	
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			log("3/6 Sucess getseq");
+			
+			while(rs.next()){
+				next_seq = rs.getInt(1);
+			}
+			log("4/6 Sucess getseq");
+			
+		}catch(SQLException e){
+			log("Fail getseq",e);
+		}
+		System.out.println(next_seq+1);
+		return next_seq+1;
 	}
 	
 	

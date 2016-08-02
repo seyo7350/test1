@@ -8,5 +8,6 @@ public interface iproductDAO {
 	boolean insertProduct(productDTO pdto, List<productOptionDTO> product_list);
 	productDTO getProduct(int product_seq);
 	List<productOptionDTO> getProductOptionList(int product_seq);
+	int getseq();
 
 }
