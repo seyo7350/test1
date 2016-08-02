@@ -105,7 +105,7 @@
                                 <dl class="">
                                     <dt></dt>
                                     <dd>
-                                        <a href="/board/board.html?code=cherry07&page=1&board_cate=&type=i" class="write custom_button button_medium_level4"><span>글쓰기</span></a>                                        <a href="/board/board.html?code=cherry07&page=1&board_cate=&s_id=&stext=&ssubject=&shname=&scontent=&sbrand=&datekey=&branduid=" class="custom_button button_medium_level1"><span>목록보기</span></a>                                    </dd>
+                                        <a href="/board/board.html?code=cherry07&page=1&board_cate=&type=i" class="write custom_button button_medium_level4"><span>글쓰기</span></a>                                        <a href="noticeList.do" class="custom_button button_medium_level1"><span>목록보기</span></a>                                    </dd>
                                 </dl>                                                                
                             </div>
                             <div class="bbs-table-list">
