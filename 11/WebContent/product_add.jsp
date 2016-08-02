@@ -81,6 +81,7 @@ $(document).ready(function(){
 <h1>상품등록</h1>
 <form action="product_addAf.jsp?seq=<%=seq %>" method="post" enctype="multipart/form-data">
 	<table border="1">
+	<col width="150"/><col width="800"/>
 		<tr>
 			<th colspan="2">기본 사항</th>
 		</tr>
@@ -101,19 +102,44 @@ $(document).ready(function(){
 		</tr>
 		<tr>
 			<th>ABOUT</th>
-			<td><input type="text" name="product_info_about"></td>
+			<td>
+				<input type="text" name="product_info_about1">
+				<input type="text" name="product_info_about2">
+				<input type="text" name="product_info_about3">
+				<input type="text" name="product_info_about4">
+				<input type="text" name="product_info_about5">
+			</td>
 		</tr>
 		<tr>
 			<th>DETAIL TIP</th>
-			<td><input type="text" name="product_info_detail_tip"></td>
+			<td>
+				<input type="text" name="product_info_detail_tip1">
+				<input type="text" name="product_info_detail_tip2">
+				<input type="text" name="product_info_detail_tip3">
+				<input type="text" name="product_info_detail_tip4">
+				<input type="text" name="product_info_detail_tip5">
+			</td>
+			
 		</tr>
 		<tr>
 			<th>SIZE TIP</th>
-			<td><input type="text" name="product_info_size_tip"></td>
+			<td>
+				<input type="text" name="product_info_size_tip1">
+				<input type="text" name="product_info_size_tip2">
+				<input type="text" name="product_info_size_tip3">
+				<input type="text" name="product_info_size_tip4">
+				<input type="text" name="product_info_size_tip5">
+			</td>
 		</tr>
 		<tr>
 			<th>WASHING TIP</th>
-			<td><input type="text" name="product_info_washing_tip"></td>
+			<td>
+				<input type="text" name="product_info_washing_tip1">
+				<input type="text" name="product_info_washing_tip2">
+				<input type="text" name="product_info_washing_tip3">
+				<input type="text" name="product_info_washing_tip4">
+				<input type="text" name="product_info_washing_tip5">
+			</td>
 		</tr>
 		<tr>
 			<th colspan="2" align="center">옵션사항</th>
