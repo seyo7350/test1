@@ -9,6 +9,9 @@ create table order_table(
 	order_del number(8) not null
 )
 
+insert into order_table (order_seq, order_member_seq, order_product_seq, order_productOption_seq, order_amount, order_regiDate, order_confirm, order_del)  
+values (seq_order_table.nextval, 2, 2, 2, 1, sysdate, 1, 0) ;
+
 create sequence seq_order_table
 start with 1 increment by 1;
 
@@ -29,3 +32,5 @@ drop table order_table
 drop sequence seq_order_table
 
 select * from ORDER_TABLE
+select * from PRODUCT_TABLE
+select * from PRODUCTOPTION_TABLE

@@ -114,11 +114,13 @@ System.out.println(pList.size());
                            				<%=df.format(price)%>원
                            				</span>
                         			</li>
+                        			<br>
                         			<li class="color_type">
                            				<strong class="title title_color">색상 :</strong>
                            				<%
+                           				System.out.println("poList= "+poList.size());
                            				for(int j = 0; j < poList.size(); j++){
-                           					productOptionDTO podto = poList.get(i);
+                           					productOptionDTO podto = poList.get(j);
                            					%>
                            					<span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: <%=podto.getProductOption_colorCode()%>; border:1px solid #c3c3c3;"></span>
                            					<%
