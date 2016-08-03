@@ -42,7 +42,7 @@ if(mem != null && !mem.getMember_id().equals("")&&mem.getMember_del()==0&&mem.ge
 	%>
 	<script type="text/javascript">
 	alert("관리자님 안녕하세요");
-	location.href="index_admin.jsp";
+	location.href="admin_index.jsp";
 	</script>
 	<%
 }else if(mem != null && !mem.getMember_id().equals("")&&mem.getMember_auth()==0&&mem.getMember_del()==1){

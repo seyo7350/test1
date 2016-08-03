@@ -3,41 +3,35 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
     <% request.setCharacterEncoding("utf-8"); %>
-    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원가입</title>
+<title>비밀번호 찾기</title>
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
+<link rel="stylesheet" href="css/login.css">
+
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="js/textRolling.js"></script>
 <script src="js/jquery.bxslider.js"></script>
 <script src="js/jquery.bxslider.min.js"></script>
-
-<style type="text/css"> 
-table { border-collapse:collapse; border:3px solid lightgray; } 
-</style> 
-
 </head>
 <body>
- <%! //메소드 모음 
+
+<%! //메소드 모음 
 //1분을 01분으로 나타나게 만드는 메소드
 public String two(String msg){
 	return msg.trim().length()<2 ? "0"+msg : msg.trim();
 }
 %>
- 
- <%
+
+<%
 String name = request.getParameter("name");
 String id = request.getParameter("id");
-String password = request.getParameter("password");
-String Chk_password = request.getParameter("Chk_password");
 
 String year = request.getParameter("year");
 String smonth = request.getParameter("month");
@@ -46,38 +40,87 @@ String sday = request.getParameter("day");
 int day = Integer.parseInt(sday);
 String birthday = year+two(month+"")+two(day+"");
 
-String postcode = request.getParameter("postcode");
-String address1 = request.getParameter("address1");
-String address2 = request.getParameter("address2");
-
 String phone = request.getParameter("phone");
 String email = request.getParameter("email");
 
-
 memberDAO mdao = memberDAO.getInstance();
+memberDTO mem  = mdao.findPWLogin(new memberDTO(0,name,id,null,null,null,null,email,phone,birthday,null,0,0,0));
 
-boolean isS = mdao.addMember(new memberDTO(name, id, password, postcode, address1, address2, email, phone, birthday));
- if(isS){
+if(mem != null && !mem.getMember_id().equals("")&&mem.getMember_del()==0){
+	session.setAttribute("login", mem);
 	%>
 	<script type="text/javascript">
-	alert("회원가입이 완료되었습니다.");
+	alert("비밀번호를 변경합니다.");
 	</script>
 	<%
 }else{
 	%>
 	<script type="text/javascript">
-	alert("회원가입 중 오류가 발생하였습니다. 정보를 제대로 기입하셨는지 확인하시고 이상이 있으면 관리자에게 문의하세요.");
-	location.href="join.jsp";
+	alert("탈퇴 신청을 한 회원이거나 없는 아이디입니다. 또는 입력하신 정보 중 틀린 정보가 있습니다. 확인해주세요");
+	location.href="findPW.jsp";
 	</script>
 	<%
 }
-%>     
+%>
+<script>
+	function noSpaceForm(obj) { // 공백사용못하게
+		var str_space = /\s/; // 공백체크
+		if (str_space.exec(obj.value)) { //공백 체크
+			alert("해당 항목에는 공백을 사용할수 없습니다.");
+			obj.focus();
+			obj.value = obj.value.replace(' ', ''); // 공백제거
+			return false;
+		}
+	}
+	
+	
+	//회원 가입시 예외처리 확인
+	function checkIt() {
+		var user = document.form;
+		
+			
+		if (user.password.value == '') {
+			alert('	비밀번호를 입력하세요!');
+			user.password.focus();
+			return false;
+		}
+
+		var check = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+
+		if (!check.test(user.password.value)) {    
+			alert("비밀번호는 문자, 숫자, 특수문자의 조합으로 8~20자리로 입력해주세요.");
+	        return false;
+		} 
+			
+		if (user.password.value == id) {
+			alert('	비밀번호는 아이디와 똑같이 설정할 수 없습니다!');
+			user.password.focus();
+			return false;
+		}
+		
+		if (user.Chk_password.value == '') {
+			alert('	비밀번호 확인을 입력하세요!');
+			user.Chk_password.focus();
+			return false;
+		}
+		
+		if (user.Chk_password.value != user.password.value) {
+			alert('	비밀번호와 비밀번호 확인이 다릅니다. 확인하세요!');
+			user.Chk_password.focus();
+			return false;
+		}
+	}
+
+	</script>
+</script>
+
 
 <body>
 	<div class="side">
 		<div class="side_inner">
 			<div class="side_inner_top">
-			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+				            
+            <a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;
 			<a href='join.jsp'>join</a><br>
 			shopping bag<br>
 			<a href='myPage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
@@ -112,25 +155,40 @@ boolean isS = mdao.addMember(new memberDTO(name, id, password, postcode, address
 		<div class="container_middle">
 			<div class="content">
 			
-<p style="text-align: center; background-color:rgb(214,214,214);" ><strong>회원가입 완료</strong></p>
-<table align="center"  >
-<col width ="150"><col width ="400">
- <tr>
-      <td rowspan="4"> <img src ="image/legiAF.JPG" /> </td>
-      <td> <a style="font-size: 12px; color:gray;"><%=name %>님의 회원가입이 성공적으로 이루어졌습니다.</a></td>
- </tr>
-  <tr>
-    <td> <a style="font-size: 12px; color:gray;">APPLEKOKO 안에서 즐거운 쇼핑 되세요.</a> </td>
- </tr>
-  <tr>
-    <td><a style="color: red;"><%=name %>님의 축하적립금은 2000원 입니다.</a></td>
- </tr>
-   <tr>
-    <td> <a style="font-size: 12px; color:gray;">감사합니다.</a> </td>
- </tr>
-</table>
+				<div class="wrapper">
+		<div class="main"> <!-- 로고와 로그인창이 들어올 영역 -->
+			<div class="logo">	<!-- 로고 이미지 영역 -->
 			
- <!--아래거 수정금지  --> 	
+			</div>
+			<div class="login_box">
+			
+				<div class="input_login1">
+				<!-- <iframe scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:91px;height:30px;"
+     src="http://www.clocklink.com/html5embed.php?clock=008&timezone=KoreaRepublicof_Seoul&color=gray&size=91&Title=&Message=&Target=&From=2016,1,1,0,0,0&Color=gray">
+     </iframe> -->
+				<form action="changePW.jsp" method="post"  name ="form" onsubmit="return checkIt()">
+				</div>
+				<div class="input_login">
+					<input type="password" name="password" placeholder="비밀번호" onkeyup="noSpaceForm(this)"> 
+				</div>
+				<div class="input_login">
+					<input type="password" name="Chk_password" placeholder="비밀번호 확인" onkeyup="noSpaceForm(this)">
+				</div>
+				<div class="login">
+				    <input type="hidden" name="id" value="<%=id%>"/>
+					<input type="submit" value="비밀번호 변경">
+				</div>
+     			</form>
+			
+				<div class="last">
+					<div class="join" ><a href="join.jsp" style="color: gray;">회원가입</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+			
+			
+			
 		</div>
 	</div>
 	<div class="container_footer">
@@ -140,20 +198,21 @@ boolean isS = mdao.addMember(new memberDTO(name, id, password, postcode, address
 	                GUIDE/개인정보취급방침/..
 	            </ul> -->
 	            <div class="address">
-					<p style="text-align: right; color: #6c6c6c; font-weight: bold; font-style: italic;">
+					<p id="info1">
 						CALL 1600 - 7255<br>
 						MON-FRI AM 10:00 - PM 5:00 / SAT AM 10:00 - PM 1:00<br>
 						LUNCHI TIME PM 1:00 - 2:00 / SUN/HOLYDAY CLOSED<br><br>
 						_BANK_ : WOORI 1005-501-330632, ....
 					</p>
-	               <p id="info2">
+	                <p id="info2">
 	                	법인명(상호): (주)애플코코  | 대표자(성명): 나대표 | 사업자 등록번호 안내: [777-77-77777] | 통신판매업 신고 제 2016 - 서울강북 - 77777호<br>
 						전화: 1600-7255 | 주소: 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 -(주)애플코코 <br>
 						교환 & 반품 주소 : 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 (주)애플코코 <br>
 						개인정보관리책임자: 나책임 | Contact help@applekoko.com for more information.<br>
 	                </p>
-	            </div>	           
+	            </div>          
 	        </div>
+	        
 		</div>		
 	</div><!-- container_footer -->
 </div>

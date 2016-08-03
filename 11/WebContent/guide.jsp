@@ -8,11 +8,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>로그인</title>
+<title>이용안내</title>
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
-<link rel="stylesheet" href="css/login.css">
+
+<style type="text/css">
+.page_title_area h2 {
+    text-align: center;
+    width: 100%;
+    margin: 0 0 -1px 0;
+    padding: 0 0 0 0;
+    font-size: 20px;
+    color: #494949;
+    font-weight: bold;
+    text-transform: capitalize;
+    background-color: #d6d6d6 !important;
+}
+
+</style>
+
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="js/textRolling.js"></script>
@@ -22,7 +37,6 @@
 
 </head>
 <body>
-
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
@@ -63,8 +77,6 @@ if(ologin == null){
 	</div>
 </div>
 
-
-
       
       
 <div class="container">
@@ -76,7 +88,44 @@ if(ologin == null){
 	<div class="container_middle">
 		<div class="content">
 			
-			<jsp:include page="login.html"></jsp:include>
+<div class="page_title_area">
+<h2>이용안내</h2>
+</div>
+		
+<pre style="font-size: 12px;">
+저희 쇼핑몰을 방문해 주셔서 감사드립니다. 저희 쇼핑몰은 회원제를 실시하고 있습니다.
+처음 오신 분은 먼저 회원가입을 하신 후 이용하시길 바랍니다.
+<hr>
+<strong>상품 주문 방법</strong><br>
+1. 각 코너를 클릭하셔서 들어갑니다.
+2. "바로가기" 메뉴 또는 사진이나 상품명을 클릭하세요!
+3. "장바구니 담기"를 클릭하세요!
+4. "장바구니에 넣었습니다" 메시지가 나오면, 주문상품을 확인한 후 "주문버튼"을 클릭하세요!
+5. 주문버튼을 누르면, "주문서"가 나옵니다! 주문서를 작성 후 "주문"을 클릭하면 주문이 완료됩니다!
+<hr>
+<strong>전화</strong><br>
+주소 : 서울시 강남구 신사동 517-4 2층 체리코코
+전화 : 1600-7255
+메일 : help@cherrykoko.com
+<hr>
+<strong>배송일</strong><br>
+배송 방법은 택배입니다.
+주문하신 날로부터 1 ~ 4일 안에 받을 수 있습니다.
+온라인 입금 시 입금 확인 후 1 ~ 4일
+신용카드 결제 시 주문 후 1 ~ 4일
+<hr>
+<strong>반품 안내</strong><br>
+고객의 변심에 의한 교환 및 반품이면 배송비는 소비자부담입니다.
+상품의 이상에 의한 교환 및 반품이면 배송비는 판매자부담입니다.
+문의 : 1600-7255
+담당 : 나반품
+전화 : 1600-7255
+메일 : help@applekoko.com</pre>
+<hr>
+
+<strong>찾아오시는 길</strong><br><br>
+<img alt="지도" src="image/map.jpg"/>
+		
 			
 		</div>
 	</div>
@@ -93,12 +142,14 @@ if(ologin == null){
 						LUNCHI TIME PM 1:00 - 2:00 / SUN/HOLYDAY CLOSED<br><br>
 						_BANK_ : WOORI 1005-501-330632, ....
 					</p>
-	                <p id="info2">
+	               <p id="info2">
 	                	법인명(상호): (주)애플코코  | 대표자(성명): 나대표 | 사업자 등록번호 안내: [777-77-77777] | 통신판매업 신고 제 2016 - 서울강북 - 77777호<br>
 						전화: 1600-7255 | 주소: 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 -(주)애플코코 <br>
 						교환 & 반품 주소 : 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 (주)애플코코 <br>
 						개인정보관리책임자: 나책임 | Contact help@applekoko.com for more information.<br>
 	                </p>
+
+
 	            </div>          
 	        </div>
 	        

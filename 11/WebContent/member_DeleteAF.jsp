@@ -52,6 +52,7 @@ input[type=password] { size: 30; font-size: 15px;}
 
 	if(mem != null && !mem.getMember_id().equals("")){
 		session.setAttribute("login", mem);
+		session.invalidate();
 		%>
 		<script type="text/javascript">
 		alert("회원탈퇴를 시작합니다.");

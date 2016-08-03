@@ -7,74 +7,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>koko</title>
+<title>회원정보수정</title>
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
+<link rel="stylesheet" href="css/member.css">
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="js/textRolling.js"></script>
 <script src="js/jquery.bxslider.js"></script>
 <script src="js/jquery.bxslider.min.js"></script>
-<style type="text/css">
-form {
-	margin: 0 auto; /* 회원관리 폼 700px로 고정 및 가운데 정렬 */
-	width: 700px;
-}
-
-a {
-	font-size: 12px;
-	color: gray;
-}
-
-input {
-	outline-style: none;
-}
-
-input[type=text] {
-	size: 30;
-	font-size: 12px;
-	border-left: 0px;
-	border-right: 0px;
-	border-top: 0px;
-	border-bottom: 1px soild gray;
-}
-
-input[type=password] {
-	size: 30;
-	font-size: 12px;
-	border-left: 0px;
-	border-right: 0px;
-	border-top: 0px;
-	border-bottom: 1px soild gray;
-}
-
-input[type=email] {
-	size: 30;
-	font-size: 12px;
-	border-left: 0px;
-	border-right: 0px;
-	border-top: 0px;
-	border-bottom: 1px soild gray;
-}
-
-img {
-	vertical-align: middle;
-	outline-style: none;
-}
-
-select {
-	font-size: 10px;
-}
-
-input[type=button]  {
-   color: white;
-   background-color:lightgray;
-   border: none;
-   font-size:8pt;
-   height:20px;'
-   }
-</style>
 
 <script>
 	function noSpaceForm(obj) { // 공백사용못하게
@@ -213,30 +155,43 @@ function checkIt() {
 
 </head>
 <body>
-	<div class="side">
-		<div class="side_inner">
-			<div class="side_inner_top">
-				<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join<br> 
-				shopping bag<br>mypage&nbsp;&nbsp;/&nbsp;&nbsp;home 
-			</div>
-			<div class="side_inner_middle">
-				<hr>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product_detail.jsp">OUTER</a>
-				<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOP <br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM <br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ONEPIECE <br> <br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTICE <br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q&A <br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REVIEW
-				<hr>
-			</div>
+<div class="side">
+	<div class="side_inner">
+		<div class="side_inner_top">
+			<a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+			<a href='join.jsp'>join</a><br>
+			shopping bag<br>
+			<a href='myPage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
+		</div>
+		<div class="side_inner_middle">	
+			<hr>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
+			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp">TOP</a>
+			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
+			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ONEPIECE
+			<br>
+			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="noticeList.do">NOTICE</a>
+			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="qnaList.do">Q&A</a>
+			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REVIEW		
+			<hr>
 		</div>
 	</div>
+</div>
 
-	<div class="container">
-		<div class="container_top">
-			<div class="logo">
-				<img alt="로고" src="image/header.png">
+
+
+      
+      
+<div class="container">
+	<div class="container_top">
+		<div class="logo">
+			<a href='index.jsp'><img alt="로고" src="image/header.png"></a>
 			</div>
 		</div>
 		<div class="container_middle">
@@ -272,7 +227,7 @@ if(ologin == null){
 				<p style="color: rgb(248, 194, 143);">회원정보 수정</p>
 				<hr style="border: soild 1px #8a8a8a;">
 				
-				<form action="member_UpdateAF.jsp" method="post" name ="form" onsubmit="return checkIt()">
+				<form action="member_UpdateAF.jsp" method="post" name ="form" onsubmit="return checkIt()" class="form">
 					<!--이름입력  -->
 					<a style="color: rgb(248, 194, 143);">●&nbsp;</a> 
 					<a>이름 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	</a> 
@@ -472,7 +427,7 @@ if(ologin == null){
 				
 					<p align="center">
 						<input TYPE="IMAGE" src="image/ok_btn.jpg" name="submit"	value="submit" width="90px" /> &nbsp;&nbsp;
-						<a href='index.jsp'><img src="image/cancel_btn.jpg" width="90px" style="vertical-align: top;"/></a>
+						<a href='myPage.jsp'><img src="image/cancel_btn.jpg" width="90px" style="vertical-align: top;"/></a>
 					</p>
 				</form>
 
@@ -492,18 +447,13 @@ if(ologin == null){
 							CLOSED<br>
 							<br> _BANK_ : WOORI 1005-501-330632, ....
 						</p>
-						<p style="text-align: right; color: #9c9c9c;">
-							법인명(상호): (주)체리코코 | 대표자(성명): 지동헌 | 사업자 등록번호 안내: [215-87-15936] |
-							통신판매업 신고 제 2011 - 서울강남 - 03186호<br> 전화: 1600-7255 | 주소:
-							서울특별시 강남구 신사동 517-4 M SPACE 빌딩 2층 (강남대로158길 26) -(주)체리코코 <br>
-							교환 & 반품 주소 : 서울 성북구 종암동 57-39번지 CJ대한통운 종암대리점 (주)체리코코 <br>
-							개인정보관리책임자: 지동헌 | Contact help@cherrykoko.com for more
-							information.<br>
-						</p>
-						<p class="copyright" style="text-align: right;">
-							<img
-								src="http://img29.makeshop.co.kr/design/cherry07/trend9/cherrycoco/imgs/footer_copy_img.png" />
-						</p>
+ <p id="info2">
+	                	법인명(상호): (주)애플코코  | 대표자(성명): 나대표 | 사업자 등록번호 안내: [777-77-77777] | 통신판매업 신고 제 2016 - 서울강북 - 77777호<br>
+						전화: 1600-7255 | 주소: 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 -(주)애플코코 <br>
+						교환 & 반품 주소 : 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 (주)애플코코 <br>
+						개인정보관리책임자: 나책임 | Contact help@applekoko.com for more information.<br>
+	                </p>
+
 					</div>
 				</div>
 			</div>

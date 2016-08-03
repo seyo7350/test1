@@ -8,11 +8,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>로그인</title>
+<title>반품교환안내</title>
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
-<link rel="stylesheet" href="css/login.css">
+<style type="text/css">
+.page_title_area h2 {
+    text-align: center;
+    width: 100%;
+    margin: 0 0 -1px 0;
+    padding: 0 0 0 0;
+    font-size: 20px;
+    color: #494949;
+    font-weight: bold;
+    text-transform: capitalize;
+    background-color: #d6d6d6 !important;
+}
+</style>
+
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="js/textRolling.js"></script>
@@ -22,7 +35,6 @@
 
 </head>
 <body>
-
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
@@ -63,8 +75,6 @@ if(ologin == null){
 	</div>
 </div>
 
-
-
       
       
 <div class="container">
@@ -76,7 +86,12 @@ if(ologin == null){
 	<div class="container_middle">
 		<div class="content">
 			
-			<jsp:include page="login.html"></jsp:include>
+<div class="page_title_area">
+<h2>반품교환안내</h2>
+
+		<div class="logo">
+			<img alt="안내" src="image/change.jpg">
+		</div>
 			
 		</div>
 	</div>
@@ -93,13 +108,13 @@ if(ologin == null){
 						LUNCHI TIME PM 1:00 - 2:00 / SUN/HOLYDAY CLOSED<br><br>
 						_BANK_ : WOORI 1005-501-330632, ....
 					</p>
-	                <p id="info2">
+	               <p id="info2">
 	                	법인명(상호): (주)애플코코  | 대표자(성명): 나대표 | 사업자 등록번호 안내: [777-77-77777] | 통신판매업 신고 제 2016 - 서울강북 - 77777호<br>
 						전화: 1600-7255 | 주소: 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 -(주)애플코코 <br>
 						교환 & 반품 주소 : 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 (주)애플코코 <br>
 						개인정보관리책임자: 나책임 | Contact help@applekoko.com for more information.<br>
 	                </p>
-	            </div>          
+
 	        </div>
 	        
 		</div>		

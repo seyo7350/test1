@@ -9,114 +9,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원정보 보기/수정</title>
-<style type="text/css">
-table {
-	font-family:Arial, Helvetica, sans-serif;
-	color:#666;
-	font-size:12px;
-	text-shadow: 1px 1px 0px #fff;
-	background:#eaebec;
-	margin:10px;
-	border:#ccc 1px solid;
-	vertical-align:top;
+<title>관리자 DB정리</title>
+<link rel="stylesheet" href="css/admin.css">
 
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
-
-	-moz-box-shadow: 0 1px 2px #d1d1d1;
-	-webkit-box-shadow: 0 1px 2px #d1d1d1;
-	box-shadow: 0 1px 2px #d1d1d1;
-}
-table th {
-	padding:10px;
-	border-top:1px solid #fafafa;
-	border-bottom:1px solid #e0e0e0;
-
-	background: #ededed;
-	background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
-	background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
-}
-table th:first-child{
-	text-align: left;
-	padding-left:10px;
-}
-table tr:first-child th:first-child{
-	-moz-border-radius-topleft:3px;
-	-webkit-border-top-left-radius:3px;
-	border-top-left-radius:3px;
-}
-table tr:first-child th:last-child{
-	-moz-border-radius-topright:3px;
-	-webkit-border-top-right-radius:3px;
-	border-top-right-radius:3px;
-}
-table tr{
-	text-align: center;
-	padding-left:10px;
-}
-table tr td:first-child{
-	text-align: left;
-	padding-left:10px;
-	border-left: 0;
-}
-table tr td {
-	padding:12px;
-	border-top: 1px solid #ffffff;
-	border-bottom:1px solid #e0e0e0;
-	border-left: 1px solid #e0e0e0;
-	
-	background: #fafafa;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
-	background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
-}
-table tr.even td{
-	background: #f6f6f6;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
-	background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
-}
-table tr:last-child td{
-	border-bottom:0;
-}
-table tr:last-child td:first-child{
-	-moz-border-radius-bottomleft:3px;
-	-webkit-border-bottom-left-radius:3px;
-	border-bottom-left-radius:3px;
-}
-table tr:last-child td:last-child{
-	-moz-border-radius-bottomright:3px;
-	-webkit-border-bottom-right-radius:3px;
-	border-bottom-right-radius:3px;
-}
-table tr:hover td{
-	background: #f2f2f2;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
-	background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
-}
-input[type=text] {
-	size: 30;
-	font-size: 12px;
-	border-left: 0px;
-	border-right: 0px;
-	border-top: 0px;
-	border-bottom: 1px soild gray;
-}
-
-input[type=submit]  {
-   color: white;
-   background-color:lightgray;
-   border: none;
-   font-size:15px;
-   }
-   input[type=button]  {
-   color: white;
-   background-color:lightgray;
-   border: none;
-   font-size:8pt;
-   height:20px;'
-   }
-</style>
 <script>
 	function noSpaceForm(obj) { // 공백사용못하게
 		var str_space = /\s/; // 공백체크
@@ -155,7 +50,7 @@ List<memberDTO> delete_memberlist = dao.getdeleteMember();
 
 <form name="form1" action = "admin_deleteAF.jsp">
 <table align="left">
-<col width="35"><col width="120"><col width="120"><col width="120">
+<col width="50"><col width="120"><col width="120"><col width="120">
 <col width="75"><col width="30"><col width="400"><col width="300">
 <col width="100"><col width="200"><col width="200"><col width="100"><col width="100">
 <tr>
@@ -169,7 +64,7 @@ List<memberDTO> delete_memberlist = dao.getdeleteMember();
     	%>
 	  <script>
 	  alert("탈퇴 신청 회원이 없습니다.");
-	  location.href="index_admin.jsp";
+	  location.href="admin_index.jsp";
 	</script>
 	   <%
    }
@@ -205,8 +100,9 @@ DB정리를 원하시면 비밀번호를 입력하신 후 ok버튼을 클릭하�
 
 <input type="hidden" name ="id" value="<%=mem.getMember_id() %>"/>
 <input TYPE="IMAGE" src="image/ok_btn.jpg" name="submit"	value="submit" width="90px" /> &nbsp;&nbsp;
-<a href='index_admin.jsp'><img src="image/cancel_btn.jpg" width="90px" style="vertical-align: top;"/></a>
+<a href='admin_index.jsp'><img src="image/cancel_btn.jpg" width="90px" style="vertical-align: top;"/></a>
 </p></td></tr>
+
 
 </table>
 </form>

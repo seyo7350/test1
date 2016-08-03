@@ -39,5 +39,11 @@ public interface iMemberDAO {
 	
 	//탈퇴회원 DB정리
 	boolean deleteDB();
+	
+	//pw찾기
+	memberDTO findPWLogin(memberDTO mdto);
+	
+	//비밀번호 바꾸기
+	boolean changePW(String password, String id);
 
 }

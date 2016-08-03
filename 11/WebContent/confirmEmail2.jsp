@@ -7,24 +7,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ID 중복체크</title>
-<style type="text/css">
-input[type=button]  {
-   color: white;
-   background-color:gray;
-   border: none;
-   font-size:8pt;
-   height:20px;'
-   }
-   
-   input[type=submit]  {
-   color: white;
-   background-color:gray;
-   border: none;
-   font-size:8pt;
-   height:20px;'
-   }
-</style>
+<title>email 중복체크</title>
+<link rel="stylesheet" href="css/confirm.css">
 </head>
 <body>
 <%

@@ -539,6 +539,102 @@ public class memberDAO implements iMemberDAO {
 	}
 	
 	
+	
+	//비번 찾기
+	@Override
+	public memberDTO findPWLogin(memberDTO mdto) {
+		String sql = " select member_seq, member_name, member_id, member_postcode, "
+			     + " member_address, member_addressDetail, member_email, member_phone, "
+			     + " member_birthday, member_regidate, member_point, member_auth, member_del "
+			     + " from member_table where member_id=? and member_name =? and member_phone=? "
+			     + " and member_email=? and member_birthday=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt= null;
+		ResultSet rs = null;
+		memberDTO mem = null;
+		
+		try{
+			conn=DBconnection.makeConnection();
+			log("2/6 성공 - pw찾기");
+			
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, mdto.getMember_id());
+			psmt.setString(2, mdto.getMember_name());
+			psmt.setString(3, mdto.getMember_phone());
+			psmt.setString(4, mdto.getMember_email());
+			psmt.setString(5, mdto.getMember_birthday());
+			
+			log("3/6 성공 - pw찾기");
+			
+			rs=psmt.executeQuery();
+			log("4/6 성공 - pw찾기");
+			
+			while(rs.next()){
+				int seq = rs.getInt(1);
+				String name = rs.getString(2);
+				String id = rs.getString(3);
+				String postcode = rs.getString(4);
+				String address = rs.getString(5);
+				String addressDetail = rs.getString(6);
+				String email = rs.getString(7);
+				String phone = rs.getString(8);
+				String birthday = rs.getString(9);
+				Date regidate = rs.getDate(10);
+				int point = rs.getInt(11);
+				int auth= rs.getInt(12);
+				int del = rs.getInt(13);
+				
+				mem = new memberDTO(seq, name, id, null, postcode, address, addressDetail, email, phone, birthday, regidate, point, auth, del);
+			}
+			log("5/6 성공 - pw찾기");
+			
+		}catch(SQLException e){
+			log("pw찾기 - 실패"+ e);
+		}finally{
+			DBclose.close(psmt, conn, rs);
+			log("5/6 성공 - pw찾기");
+		}
+		return mem;
+	}
+
+	//비밀번호 바꾸기
+	@Override
+	public boolean changePW(String password, String id) {
+		String sql = " update member_table set member_password=? "
+  			         + " where member_id=? ";
+	
+	Connection conn = null;
+	PreparedStatement psmt = null;
+	ResultSet rs = null;
+	
+	int count = 0;
+	
+	try{
+		conn=DBconnection.makeConnection();
+		log("2/6 성공 - 비번 변경");
+		
+		psmt=conn.prepareStatement(sql);
+		psmt.setString(1, password);
+		psmt.setString(2, id);
+		log("3/6 성공 - 비번 변경");
+		
+		count=psmt.executeUpdate();
+		log("4/6 성공 - 비번 변경");
+		
+	}catch(SQLException e){
+		log("비번 변경 - 실패"+ e);
+	}finally{
+		DBclose.close(psmt, conn, rs);
+		log("5/6 성공 - 비번 변경");
+	}
+	return count>0?true:false;
+}
+
+	
+	
+	
+	
 		//로그 메소드1
 		public void log(String msg) {
 			// TODO Auto-generated method stub
@@ -546,8 +642,6 @@ public class memberDAO implements iMemberDAO {
 				System.out.println(getClass()+":" + msg);
 			}
 		}
-
-		
 
 		//로그 메소드2
 		public void log(String msg, Exception e) {
