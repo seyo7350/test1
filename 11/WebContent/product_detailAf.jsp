@@ -51,12 +51,34 @@ for(int i = 0; i < productOption_seq_arr.length; i++){
 	orderList.add(odto);
 }
 
-session.setAttribute("buyList", orderList);
+if(request.getParameter("select").equals("0")){
+	session.setAttribute("buyList", orderList);
+	%>
+	<script type="text/javascript">
+		location.href="buy.jsp";
+	</script>
+	<%
+}else{
+	Object oshoppingbag = session.getAttribute("shoppingbag");
+	if(oshoppingbag != null){
+		List<orderDTO> shoppingbag = (ArrayList<orderDTO>)oshoppingbag;
+		for(int i = 0; i < orderList.size(); i++){
+			shoppingbag.add(orderList.get(i));
+		}
+		session.setAttribute("shoppingbag", shoppingbag);		
+	}else{
+		session.setAttribute("shoppingbag", orderList);		
+	}
+	%>
+	<script type="text/javascript">
+		location.href="shoppingbag.jsp";
+	</script>
+	<%
+}
+
 %>
 
-<script type="text/javascript">
-	location.href="buy.jsp";
-	</script>
+
 
 </body>
 </html>

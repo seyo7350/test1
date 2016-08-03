@@ -110,12 +110,9 @@ function cal_total(){
     document.getElementById('MK_p_total').innerHTML = number_format(total_price);
 }
 
-function addHidden(){
-}
-
-function gotoBuy(){
+function gotoAf(index){
 	if(selected_option_cnt>0){
-		//addHidden();
+		document.form1.select.value = index;
 		document.getElementById('form1').submit();
 	}else{
 		alert('선택된 옵션이 없습니다.');
