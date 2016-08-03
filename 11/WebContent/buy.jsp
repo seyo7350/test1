@@ -270,10 +270,10 @@ for(int i = 0; i < product_option_count; i++){
 																				<div class="tb-right">
 																					결제금액 : 
 																					<span id="order_price_box1" style="display: inline;">
-																						<%=total%>
+																						<%=df.format(total)%>
 																						<%
 																						if(total<50000){
-																							totalPoint += 2500;
+																							total += 2500;
 																							%> + 배송료2,500원<%
 																						}
 																						%>

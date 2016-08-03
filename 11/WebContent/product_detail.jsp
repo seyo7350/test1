@@ -190,7 +190,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                                              <span class="MK_txt-total">총 상품 금액</span>
                                              <strong class="MK_total" id="MK_p_total">0</strong>
                                              <span class="MK_txt-won">원</span>
-                                             <input type="hidden" name="selected_option_cnt" value="">
+                                             <input type="hidden" name="select" value="">
                                           </div>
                                        </div>
                                     </div>
@@ -213,10 +213,10 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                            </p>
                         </div>
                         <div class="prd-btns">
-                                  <a href="javascript:gotoBuy();" id="buyBtn" style="text-decoration: none;">
+                                  <a href="javascript:gotoAf(0);" id="buyBtn" style="text-decoration: none;">
                                      <img src="image/detail_buy_bt.png" alt="주문하기" title="주문하기" onmouseover='src="image/detail_buy_bt_over.png"' onmouseout="src='image/detail_buy_bt.png'">
                                   </a>
-                                  <a href="cart.jsp" id="cartBtn" style="text-decoration: none;">
+                                  <a href="javascript:gotoAf(1);" id="cartBtn" style="text-decoration: none;">
                                <img src="image/detail_cart_bt.png" alt="장바구니 담기" title="장바구니 담기" onmouseover='src="image/detail_cart_bt_over.png"' onmouseout="src='image/detail_cart_bt.png'">
                             </a>
                             </div>
