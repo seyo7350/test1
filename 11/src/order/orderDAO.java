@@ -120,6 +120,38 @@ public class orderDAO implements iorderDAO {
 		
 		return orderlist;
 	}
+
+	@Override
+	public boolean updateorder_confirm(int order_seq) {
+		
+		String sql = " update order_table set order_confirm = 2 "
+				+ "	where order_seq = ?";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		
+		try{
+			conn = DBconnection.makeConnection();
+			log("2/6  successupdateorder_confirm");
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, order_seq);
+			log("3/6  successupdateorder_confirm");
+			
+			count = psmt.executeUpdate();
+			log("4/6  successupdateorder_confirm");
+			
+		}catch(SQLException e){
+			log("Fail updateorder_confirm",e);
+		}finally {
+			DBclose.close(psmt, conn, rs);
+			log("5/6  successupdateorder_confirm");
+		}
+		return count>0?true:false;
+	}
 	
 	
 
