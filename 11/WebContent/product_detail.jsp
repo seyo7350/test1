@@ -96,7 +96,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                   <div class="thumb-info">
                      <div class="thumb-wrap">
                         <div class="thumb">
-                           <img src ="upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_detail_main()%>" alt=""/>
+                           <img src ="upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_detail_main()%>" alt="yes! we are applekoko"/>
                         </div>
                      </div>
                       <!--  .thumb-wrap  -->
@@ -240,8 +240,8 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                      <!-- [OPENEDITOR] -->
                      <!--    width="90%"      -->
                      <center>
-                        <img alt="yes! we are cherrykoko"
-                           src="upload/product/<%=pdto.getProduct_seq()%>/1.jpg">
+                        <img alt="yes! we are applekoko"
+                           src="upload/product/<%=pdto.getProduct_seq()%>/<%=product_photo_detail_vales[0]%>">
                         <br>
                         <br>
                         <font color="#646464" face="굴림"><span
@@ -302,7 +302,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                      <center>
                         <!-- image -->
                         <% 
-							for(int i=0; i<product_photo_detail_vales.length;i++){
+							for(int i=1; i<product_photo_detail_vales.length;i++){
 						%>
 								<img height="400" src="image/aaa.jpg"><br>
 								<br><img src="upload/product/<%=pdto.getProduct_seq()%>/<%=product_photo_detail_vales[i]%>"><br>

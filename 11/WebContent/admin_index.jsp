@@ -34,7 +34,7 @@ if(ologin == null && mem.getMember_auth()==1){
 		<td align="center"><button onclick="location.href='admin_product_add.jsp'">상품 등록</button></td>
 	</tr>
 	<tr>
-		<td align="center"><button onclick="location.href='product_order_list.jsp'">결제 목록</button></td>
+		<td align="center"><button onclick="location.href='admin_purchase_list.jsp'">결제 목록</button></td>
 	</tr>
 	<tr>
 		<td align="center"><button onclick="location.href='admin_member.jsp?seq=1'">회원정보 보기</button></td>

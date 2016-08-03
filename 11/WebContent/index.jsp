@@ -28,7 +28,7 @@
 			<hr>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp?product_style_code=<%=1 %>">TOP</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=1 %>">TOP</a>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
 			<br>
