@@ -69,7 +69,19 @@ List<orderDTO> olist = odao.getadminOrderList();
 				<td>[<%=mdto.getMember_address() %>]&nbsp;<%=mdto.getMember_addressDetail() %></td>
 				<td><%=mdto.getMember_phone() %></td>
 				<td><%=order_confirm %></td>
-				<td><button onclick="location.href='admin_purchase_listAf.jsp?order_seq=<%=order_seq %>'" value="<%=order_seq%>">배송완료</button></td>
+				<td>
+					<%
+					if( order_confirm!= 2){
+					%>
+						<button onclick="location.href='admin_purchase_listAf.jsp?order_seq=<%=order_seq %>'" value="<%=order_seq%>">배송완료</button>
+					<%
+					}else{
+					%>
+						배송완료
+					<%
+					}
+					%>
+				</td>
 				</tr>
 			<%
 					}
