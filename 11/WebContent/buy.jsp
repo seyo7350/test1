@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="order.orderDTO"%>
+<%@page import="java.util.List"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="product.productOptionDTO"%>
 <%@page import="product.productDTO"%>
@@ -23,7 +26,7 @@
 
 </head>
 
-<%-- <%
+<%
 Object ologin = session.getAttribute("login");
 memberDTO mdto = null;
 if(ologin == null){
@@ -37,35 +40,19 @@ if(ologin == null){
 }
 mdto = (memberDTO)ologin;
 %>
- --%>
 <%
 DecimalFormat df = new DecimalFormat("###,###,###");
 
 request.setCharacterEncoding("utf-8");
 
+List<orderDTO> orderList;
+
+orderList = (ArrayList<orderDTO>)session.getAttribute("buyList");
+
+productDAO pdao = productDAO.getInstance();
+
 int total = 0;
 int totalPoint = 0;
-
-String product_seq_string = request.getParameter("product_seq");
-/* if(product_seq_string!=null){
-	int product_seq = Integer.parseInt(product_seq_string);
-	
-	productDAO pdao = productDAO.getInstance();
-	productDTO pdto = pdao.getProduct(product_seq);
-	
-	int product_option_count = pdto.getProduct_option_count();
-	
-	String productOption_seq[] = request.getParameterValues("productOption_seq");
-	
-	String amount = "";
-	
-	for(int i = 0; i < productOption_seq.length; i++){
-		out.println(productOption_seq[i]);
-		amount = request.getParameter("MK_p_cnt_"+i);
-		out.println("amount : " + amount);
-	}
-} */
-
 %>
 <body>
 
@@ -150,9 +137,9 @@ for(int i = 0; i < product_option_count; i++){
 																			<td width="100%" bgcolor="#efedeb" align="center" style="background: none !important;">
 																				<img src="image/title01.gif">
 																			</td>
-																			<td>
+																			<!-- <td>
 																				<img src="image/title_box_right1.gif">
-																			</td>
+																			</td> -->
 																		</tr>
 																	</tbody>
 																</table>
@@ -161,15 +148,15 @@ for(int i = 0; i < product_option_count; i++){
 																<table width="100%" cellspacing="0" cellpadding="0">
 																	<tbody>
 																		<tr>
-																			<td>
+																			<!-- <td>
 																				<img src="image/title_box_right1.gif">
-																			</td>
+																			</td> -->
 																			<td width="100%" bgcolor="#efedeb" align="center" style="background: none !important;">
 																				<img src="image/title02.gif">
 																			</td>
-																			<td>
+																			<!-- <td>
 																				<img src="image/title_box_right1.gif">
-																			</td>
+																			</td> -->
 																		</tr>
 																	</tbody>
 																</table>
@@ -178,15 +165,15 @@ for(int i = 0; i < product_option_count; i++){
 																<table width="100%" cellspacing="0" cellpadding="0">
 																	<tbody>
 																		<tr>
-																			<td>
+																			<!-- <td>
 																				<img src="image/title_box_right1.gif">
-																			</td>
+																			</td> -->
 																			<td width="100%" bgcolor="#efedeb" align="center" style="background: none !important;">
 																				<img src="image/title03.gif">
 																			</td>
-																			<td>
+																			<!-- <td>
 																				<img src="image/title_box_right1.gif">
-																			</td>
+																			</td> -->
 																		</tr>
 																	</tbody>
 																</table>
@@ -195,15 +182,15 @@ for(int i = 0; i < product_option_count; i++){
 																<table width="100%" cellspacing="0" cellpadding="0">
 																	<tbody>
 																		<tr>
-																			<td>
+																			<!-- <td>
 																				<img src="image/title_box_right1.gif">
-																			</td>
+																			</td> -->
 																			<td width="100%" bgcolor="#efedeb" align="center" style="background: none !important;">
 																				<img src="image/title04.gif">
 																			</td>
-																			<td>
+																			<!-- <td>
 																				<img src="image/title_box_right1.gif">
-																			</td>
+																			</td> -->
 																		</tr>
 																	</tbody>
 																</table>
@@ -212,15 +199,15 @@ for(int i = 0; i < product_option_count; i++){
 																<table width="100%" cellspacing="0" cellpadding="0">
 																	<tbody>
 																		<tr>
-																			<td>
+																			<!-- <td>
 																				<img src="image/title_box_right1.gif">
-																			</td>
+																			</td> -->
 																			<td width="100%" bgcolor="#efedeb" align="center" style="background: none !important;">
 																				<img src="image/title05.gif">
 																			</td>
-																			<td>
+																			<!-- <td>
 																				<img src="image/title_box_right1.gif">
-																			</td>
+																			</td> -->
 																		</tr>
 																	</tbody>
 																</table>
@@ -229,23 +216,12 @@ for(int i = 0; i < product_option_count; i++){
 													</thead>
 													<tbody>
 														<%
-														if(product_seq_string!=null){
-															int product_seq = Integer.parseInt(product_seq_string);
-															
-															productDAO pdao = productDAO.getInstance();
-															productDTO pdto = pdao.getProduct(product_seq);
-															
-															int product_option_count = pdto.getProduct_option_count();
-															
-															String productOption_seq_arr[] = request.getParameterValues("productOption_seq");
-															
-															
-															for(int i = 0; i < productOption_seq_arr.length; i++){
-																int productOption_seq = Integer.parseInt(productOption_seq_arr[i]);
-																productOptionDTO podto = pdao.getProductOption(product_seq, productOption_seq);
-																int amount = Integer.parseInt(request.getParameter("MK_p_cnt_"+productOption_seq));
-																%>
-																<tr class="nbg">
+														for(int i = 0; i < orderList.size(); i++){
+															orderDTO odto = orderList.get(i);
+															productDTO pdto = pdao.getProduct(odto.getOrder_product_seq());
+															productOptionDTO podto = pdao.getProductOption(odto.getOrder_product_seq(), odto.getOrder_productOption_seq());
+															%>
+															<tr class="nbg">
 																	<td>
 																		<div class="tb-left">
 																			<img src="upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_gif()%>" width="38" height="50">
@@ -264,60 +240,26 @@ for(int i = 0; i < product_option_count; i++){
 																	</td>
 																	<td>
 																		<div class="tb-center">
-																			<%=amount%>개
+																			<%=odto.getOrder_amount()%>개
 																		</div>
 																	</td>
 																	<td>
 																		<div class="tb-right">
-																			<%=df.format(pdto.getProduct_point()*amount)%>원
-																			<%totalPoint += pdto.getProduct_point()*amount;%>
+																			<%=df.format(pdto.getProduct_point()*odto.getOrder_amount())%>원
+																			<%totalPoint += pdto.getProduct_point()*odto.getOrder_amount();%>
 																		</div>
 																	</td>
 																	<td>
 																		<div class="tb-right tb-bold">
-																			<%=df.format(pdto.getProduct_price()*amount)%>원
-																			<%total += pdto.getProduct_price()*amount;%>
+																			<%=df.format(pdto.getProduct_price()*odto.getOrder_amount())%>원
+																			<%total += pdto.getProduct_price()*odto.getOrder_amount();%>
 																		</div>
 																	</td>
 																</tr>
-																<%
-															}
+															<%
 														}
 														%>
-														<!-- <tr class="nbg">
-															<td>
-																<div class="tb-left">
-																	<img src="upload/product/1/0020030030003.gif" width="38" height="50">
-																</div>
-															</td>
-															<td>
-																<div class="tb-left">
-																	<a href="#">상품명</a>
-																	옵션
-																</div>
-															</td>
-															<td>
-																<div class="tb-right tb-bold">
-																	20,000원
-																</div>
-															</td>
-															<td>
-																<div class="tb-center">
-																	1개
-																</div>
-															</td>
-															<td>
-																<div class="tb-right">
-																	200원
-																</div>
-															</td>
-															<td>
-																<div class="tb-right tb-bold">
-																	20,000원
-																</div>
-															</td>
-														</tr>
-													</tbody>	상품 리스트 -->
+													</tbody>
 													<tfoot>
 														<tr>
 															<td colspan="6" style="background: none !important;">
@@ -331,10 +273,11 @@ for(int i = 0; i < product_option_count; i++){
 																						<%=total%>
 																						<%
 																						if(total<50000){
-																							total += 2500;
+																							totalPoint += 2500;
 																							%> + 배송료2,500원<%
 																						}
 																						%>
+																						=
 																						<strong><%=df.format(total)%>원</strong>
 																						(적립금 <%=df.format(totalPoint)%>원)
 																					</span>
@@ -352,6 +295,11 @@ for(int i = 0; i < product_option_count; i++){
 									</tbody>
 								</table>
 							</div>	<!-- boxMiddle -->
+							<div>
+								<form action="">
+									
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -361,9 +309,9 @@ for(int i = 0; i < product_option_count; i++){
 	<div class="container_footer">
 		<div class="footer_content">
 	        <div class="footer_info">
-	            <ul class="menu">
+	           <!--  <ul class="menu">
 	                GUIDE/개인정보취급방침/..
-	            </ul>
+	            </ul> -->
 	            <div class="address">
 					<p id="info1">
 						CALL 1600 - 7255<br>
@@ -404,7 +352,6 @@ $(document).ready(function(){
  }); 
 });
 </script>
- -->
 
 </body>
 </html>

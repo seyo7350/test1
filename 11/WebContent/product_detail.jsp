@@ -100,7 +100,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                         </div>
                      </div>
                       <!--  .thumb-wrap  -->
-                      <form action="buy.jsp" name="form1" id="form1" method="post">
+                      <form action="product_detailAf.jsp" name="form1" id="form1" method="post">
                         <div class="info">
                            <h3 class="tit-prd">상품명</h3>
                         <div class="table-opt">
@@ -149,7 +149,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                                                     for(int i = 0; i < poList.size(); i++){
                                                        productOptionDTO podto = poList.get(i);
                                                        %>
-                                                       <option value="<%=i%>" price="32000" opt_title="<%=podto.getProductOption_color()%>" amount="-1"><%=podto.getProductOption_color()%></option>
+                                                       <option value="<%=(i+1)%>" price="32000" opt_title="<%=podto.getProductOption_color()%>" amount="-1"><%=podto.getProductOption_color()%></option>
                                                        <%
                                                     }
                                                     %>                                                  
