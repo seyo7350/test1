@@ -52,6 +52,13 @@ public class orderDTO {
 		this.order_del = order_del;
 	}
 	
+	public orderDTO(int order_member_seq, int order_product_seq, int order_productOption_seq, int order_amount) {
+		this.order_member_seq = order_member_seq;
+		this.order_product_seq = order_product_seq;
+		this.order_productOption_seq = order_productOption_seq;
+		this.order_amount = order_amount;
+	}
+
 	public int getOrder_seq() {
 		return order_seq;
 	}

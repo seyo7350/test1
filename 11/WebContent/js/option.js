@@ -1,3 +1,4 @@
+var selected_option_cnt = 0;
 var total_price = 0;
 
 function number_format (number, decimals, dec_point, thousands_sep) {
@@ -94,6 +95,7 @@ function add_product(obj){
 	elem.innerHTML = _option.join("\n");
 	document.getElementById('MK_innerOpt_01').appendChild(elem);
 	
+	selected_option_cnt++;
 }
 
 function del_product(code) {
@@ -101,6 +103,7 @@ function del_product(code) {
     
     document.getElementById('MK_innerOpt_01').removeChild(del_Elem);
     
+    selected_option_cnt--;
 }
 
 function cal_total(){
