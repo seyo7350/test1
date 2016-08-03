@@ -282,6 +282,48 @@ public class productDAO implements iproductDAO {
 		
 		return poList;
 	}
+	
+	@Override
+	public productOptionDTO getProductOption(int product_seq, int productOption_seq) {
+		String sql = " select productOption_seq, productOption_product_seq, productOption_color, "
+				+ " productOption_colorCode, productOption_amount, productOption_del "
+				+ " from productOption_table "
+				+ " where productOption_product_seq = ? and productOption_seq = ? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		productOptionDTO podto = null;
+				
+		try {
+			conn = DBconnection.makeConnection();
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, product_seq);
+			psmt.setInt(2, productOption_seq);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()){
+				int i = 1;
+				podto = new productOptionDTO(
+							rs.getInt(i++),		// productOption_seq
+							rs.getInt(i++),		// productOption_product_seq
+							rs.getString(i++),	// productOption_color
+							rs.getString(i++),	// productOption_colorCode
+							rs.getInt(i++),		// productOption_amount
+							rs.getInt(i++)		// productOption_del
+						);
+			}
+			
+		} catch(SQLException e) {
+			log("getProductOption Fail", e);
+		} finally {
+			DBclose.close(psmt, conn, rs);
+			log("6/6 success getProductOption");
+		}
+		
+		return podto;
+	}
 
 	@Override
 	public int getseq() {
@@ -312,6 +354,8 @@ public class productDAO implements iproductDAO {
 		System.out.println(next_seq+1);
 		return next_seq+1;
 	}
+
+	
 	
 	
 	

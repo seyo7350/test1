@@ -1,3 +1,7 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="product.productOptionDTO"%>
+<%@page import="product.productDTO"%>
+<%@page import="product.productDAO"%>
 <%@page import="member.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -33,28 +37,52 @@ if(ologin == null){
 }
 mdto = (memberDTO)ologin;
 %>
-
+ --%>
 <%
+DecimalFormat df = new DecimalFormat("###,###,###");
+
 request.setCharacterEncoding("utf-8");
 
+int total = 0;
+int totalPoint = 0;
+
 String product_seq_string = request.getParameter("product_seq");
-int product_seq = Integer.parseInt(product_seq_string);
+/* if(product_seq_string!=null){
+	int product_seq = Integer.parseInt(product_seq_string);
+	
+	productDAO pdao = productDAO.getInstance();
+	productDTO pdto = pdao.getProduct(product_seq);
+	
+	int product_option_count = pdto.getProduct_option_count();
+	
+	String productOption_seq[] = request.getParameterValues("productOption_seq");
+	
+	String amount = "";
+	
+	for(int i = 0; i < productOption_seq.length; i++){
+		out.println(productOption_seq[i]);
+		amount = request.getParameter("MK_p_cnt_"+i);
+		out.println("amount : " + amount);
+	}
+} */
 
-String selected_option_cnt = request.getParameter("selected_option_cnt");
+%>
+<body>
 
-String productOption_seq[] = request.getParameterValues("productOption_seq");
-
-String amount = "";
-
-for(int i = 0; i < productOption_seq.length; i++){
-	out.println(productOption_seq[i]);
-	amount = request.getParameter("MK_p_cnt_"+i);
-	out.println("amount : " + amount);
+<%-- product_seq : <%=product_seq%>
+<br>
+product_option_count : <%=product_option_count%>
+<br>
+<%
+for(int i = 0; i < product_option_count; i++){
+	%>
+	productOption_seq : <%=productOption_seq[i]%>
+	amount : <%=request.getParameter("MK_p_cnt_"+i)%>
+	<br>
+	<%
 }
-
 %> --%>
 
-<body>
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
@@ -122,9 +150,9 @@ for(int i = 0; i < productOption_seq.length; i++){
 																			<td width="100%" bgcolor="#efedeb" align="center" style="background: none !important;">
 																				<img src="image/title01.gif">
 																			</td>
-																			<!-- <td>
+																			<td>
 																				<img src="image/title_box_right1.gif">
-																			</td> -->
+																			</td>
 																		</tr>
 																	</tbody>
 																</table>
@@ -133,15 +161,15 @@ for(int i = 0; i < productOption_seq.length; i++){
 																<table width="100%" cellspacing="0" cellpadding="0">
 																	<tbody>
 																		<tr>
-																			<!-- <td>
+																			<td>
 																				<img src="image/title_box_right1.gif">
-																			</td> -->
+																			</td>
 																			<td width="100%" bgcolor="#efedeb" align="center" style="background: none !important;">
 																				<img src="image/title02.gif">
 																			</td>
-																			<!-- <td>
+																			<td>
 																				<img src="image/title_box_right1.gif">
-																			</td> -->
+																			</td>
 																		</tr>
 																	</tbody>
 																</table>
@@ -150,15 +178,15 @@ for(int i = 0; i < productOption_seq.length; i++){
 																<table width="100%" cellspacing="0" cellpadding="0">
 																	<tbody>
 																		<tr>
-																			<!-- <td>
+																			<td>
 																				<img src="image/title_box_right1.gif">
-																			</td> -->
+																			</td>
 																			<td width="100%" bgcolor="#efedeb" align="center" style="background: none !important;">
 																				<img src="image/title03.gif">
 																			</td>
-																			<!-- <td>
+																			<td>
 																				<img src="image/title_box_right1.gif">
-																			</td> -->
+																			</td>
 																		</tr>
 																	</tbody>
 																</table>
@@ -167,15 +195,15 @@ for(int i = 0; i < productOption_seq.length; i++){
 																<table width="100%" cellspacing="0" cellpadding="0">
 																	<tbody>
 																		<tr>
-																			<!-- <td>
+																			<td>
 																				<img src="image/title_box_right1.gif">
-																			</td> -->
+																			</td>
 																			<td width="100%" bgcolor="#efedeb" align="center" style="background: none !important;">
 																				<img src="image/title04.gif">
 																			</td>
-																			<!-- <td>
+																			<td>
 																				<img src="image/title_box_right1.gif">
-																			</td> -->
+																			</td>
 																		</tr>
 																	</tbody>
 																</table>
@@ -184,15 +212,15 @@ for(int i = 0; i < productOption_seq.length; i++){
 																<table width="100%" cellspacing="0" cellpadding="0">
 																	<tbody>
 																		<tr>
-																			<!-- <td>
+																			<td>
 																				<img src="image/title_box_right1.gif">
-																			</td> -->
+																			</td>
 																			<td width="100%" bgcolor="#efedeb" align="center" style="background: none !important;">
 																				<img src="image/title05.gif">
 																			</td>
-																			<!-- <td>
+																			<td>
 																				<img src="image/title_box_right1.gif">
-																			</td> -->
+																			</td>
 																		</tr>
 																	</tbody>
 																</table>
@@ -200,7 +228,63 @@ for(int i = 0; i < productOption_seq.length; i++){
 														</tr>
 													</thead>
 													<tbody>
-														<tr class="nbg">
+														<%
+														if(product_seq_string!=null){
+															int product_seq = Integer.parseInt(product_seq_string);
+															
+															productDAO pdao = productDAO.getInstance();
+															productDTO pdto = pdao.getProduct(product_seq);
+															
+															int product_option_count = pdto.getProduct_option_count();
+															
+															String productOption_seq_arr[] = request.getParameterValues("productOption_seq");
+															
+															
+															for(int i = 0; i < productOption_seq_arr.length; i++){
+																int productOption_seq = Integer.parseInt(productOption_seq_arr[i]);
+																productOptionDTO podto = pdao.getProductOption(product_seq, productOption_seq);
+																int amount = Integer.parseInt(request.getParameter("MK_p_cnt_"+productOption_seq));
+																%>
+																<tr class="nbg">
+																	<td>
+																		<div class="tb-left">
+																			<img src="upload/product/1/<%=pdto.getProduct_photo_gif()%>" width="38" height="50">
+																		</div>
+																	</td>
+																	<td>
+																		<div class="tb-left">
+																			<a href="#"><%=pdto.getProduct_name()%></a>
+																			(color : <%=podto.getProductOption_color()%>)
+																		</div>
+																	</td>
+																	<td>
+																		<div class="tb-right tb-bold">
+																			<%=df.format(pdto.getProduct_price())%>원
+																		</div>
+																	</td>
+																	<td>
+																		<div class="tb-center">
+																			<%=amount%>개
+																		</div>
+																	</td>
+																	<td>
+																		<div class="tb-right">
+																			<%=df.format(pdto.getProduct_point()*amount)%>원
+																			<%totalPoint += pdto.getProduct_point()*amount;%>
+																		</div>
+																	</td>
+																	<td>
+																		<div class="tb-right tb-bold">
+																			<%=df.format(pdto.getProduct_price()*amount)%>원
+																			<%total += pdto.getProduct_price()*amount;%>
+																		</div>
+																	</td>
+																</tr>
+																<%
+															}
+														}
+														%>
+														<!-- <tr class="nbg">
 															<td>
 																<div class="tb-left">
 																	<img src="upload/product/1/0020030030003.gif" width="38" height="50">
@@ -233,20 +317,26 @@ for(int i = 0; i < productOption_seq.length; i++){
 																</div>
 															</td>
 														</tr>
-													</tbody>
+													</tbody>	상품 리스트 -->
 													<tfoot>
 														<tr>
 															<td colspan="6" style="background: none !important;">
 																<table width="100%" cellspacing="0" cellpadding="0">
 																	<tbody>
 																		<tr>
-																			<td colspan="3" width="100%" style="padding-right: 20px;" bgcolor="#f8f7f6" align="right">
+																			<td colspan="3" width="100%" style="padding-right: 20px;" align="right">
 																				<div class="tb-right">
 																					결제금액 : 
 																					<span id="order_price_box1" style="display: inline;">
-																						26,000 + 배송료 2,500원 =
-																						<strong>28,500원</strong>
-																						(적립금 260원)
+																						<%=total%>
+																						<%
+																						if(total<50000){
+																							total += 2500;
+																							%> + 배송료2,500원<%
+																						}
+																						%>
+																						<strong><%=df.format(total)%>원</strong>
+																						(적립금 <%=df.format(totalPoint)%>원)
 																					</span>
 																				</div>
 																			</td>
@@ -261,7 +351,7 @@ for(int i = 0; i < productOption_seq.length; i++){
 										</tr>
 									</tbody>
 								</table>
-							</div>
+							</div>	<!-- boxMiddle -->
 						</div>
 					</div>
 				</div>
@@ -271,9 +361,9 @@ for(int i = 0; i < productOption_seq.length; i++){
 	<div class="container_footer">
 		<div class="footer_content">
 	        <div class="footer_info">
-	            <!-- <ul class="menu">
+	            <ul class="menu">
 	                GUIDE/개인정보취급방침/..
-	            </ul> -->
+	            </ul>
 	            <div class="address">
 					<p id="info1">
 						CALL 1600 - 7255<br>
@@ -291,7 +381,7 @@ for(int i = 0; i < productOption_seq.length; i++){
 	            </div>	           
 	        </div>
 		</div>		
-	</div><!-- container_footer -->
+	</div>container_footer
 </div>
 
 <a style="position: fixed; bottom: 700px; right: 240px;" href="#" title="Top"><img src="image/quick_top.png"></a>
@@ -314,7 +404,7 @@ $(document).ready(function(){
  }); 
 });
 </script>
-
+ -->
 
 </body>
 </html>
