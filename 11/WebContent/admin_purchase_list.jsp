@@ -13,7 +13,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>admin_purchase_list</title>
-
+<%-- <script type="text/javascript">
+function send(){
+	alert("버튼 클릭");
+	location.href="admin_purchase_listAf.jsp?order_seq=<%=order_seq %>"
+}
+</script>  --%>
 </head>
 <body>
 <%
@@ -43,10 +48,8 @@ List<orderDTO> olist = odao.getadminOrderList();
 			<th>결제상태</th>
 			<th>배송상태</th>
 		</tr>
-			<!-- 번호 -->
 			<%
 			if(olist.size()!=0){
-
 				for(int i=0; i<olist.size();i++){
 					memberDTO mdto = mdao.getMember(olist.get(i).getOrder_member_seq());
 					productDTO pdto = pdao.getProduct(olist.get(i).getOrder_product_seq());
@@ -56,8 +59,8 @@ List<orderDTO> olist = odao.getadminOrderList();
 					int order_seq = olist.get(i).getOrder_seq();
 			%>
 				<tr>
-				<td><%=i %></td>
-				<%-- <input type="hidden" value="<%=order_seq%>" name="order_seq"> --%>
+				<td><%=i %>
+				<%-- <input type="hidden" value="<%=order_seq%>" name="order_seq"></td> --%>
 				<td><%=mdto.getMember_id() %><%System.out.println("order_seq="+order_seq); %></td>
 				<td><%=mdto.getMember_name() %></td>
 				<td><%=pdto.getProduct_name() %></td>
@@ -66,7 +69,7 @@ List<orderDTO> olist = odao.getadminOrderList();
 				<td>[<%=mdto.getMember_address() %>]&nbsp;<%=mdto.getMember_addressDetail() %></td>
 				<td><%=mdto.getMember_phone() %></td>
 				<td><%=order_confirm %></td>
-				<td><button onclick="send()" value="<%=order_seq %>">배송완료</button></td>
+				<td><button onclick="location.href='admin_purchase_listAf.jsp?order_seq=<%=order_seq %>'" value="<%=order_seq%>">배송완료</button></td>
 				</tr>
 			<%
 					}
@@ -74,12 +77,7 @@ List<orderDTO> olist = odao.getadminOrderList();
 				}
 			%>
 	</table>
-<%-- <script type="text/javascript">
-function send(){
-	alert("버튼 클릭");
-	location.href="admin_purchase_listAf.jsp?order_seq=<%=order_seq %>"
-}
-</script> --%>
+
 
 
 
