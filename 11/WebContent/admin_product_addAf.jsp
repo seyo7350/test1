@@ -26,7 +26,7 @@ request.setCharacterEncoding("utf-8");
 String seq = request.getParameter("seq");
 
 //파일이 저장될 서버의 경로. 되도록이면 getRealPath를 이용하자.
-String savePath = "C:\\Users\\John\\Desktop\\ee\\test1\\11\\WebContent\\upload\\product";
+String savePath = "C:/Users/User/Desktop/ee/test1/11/WebContent/upload";
 savePath += "/" + seq;
 
 File file = new File(savePath);
@@ -72,10 +72,41 @@ int product_price = Integer.parseInt(s_product_price);
 String s_product_point = multi.getParameter("product_point");
 int product_point = Integer.parseInt(s_product_point);
 
-String product_info_about = multi.getParameter("product_info_about");
-String product_info_detail_tip = multi.getParameter("product_info_detail_tip");
-String product_info_size_tip = multi.getParameter("product_info_size_tip");
-String product_info_washing_tip = multi.getParameter("product_info_washing_tip");
+
+String product_info_about ="";
+for(int i=1; i<=5; i++){
+	product_info_about += multi.getParameter("product_info_about"+i);
+	if(i!=5){
+		product_info_about += "|";
+	}
+}
+
+String product_info_detail_tip ="";
+for(int i=1; i<=5; i++){
+	product_info_detail_tip += multi.getParameter("product_info_detail_tip"+i);
+	if(i!=5){
+		product_info_detail_tip += "|";
+	}
+}
+
+String product_info_size_tip ="";
+for(int i=1; i<=5; i++){
+	product_info_size_tip += multi.getParameter("product_info_size_tip"+i);
+	if(i!=5){
+		product_info_size_tip += "|";
+	}
+}
+
+String product_info_washing_tip ="";
+for(int i=1; i<=5; i++){
+	product_info_washing_tip += multi.getParameter("product_info_washing_tip"+i);
+	if(i!=5){
+		product_info_washing_tip += "|";
+	}
+}
+
+System.out.println("product_info_about="+product_info_about+"product_info_detail_tip="+product_info_detail_tip
+					+"product_info_size_tip="+product_info_size_tip+"product_info_washing_tip"+product_info_washing_tip);
 
 String s_product_option_count = multi.getParameter("option_count");
 int product_option_count = Integer.parseInt(s_product_option_count);

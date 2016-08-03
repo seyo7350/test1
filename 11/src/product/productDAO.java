@@ -41,12 +41,12 @@ public class productDAO implements iproductDAO {
 	}
 
 	@Override
-	public List<productDTO> getProductList() {
+	public List<productDTO> getProductList(int product_style_code) {
 		String sql = " select product_seq, product_name, product_price, product_point, product_option_count, "
 				+ " product_info_about, product_info_detail_tip, product_info_size_tip, product_info_washing_tip, "
 				+ " product_photo_gif, product_photo_main, product_photo_detail_main, product_photo_detail, "
-				+ " product_style_code, product_regiDate, product_del "
-				+ " from product_table "
+				+ " product_style_code, product_regiDate, product_del from product_table "
+				+ "	where product_style_code=? "
 				+ " order by product_seq desc ";
 		
 		Connection conn = null;
@@ -60,6 +60,7 @@ public class productDAO implements iproductDAO {
 			conn = DBconnection.makeConnection();
 			
 			psmt = conn.prepareStatement(sql);		
+			psmt.setInt(1, product_style_code);
 			rs = psmt.executeQuery();
 			
 			while(rs.next()){
@@ -194,7 +195,7 @@ public class productDAO implements iproductDAO {
 				+ " product_photo_gif, product_photo_main, product_photo_detail_main, product_photo_detail, "
 				+ " product_style_code, product_regiDate, product_del "
 				+ " from product_table "
-				+ " where product_seq = ? ";
+				+ " where product_seq = ?";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
