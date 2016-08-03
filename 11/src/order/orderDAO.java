@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import DBControl.DBclose;
 import DBControl.DBconnection;
@@ -71,5 +73,54 @@ public class orderDAO implements iorderDAO {
 		}
 		return count>0?true:false;
 	}
+
+	@Override
+	public List<orderDTO> getadminOrderList() {
+		
+		String sql = " select * from order_table "
+				+ " where order_confirm > 0 ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<orderDTO> orderlist = new ArrayList<orderDTO>();
+		
+		try{
+			conn=DBconnection.makeConnection();
+			log("2/6 Success getOrderList");
+			
+			psmt=conn.prepareStatement(sql);
+			log("3/6 Success getOrderList");
+			
+			rs=psmt.executeQuery();
+			log("4/6 Success getOrderList");
+			
+			while(rs.next()){
+				int i = 1;
+				orderDTO odto = new orderDTO(
+						rs.getInt(i++),
+						rs.getInt(i++),
+						rs.getInt(i++),
+						rs.getInt(i++),
+						rs.getInt(i++),
+						rs.getDate(i++),
+						rs.getInt(i++),
+						rs.getInt(i++)
+						);
+				orderlist.add(odto);
+			}
+			log("5/6 Success getOrderList");
+			
+		}catch(SQLException e){
+			log("Fail getOrderList");
+		}finally{
+			DBclose.close(psmt, conn, rs);
+		}
+		
+		return orderlist;
+	}
+	
+	
 
 }
