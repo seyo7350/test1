@@ -248,7 +248,7 @@ for(int i = 0; i < product_option_count; i++){
 																<tr class="nbg">
 																	<td>
 																		<div class="tb-left">
-																			<img src="upload/product/1/<%=pdto.getProduct_photo_gif()%>" width="38" height="50">
+																			<img src="upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_gif()%>" width="38" height="50">
 																		</div>
 																	</td>
 																	<td>

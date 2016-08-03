@@ -97,7 +97,7 @@ System.out.println(pList.size());
 					<li class="item">
                   		<div class="box">
                     		<a href="product_detail.jsp?product_seq=<%=pdto.getProduct_seq()%>&product_style_code=<%=1 %>" class="prdimg">
-                    			<img src="upload/product/1/<%=pdto.getProduct_photo_gif()%>" alt="이미지 없음" onmouseover='src="upload/product/1/<%=pdto.getProduct_photo_main()%>"' onmouseout="src='upload/product/1/<%=pdto.getProduct_photo_gif()%>'"/>
+                    			<img src="upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_gif()%>" alt="이미지 없음" onmouseover='src="upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_main()%>"' onmouseout="src='upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_gif()%>'"/>
                     		</a>
                   			<div class="product_contents_info">
                   				<p class="name">

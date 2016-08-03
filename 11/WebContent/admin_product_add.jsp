@@ -79,7 +79,7 @@ $(document).ready(function(){
 </script>
 
 <h1>상품등록</h1>
-<form action="product_addAf.jsp?seq=<%=seq %>" method="post" enctype="multipart/form-data">
+<form action="admin_product_addAf.jsp?seq=<%=seq%>" method="post" enctype="multipart/form-data">
 	<table border="1">
 	<col width="150"/><col width="800"/>
 		<tr>

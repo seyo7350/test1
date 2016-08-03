@@ -96,7 +96,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                   <div class="thumb-info">
                      <div class="thumb-wrap">
                         <div class="thumb">
-                           <img src ="upload/product/1/<%=pdto.getProduct_photo_detail_main()%>" alt=""/>
+                           <img src ="upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_detail_main()%>" alt=""/>
                         </div>
                      </div>
                       <!--  .thumb-wrap  -->
@@ -305,7 +305,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
 							for(int i=0; i<product_photo_detail_vales.length;i++){
 						%>
 								<img height="400" src="image/aaa.jpg"><br>
-								<br><img src="upload/product/<%=product_style_code %>/<%=product_photo_detail_vales[i]%>"><br>
+								<br><img src="upload/product/<%=pdto.getProduct_seq()%>/<%=product_photo_detail_vales[i]%>"><br>
 								<br>
 								
 						<%

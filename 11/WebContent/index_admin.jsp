@@ -31,7 +31,7 @@ if(ologin == null && mem.getMember_auth()==1){
 <h1 style="text-align: center;">관리자 메뉴</h1>
 <table border="1" align="center">
 	<tr>
-		<td align="center"><button onclick="location.href='product_add.jsp'">상품 등록</button></td>
+		<td align="center"><button onclick="location.href='admin_product_add.jsp'">상품 등록</button></td>
 	</tr>
 	<tr>
 		<td align="center"><button onclick="location.href='product_order_list.jsp'">결제 목록</button></td>
