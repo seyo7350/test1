@@ -33,10 +33,12 @@ public class productDTO {
 	private int product_price;
 	private int product_point;
 	private int product_option_count;
+	
 	private String product_info_about;
 	private String product_info_detail_tip;
 	private String product_info_size_tip;
 	private String product_info_washing_tip;
+	
 	private String product_photo_gif;
 	private String product_photo_main;
 	private String product_photo_detail_main;

@@ -39,8 +39,11 @@ mem = (memberDTO)ologin;
 %> --%>
 
 <%
+String product_style_code_string = request.getParameter("product_style_code");
+int product_style_code = Integer.parseInt(product_style_code_string);
+
 productDAO pdao = productDAO.getInstance();
-List<productDTO> pList = pdao.getProductList();
+List<productDTO> pList = pdao.getProductList(product_style_code);
 System.out.println(pList.size());
 %>
 
@@ -93,7 +96,7 @@ System.out.println(pList.size());
 					%>
 					<li class="item">
                   		<div class="box">
-                    		<a href="product_detail.jsp?product_seq=<%=pdto.getProduct_seq()%>" class="prdimg">
+                    		<a href="product_detail.jsp?product_seq=<%=pdto.getProduct_seq()%>&product_style_code=<%=1 %>" class="prdimg">
                     			<img src="upload/product/1/<%=pdto.getProduct_photo_gif()%>" alt="이미지 없음" onmouseover='src="upload/product/1/<%=pdto.getProduct_photo_main()%>"' onmouseout="src='upload/product/1/<%=pdto.getProduct_photo_gif()%>'"/>
                     		</a>
                   			<div class="product_contents_info">
