@@ -1,3 +1,5 @@
+<%@page import="member.memberDTO"%>
+<%@page import="order.orderDAO"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="product.productOptionDTO"%>
 <%@page import="product.productDAO"%>
@@ -27,19 +29,31 @@
 
 </head>
 <body>
+<%
+Object ologin = session.getAttribute("login");
+memberDTO mem = null;
+
+if(ologin == null){
+	%>
+	<script>
+	  alert("로그인을 해주세요");
+	  location.href="login.jsp";
+	</script>
+	<%
+	return;
+}
+ mem = (memberDTO)ologin;
+%>
 
 <%
 request.setCharacterEncoding("utf-8");
 
 DecimalFormat df = new DecimalFormat("###,###,###");
 
-List<orderDTO> orderList;
+orderDAO odao = orderDAO.getInstance();
 productDAO pdao = productDAO.getInstance();
 
-Object oshoppingbag = session.getAttribute("shoppingbag");
-
-int total = 0;
-int totalPoint = 0;
+List<orderDTO> orderList = odao.getMemberOrderList(mem.getMember_seq());
 %>
 
 <script type="text/javascript">
@@ -142,9 +156,66 @@ function buy(){
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td colspan="6"><div class="tb-center">주문내역이 없습니다.</div></td>
-                                    </tr>
+                                	<%
+                                	if(orderList.isEmpty()){
+                                		%>
+                                		<tr>
+	                                        <td colspan="6"><div class="tb-center">주문내역이 없습니다.</div></td>
+	                                    </tr>
+                                		<%
+                                	}else{
+                                		for(int i = 0; i < orderList.size(); i++){
+                                			orderDTO odto = orderList.get(i);
+                                			productDTO pdto = pdao.getProduct(odto.getOrder_product_seq());
+                                			productOptionDTO podto = pdao.getProductOption(odto.getOrder_product_seq(), odto.getOrder_productOption_seq());                                			
+                                			%>
+                                			<tr>
+                                				<td>
+                                					<div class="tb-center">
+                                						<%=i+1%>
+                                					</div>
+                                				</td>
+                                				<td>
+                                					<div class="tb-center">
+                                						<%=odto.getOrder_regiDate()%>
+                                					</div>
+                                				</td>
+                                				<td>
+                                					<div class="tb-center">
+                                						<%=pdto.getProduct_name()%>
+                                					</div>
+                                				</td>
+                                				<td>
+                                					<div class="tb-center">
+                                						<%=pdto.getProduct_price()*odto.getOrder_amount()%>
+                                					</div>
+                                				</td>
+                                				<td>
+                                					<div class="tb-center">
+                                						<%=podto.getProductOption_color()%><br><%=odto.getOrder_amount()%>개
+                                					</div>
+                                				</td>
+                                				<td>
+                                					<div class="tb-center">
+	                                					<%
+	                                					if(odto.getOrder_confirm()==0){
+	                                						%>
+	                                						결제완료
+	                                						<%
+	                                					}else{
+	                                						%>
+	                                						배송완료
+	                                						<%
+	                                						/* if() 리뷰*/
+	                                					}
+	                                					%>
+	                                				</div>
+                                				</td>
+                                			<%
+                                		}
+                                	}
+                                	%>
+                                    
                                 </tbody>
                             </table>
                         </div>
