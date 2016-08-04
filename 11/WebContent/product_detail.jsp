@@ -149,7 +149,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                                                     for(int i = 0; i < poList.size(); i++){
                                                        productOptionDTO podto = poList.get(i);
                                                        %>
-                                                       <option value="<%=(i+1)%>" price="32000" opt_title="<%=podto.getProductOption_color()%>" amount="-1"><%=podto.getProductOption_color()%></option>
+                                                       <option value="<%=podto.getProductOption_seq()%>" price="<%=pdto.getProduct_price()%>" opt_title="<%=podto.getProductOption_color()%>" amount="-1"><%=podto.getProductOption_color()%></option>
                                                        <%
                                                     }
                                                     %>                                                  

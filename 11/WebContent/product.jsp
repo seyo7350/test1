@@ -88,6 +88,8 @@ System.out.println(pList.size());
 	<div class="container_middle">
 		<div class="top_log" align="center">
 			<img src="image/<%=product_style_code %>.jpg">
+			<br>
+			<br>
 		</div>
 		<div class="content">
 			<div class="item-list">
@@ -117,7 +119,6 @@ System.out.println(pList.size());
                            				<%=df.format(price)%>원
                            				</span>
                         			</li>
-                        			<br>
                         			<li class="color_type">
                            				<strong class="title title_color">색상 :</strong>
                            				<%

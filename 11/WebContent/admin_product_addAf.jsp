@@ -26,9 +26,10 @@ request.setCharacterEncoding("utf-8");
 String seq = request.getParameter("seq");
 
 //파일이 저장될 서버의 경로. 되도록이면 getRealPath를 이용하자.
-String savePath = "C:/Users/John/git/test1/11/WebContent/upload/product"; 
+/* String savePath = "C:/Users/John/git/test1/11/WebContent/upload/product";  */
 /* String savePath = "C:/Users/user/Desktop/git/2/11/WebContent/upload/product"; */
-savePath += "/" + seq;
+String savePath = request.getServletContext().getRealPath("/");
+savePath += "upload/product/" + seq;
 
 File file = new File(savePath);
 

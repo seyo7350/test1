@@ -28,6 +28,7 @@ add constraint fk_order_productOption_seq foreign key(order_productOption_seq)
 references productOption_table(productOption_seq);
 
 drop table order_table
+cascade constraint
 
 drop sequence seq_order_table
 

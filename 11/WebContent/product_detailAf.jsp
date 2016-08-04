@@ -41,6 +41,8 @@ String productOption_seq_arr[] = request.getParameterValues("productOption_seq")
 
 List<orderDTO> orderList = new ArrayList<orderDTO>();
 
+
+
 for(int i = 0; i < productOption_seq_arr.length; i++){
 	int productOption_seq = Integer.parseInt(productOption_seq_arr[i]);
 	

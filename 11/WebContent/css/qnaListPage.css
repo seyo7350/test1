@@ -4,8 +4,6 @@
     width: 100%;
     text-align: center;
     margin: 0 0 50px;
-    padding: 150px 0;
-    border: 1px solid #e8e8e8;
     background-color: white;
 }
 user agent stylesheet
@@ -13,7 +11,39 @@ div {
     display: block;
 }
 
-body {
+.content {
+	font-family: 'Nanum Gothic', '나눔고딕', 'malgun gothic', arial, dotum, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #fff;
+}
+
+.content body, h1, h2, h3, h4, h5, h6, table, input, select, textarea{
+	font-size: 12px;
+    line-height: 1.25;
+    color: #8a8a8a;
+    font-family: Dotum, AppleGothic, Helvetica, sans-serif;
+}
+
+.content h2{
+	display: block;
+    font-size: 1.5em;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+.content ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+/* body {
     font-family: 'Nanum Gothic', '나눔고딕', 'malgun gothic', arial, dotum, sans-serif;
     -webkit-font-smoothing: antialiased;
     background-color: #f5f5f5;
@@ -33,7 +63,7 @@ h2 {
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
     font-weight: bold;
-}
+} */
 
 .qna_menu_area h2 {
     margin: 0 0 50px;
@@ -41,7 +71,7 @@ h2 {
     font-size: 0;
 }
 
-ul, menu, dir {
+/* ul, menu, dir {
     display: block;
     list-style-type: disc;
     -webkit-margin-before: 1em;
@@ -49,7 +79,7 @@ ul, menu, dir {
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
     -webkit-padding-start: 40px;
-}
+} */
 
 .qna_menu_area ul {
     margin: 0;
@@ -93,9 +123,9 @@ Inherited from div#container
     background-color: #fff;
 }
 
-hr, caption, legend {
+/* hr, caption, legend {
     display: none;
-}
+} */
 
 colgroup {
     display: table-column-group;
@@ -121,6 +151,11 @@ table-list thead th {
     color: #666;
     font-size: 11px;
 }
+
+.bbs-table-list{
+	padding: 50px 0 0 0;
+}
+
 .bbs-table-list thead th {
     color: #9d9d9d;
     font-weight: bold;
@@ -188,10 +223,10 @@ bbs-table-list thead th, .bbs-table-list tbody td {
     text-align: right;
 }
 
-html, body, pre, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, li, ol, th, td, p, blockquote, form, fieldset, legend, menu, nav, section, hgroup, article, header, aside, footer, input, select, textarea, button {
+/* html, body, pre, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, li, ol, th, td, p, blockquote, form, fieldset, legend, menu, nav, section, hgroup, article, header, aside, footer, input, select, textarea, button {
     margin: 0;
     padding: 0;
-}
+} */
 
 user agent stylesheet
 form {
@@ -199,7 +234,7 @@ form {
     margin-top: 0em;
 }
 
-select {
+.content select {
     line-height: 18px;
     height: 18px;
 }
@@ -210,5 +245,11 @@ select {
     color: #8b8b8b;
     font-size: 11px;
     text-align: center;
+}
+
+.page-body{
+    width: 880px;
+    margin: 0 auto;
+}
 }
 
