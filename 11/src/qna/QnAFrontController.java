@@ -14,7 +14,6 @@ import notice.NoticeListCommand;
 import notice.NoticeWriteCommand;
 
 
-
 /**
  * Servlet implementation class BbsFrontController
  */
@@ -65,12 +64,14 @@ public class QnAFrontController extends HttpServlet {
 			nextPage = "qnaListPage.jsp";
 		}
 		
+		
 		/*// 페이징 처리
 		if(com.equals("/qnaList.do")){
 			icommand = new QnAPageCommand();
 			icommand.execute(request, response);
 			nextPage = "qnaListPaging.jsp";
 		}*/
+		
 		
 		// QnA 글쓰기 폼
 		if(com.equals("/qnaWriteUI.do")){
@@ -91,33 +92,38 @@ public class QnAFrontController extends HttpServlet {
 			nextPage = "qnaDetail.jsp";
 		}
 		
+		
 		/////////////////////////////////////////////////////////////////////////////////
-				
+		
 		// 공지사항 목록 보기
 		if(com.equals("/noticeList.do")){
-		icommand = new NoticeListCommand();
-		icommand.execute(request, response);
-		nextPage = "noticeListPage.jsp";
+			icommand = new NoticeListCommand();
+			icommand.execute(request, response);
+			nextPage = "noticeListPage.jsp";
 		}
 		
 		// 공지사항 글 쓰기폼
 		if(com.equals("/noticeWriteUI.do")){
-		nextPage = "notice.jsp";
+			nextPage = "notice.jsp";
 		}
 		
 		// 공지사항 글 쓰기
 		if(com.equals("/noticeWrite.do")){
-		icommand = new NoticeWriteCommand();
-		icommand.execute(request, response);
-		nextPage = "noticeList.do";
+			icommand = new NoticeWriteCommand();
+			icommand.execute(request, response);
+			nextPage = "noticeList.do";
 		}
 		
 		// 공지글 자세히 보기
 		if(com.equals("/noticeView.do")){
-		icommand = new NoticeDetailCommand();
-		icommand.execute(request, response);
-		nextPage = "noticeDetail.jsp";
+			icommand = new NoticeDetailCommand();
+			icommand.execute(request, response);
+			nextPage = "noticeDetail.jsp";
 		}
+		
+		/////////////////////////////////////////////
+		
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(nextPage);
 		dispatcher.forward(request, response);
 		

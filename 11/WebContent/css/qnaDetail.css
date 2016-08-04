@@ -1,17 +1,43 @@
 @CHARSET "UTF-8";
 
-html, body, pre, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, li, ol, th, td, p, blockquote, form, fieldset, legend, menu, nav, section, hgroup, article, header, aside, footer, input, select, textarea, button {
-    margin: 0;
-    padding: 0;
+
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.eot);
+  src: url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.eot?#iefix) format('embedded-opentype'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 700;
+  src: url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.eot);
+  src: url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.eot?#iefix) format('embedded-opentype'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 800;
+  src: url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.eot);
+  src: url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.eot?#iefix) format('embedded-opentype'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.woff2) format('woff2'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.woff) format('woff'),
+       url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.ttf) format('truetype');
 }
 
-Inherited from body
-body {
-    font-family: 'Nanum Gothic', '나눔고딕', 'malgun gothic', arial, dotum, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    background-color: #f5f5f5;
+body{
+	background-color: #f5f5f5;
+	font-family: 'Nanum Gothic', sans-serif;
 }
-body, h1, h2, h3, h4, h5, h6, table, input, select, textarea {
+
+h1, h2, h3, h4, h5, h6, table, input, select, textarea {
     font-size: 12px;
     line-height: 1.25;
     color: #8a8a8a;
@@ -28,6 +54,11 @@ body, h1, h2, h3, h4, h5, h6, table, input, select, textarea {
     margin: 0 0 30px !important;
     zoom: 1;
 }
+
+
+
+
+
 
 div {
     display: block;
@@ -79,7 +110,7 @@ div {
 }
 
 .prd-tinfo dd ul {
-    padding: 15px 0 0 10px;
+    padding: 5px 0 0 10px;
     min-height: 45px;
     _height: 45px;
     border-left: 1px solid #e0e0e0;
@@ -98,6 +129,10 @@ li {
 .prd-tinfo dd ul li .tit {
     display: inline-block;
     width: 55px;
+}
+.tit{
+	font-size: 12px;
+	
 }
 Inherited from li.name
 li {
@@ -234,6 +269,7 @@ textarea {
 
 .comment-box {
     border-bottom: 2px solid #e5e5e5;
+    border-top: 2px solid #e5e5e5;
 }
 
 .bbs-table-view .comment-box td {
@@ -275,12 +311,12 @@ Inherited from a.custom_button.button_medium_level1
 }
 
 .custom_button {
-	display: inline-block;
-	overflow: hidden;
-	margin: -1px;
-	padding: 1px;
-	text-decoration: none !important;
-	vertical-align: top;
+   display: inline-block;
+   overflow: hidden;
+   margin: -1px;
+   padding: 1px;
+   text-decoration: none !important;
+   vertical-align: top;
 
 }
 
@@ -381,4 +417,118 @@ element.style {
 .bbs-table-list tbody td  { padding: 6px 0;} 
 .bbs-table-list thead th { color: #9d9d9d; font-weight: bold; font-size: 11px;  border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5; }
 .bbs-table-list tbody td { background: url('image01/dot_bbs_list.png') repeat-x 0 bottom;}
+
+
+.comment-box {
+    border-bottom: 2px solid #e5e5e5;
+}
+
+colgroup {
+    display: table-column-group;
+}
+
+col[Attributes Style] {
+    width: 120px;
+}
+col {
+    display: table-column;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    border-bottom: 1px solid #e5e5e5
+}
+
+.bbs-table-view .comment-box td {
+    padding-bottom: 20px;
+    border-top: 1px solid #e5e5e5;
+    vertical-align: top;
+}
+.bbs-table-view thead th, .bbs-table-view tbody td {
+    padding: 6px 0;
+}
+.tb-right {
+    text-align: right;
+}
+
+.comment-box .com-name {
+    margin-right: 8px;
+    padding: 0 8px;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #c5c5c5;
+}
+
+.comment-box .com-name2 {
+    margin-right: 8px;
+    padding: 0 8px;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #c5c5c5;
+    font-size: 16px;;
+    border-bottom: 1px solid gray;
+    vertical-align: middle;
+}
+
+
+.tb-right {
+    text-align: right;
+}
+
+.bbs-link {
+    font-size: 0;
+    line-height: 0;
+}
+
+.bbs-link span {
+    font-size: 11px;
+    color: #555;
+    line-height: 14px;
+}
+
+.bbs-link a {
+    display: inline-block;
+    padding: 0 5px;
+    font-size: 11px;
+    line-height: 14px;
+    color: #9b9b9b;
+    background: url('/images/d3/modern_simple/common/bull_bbs_hd_link.gif') no-repeat left 45%;
+}
+
+.custom_paging {
+    clear: both;
+    position: relative;
+    padding: 20px 0 25px;
+    margin: 0;
+    text-align: center;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+    border-bottom: none !important;
+    background: none !important;
+}
+
+.custom_paging p, .custom_paging ol, .custom_paging li {
+    display: inline-block;
+    font-size: 0 !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    vertical-align: top;
+}
+
+
+
+
+
+
+
 

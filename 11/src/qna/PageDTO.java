@@ -9,6 +9,7 @@ public class PageDTO implements Serializable {
 	private int curPage;
 	private int perPage = 10;
 	private int totalCount;
+	
 	public List<QnADTO> getpList() {
 		return pList;
 	}

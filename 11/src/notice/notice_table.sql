@@ -1,4 +1,5 @@
-drop table NOTICE_TABLE;
+drop table NOTICE_TABLE
+cascade constraint;
 
 create table NOTICE_TABLE(
 	notice_num number(10) primary key,

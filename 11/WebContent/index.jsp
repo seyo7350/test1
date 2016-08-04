@@ -38,8 +38,6 @@ List<productDTO> outerList = pdao.getProductList(outer_style_code);
 List<productDTO> topList = pdao.getProductList(top_style_code);
 List<productDTO> bottomList = pdao.getProductList(bottom_style_code);
 List<productDTO> onepiceList = pdao.getProductList(onepice_style_code);
-
-
 %>
 
 <div class="side">
@@ -59,7 +57,7 @@ if(ologin == null){
     <%} %>
 			<a href='join.jsp'>join</a><br>
 			shopping bag<br>
-			<a href='myPage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
+			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
 			<hr>

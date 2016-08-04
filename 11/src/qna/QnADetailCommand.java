@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 public class QnADetailCommand implements IQnACommand {
 
 	@Override

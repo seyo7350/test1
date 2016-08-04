@@ -1,5 +1,13 @@
+<%@page import="java.util.List"%>
+<%@page import="qnaReply.AdminReplyDTO"%>
+<%@page import="qnaReply.AdminReplyDAO"%>
+
+<%@ page import="member.memberDAO" %>
+<%@ page import="member.memberDTO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,6 +16,7 @@
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
+<link rel="stylesheet" href="css/qnaDetail.css">
 
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -21,24 +30,36 @@
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
-			login&nbsp;&nbsp;/&nbsp;&nbsp;join<br>
+            <%
+Object ologin = session.getAttribute("login");
+memberDTO mem = null;
+
+if(ologin == null){
+	%>
+    <a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+	<%
+}else{
+ %>
+    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+    <%} %>
+			<a href='join.jsp'>join</a><br>
 			shopping bag<br>
-			mypage&nbsp;&nbsp;/&nbsp;&nbsp;home
+			<a href='myPage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product_detail.jsp">OUTER</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOP
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp">TOP</a>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ONEPIECE
 			<br>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTICE
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="noticeList.do">NOTICE</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q&A
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="qnaList.do">Q&A</a>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REVIEW		
 			<hr>
@@ -53,13 +74,48 @@
 <div class="container">
 	<div class="container_top">
 		<div class="logo">
-			<img alt="로고" src="image/header.png">
+			<a href='index.jsp'><img alt="로고" src="image/header.png"></a>
 		</div>
 	</div>	
 	<div class="container_middle">
 		<div class="content">
 			
-		<jsp:include page="qna.html"></jsp:include>
+		<%
+request.setCharacterEncoding("utf-8");
+
+String s_qna_num = request.getParameter("seq").trim();
+String qnaAnswer_author = request.getParameter("cname");
+String qnaAnswer_pwd = request.getParameter("cpass");
+String qnaAnswer_content = request.getParameter("comment");
+
+int qnaanswer_qna_num = Integer.parseInt(s_qna_num);
+
+System.out.println(s_qna_num);
+System.out.println(qnaAnswer_author);
+System.out.println(qnaAnswer_pwd);
+System.out.println(qnaAnswer_content); 
+
+AdminReplyDAO aDAO = new AdminReplyDAO();
+
+aDAO.writeAdminReply(qnaanswer_qna_num, qnaAnswer_author, qnaAnswer_pwd, qnaAnswer_content);	// 본 글에 대한 관리자 답글이 쓰여짐
+
+/* List<AdminReplyDTO> adminAnswerList = aDAO.getQnAAnswer(qna_num);	// 그 글에 대한 관리자 댓글 보기
+request.setAttribute("adminAnswerList", adminAnswerList); */
+
+
+/* AdminReplyDTO aDTO = aDAO.getQnAAnswer2(qnaanswer_qna_num);
+request.setAttribute("aDTO", aDTO); */
+
+
+
+%>
+
+<jsp:forward page="qnaDetail.jsp?seq=<%=qnaanswer_qna_num%>"></jsp:forward>
+
+
+		
+
+		
 			
 		</div>
 	</div>
@@ -77,14 +133,15 @@
 						_BANK_ : WOORI 1005-501-330632, ....
 					</p>
 	                <p id="info2">
-	                	법인명(상호): (주)체리코코  | 대표자(성명): 지동헌 | 사업자 등록번호 안내: [215-87-15936] | 통신판매업 신고 제 2011 - 서울강남 - 03186호<br>
-						전화: 1600-7255 | 주소: 서울특별시 강남구 신사동 517-4 M SPACE 빌딩 2층 (강남대로158길 26) -(주)체리코코 <br>
-						교환 & 반품 주소 : 서울 성북구 종암동 57-39번지 CJ대한통운 종암대리점 (주)체리코코 <br>
-						개인정보관리책임자: 지동헌 | Contact help@cherrykoko.com for more information.<br>
+	                	법인명(상호): (주)애플코코  | 대표자(성명): 나대표 | 사업자 등록번호 안내: [777-77-77777] | 통신판매업 신고 제 2016 - 서울강북 - 77777호<br>
+						전화: 1600-7255 | 주소: 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 -(주)애플코코 <br>
+						교환 & 반품 주소 : 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 (주)애플코코 <br>
+						개인정보관리책임자: 나책임 | Contact help@applekoko.com for more information.<br>
 	                </p>
-	                <p class="copyright" style="text-align: right;"><img src="http://img29.makeshop.co.kr/design/cherry07/trend9/cherrycoco/imgs/footer_copy_img.png" /></p>
+	          
 	            </div>          
 	        </div>
+	        
 		</div>		
 	</div><!-- container_footer -->
 </div>

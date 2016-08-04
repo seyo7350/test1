@@ -82,7 +82,7 @@ for(int i = 0; i < product_option_count; i++){
 		<div class="side_inner_top">
 			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join</a><br>
 			shopping bag<br>
-			mypage&nbsp;&nbsp;/&nbsp;&nbsp;home
+			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
 			<hr>

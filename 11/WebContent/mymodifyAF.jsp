@@ -1,39 +1,39 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@ page import="member.memberDAO" %>
-<%@ page import="member.memberDTO" %>
-<%@page import="product.productDTO"%>
 <%@page import="product.productOptionDTO"%>
 <%@page import="product.productDAO"%>
+<%@page import="product.productDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="order.orderDTO"%>
+<%@ page import="member.memberDTO" %>
+<%@ page import="member.memberDAO" %>
+
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <% request.setCharacterEncoding("utf-8"); %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>mypage</title>
+<title>회원정보 수정</title>
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
 <link href="css/my.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/member.css">
+
+
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="js/textRolling.js"></script>
+<script src="js/jquery.bxslider.js"></script>
+<script src="js/jquery.bxslider.min.js"></script>
+
 
 </head>
 <body>
-<%
-Object ologin = session.getAttribute("login");
-memberDTO mem = null;
 
-if(ologin == null){
-	%>
-	<script>
-	  alert("로그인을 해주세요");
-	  location.href="login.jsp";
-	</script>
-	<%
-	return;
-}
- mem = (memberDTO)ologin;
-%>
 <%
 int outer_style_code = 101;
 int top_style_code = 102;
@@ -52,6 +52,8 @@ List<productDTO> onepiceList = pdao.getProductList(onepice_style_code);
 	<div class="side_inner">
 		<div class="side_inner_top">
             <%
+Object ologin = session.getAttribute("login");
+memberDTO mem = null;
 
 if(ologin == null){
 	%>
@@ -88,81 +90,97 @@ if(ologin == null){
 
 
 
-
       
       
 <div class="container">
 	<div class="container_top">
 		<div class="logo">
-			<a href='index.jsp'><img alt="로고" src="image/header.png"></a>
+			<img alt="로고" src="image/header.png">
 		</div>
 	</div>	
 	<div class="container_middle">
 		<div class="content">
-			
-<div id="container">
- <div id="contentWrapper">
-        <div id="contentWrap">
-            
-           <div id="content"> 
-                <div id="mypage" class="section_mypage">
+		
+<span></span>
+			<div id="content">
+            <div id="mypage" class="section_mypage">
 
+					<div class="page_path hide">
+						<h3>현재 위치</h3>
+						<ol>
+							<li class="first"><a href="/">Home</a></li>
+							<li><a href="javascript:;">Mypage</a></li>
+						</ol>
+					</div>
                     <div class="page-body">
 
 						<ul class="mypage_menu_tabs">
-							<li class="first_child selected"><a href="mypage.jsp" class="mypage_menu1"><span class="hide">my page</span></a></li>
+							<li class="first_child"><a href="mypage.jsp" class="mypage_menu1"><span class="hide">my page</span></a></li>
 							<li><a href="shoppingbag.jsp" class="mypage_menu2"><span class="hide">shopping bag</span></a></li>
 							<li><a href="myorder.jsp" class="mypage_menu3"><span class="hide">주문내역</span></a></li>
 							<li><a href="myqna.jsp" class="mypage_menu5"><span class="hide">Q&A 내역</span></a></li>
-							<li><a href="mymodify.jsp" class="mypage_menu7"><span class="hide">내정보수정</span></a></li>
+							<li class="selected"><a href="mymodify.jsp" class="mypage_menu7"><span class="hide">내정보수정</span></a></li>
 							<li class="last_child"><a href="mydelete.jsp" class="mypage_menu8"><span class="hide">회원탈퇴</span></a></li>
 						</ul>
+            
+			            <!-- 여기삽입! -->
+			            
+ <%! //메소드 모음 
+//1분을 01분으로 나타나게 만드는 메소드
+public String two(String msg){
+	return msg.trim().length()<2 ? "0"+msg : msg.trim();
+}
+%>
 
+<%
+String sseq = request.getParameter("seq");
+int seq = Integer.parseInt(sseq);
 
-                        <div class="mypage_index_info" style="text-align: center;">
-                            <div class="user">
-                                <!-- <p class="hide">안지훈[ahnjihunj]님 <a href="/shop/idinfo.html" class="custom_button button_tiny_level1"><img src="/images/d3/modern_simple/btn/h18_modify.gif" alt="정보수정" /></a></p> -->
-                                <ul class="user_info_list">
-                                    <li><span class="title">이름</span><span class="item"><%=mem.getMember_name() %></span></li>
-                                    <li><span class="title">회원가입일</span><span class="item"><%=mem.getMember_regidate() %></span></li>
- 									<li><span class="title">포인트</span><span class="item"><strong><%=mem.getMember_point() %></strong>P&nbsp;</span></li>
-                                </ul>
-                                <ul class="user_info_list">
-                                    <li><span class="title">연락처</span><span class="item"><%=mem.getMember_phone() %></span></li>
-                                    <li><span class="title">이메일</span><span class="item"><%=mem.getMember_email() %></span></li>
-                                    <li><span class="title">집주소</span><span class="item"><%=mem.getMember_address() %></span></li>
- 									<li><span class="title">상세주소</span><span class="item"><%=mem.getMember_addressDetail() %></span></li>
-                                </ul>
-							
-                            </div>
-							<br><br><br>
+String name = request.getParameter("name");
+String id = request.getParameter("id");
+String password = request.getParameter("password");
 
-							
+String year = request.getParameter("year");
+String smonth = request.getParameter("month");
+int month = Integer.parseInt(smonth);
+String sday = request.getParameter("day");
+int day = Integer.parseInt(sday);
+String birthday = year+two(month+"")+two(day+"");
 
-							<div class="mypage_index_board">
-								<ul>
-									<li><a href="noticeList.do" style="text-decoration: none;" ;>공지사항</a></li>
-									<li><a href="qnaList.do" style="text-decoration: none;"> Q&A</a></li>
-									<li><a href="change.jsp" style="text-decoration: none;">반품교환안내</a></li>
-									<li><a href="guide.jsp" style="text-decoration: none;">이용가이드</a></li>
-								</ul>
-							</div>
+String postcode = request.getParameter("postcode");
+String address = request.getParameter("address1");
+String addressDetail = request.getParameter("address2");
 
+String phone = request.getParameter("phone");
+String email = request.getParameter("email");
 
+memberDAO mdao = memberDAO.getInstance();
 
-                        </div><!--/.mypage_index_info -->
-
-
-
-                    </div><!-- .page-body -->
-                </div><!-- #mypage -->
+boolean isS = mdao.updateMember(password, postcode, address, addressDetail, email, phone, birthday, seq);
+ if(isS){
+	%>
+	<script type="text/javascript">
+	alert("회원정보 수정이 완료되었습니다.");
+	location.href="mypage.jsp";
+	</script>
+	<%
+}else{
+	%>
+	<script type="text/javascript">
+	alert("처리 중 오류가 발생하였습니다. 정보를 제대로 기입하셨는지 확인하시고 이상이 있으면 관리자에게 문의하세요.");
+	location.href="mymodify.jsp";
+	</script>
+	<%
+}
+%> 
+			            
+			            
+			            <!-- 여기삽입! -->
+            		</div>
+            	</div>             
             </div><!-- #content -->
-        </div><!-- #contentWrap -->
-    </div><!-- #contentWrapper-->
-    <hr />
+           <hr />
     <!-- ### 하단 시작 -->
-    
-    </div> <!--/#container -->
 		
 		</div>
 	</div>
@@ -179,16 +197,15 @@ if(ologin == null){
 						LUNCHI TIME PM 1:00 - 2:00 / SUN/HOLYDAY CLOSED<br><br>
 						_BANK_ : WOORI 1005-501-330632, ....
 					</p>
-	 <p id="info2">
-	                	법인명(상호): (주)애플코코  | 대표자(성명): 나대표 | 사업자 등록번호 안내: [777-77-77777] | 통신판매업 신고 제 2016 - 서울강북 - 77777호<br>
-						전화: 1600-7255 | 주소: 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 -(주)애플코코 <br>
-						교환 & 반품 주소 : 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 (주)애플코코 <br>
-						개인정보관리책임자: 나책임 | Contact help@applekoko.com for more information.<br>
+	                <p id="info2">
+	                	법인명(상호): (주)체리코코  | 대표자(성명): 지동헌 | 사업자 등록번호 안내: [215-87-15936] | 통신판매업 신고 제 2011 - 서울강남 - 03186호<br>
+						전화: 1600-7255 | 주소: 서울특별시 강남구 신사동 517-4 M SPACE 빌딩 2층 (강남대로158길 26) -(주)체리코코 <br>
+						교환 & 반품 주소 : 서울 성북구 종암동 57-39번지 CJ대한통운 종암대리점 (주)체리코코 <br>
+						개인정보관리책임자: 지동헌 | Contact help@cherrykoko.com for more information.<br>
 	                </p>
-	               
-	            </div>          
+	                <p class="copyright" style="text-align: right;"><img src="http://img29.makeshop.co.kr/design/cherry07/trend9/cherrycoco/imgs/footer_copy_img.png" /></p>
+	            </div>	           
 	        </div>
-	        
 		</div>		
 	</div><!-- container_footer -->
 </div>
@@ -213,7 +230,6 @@ $(document).ready(function(){
  }); 
 });
 </script>
-
 
 </body>
 </html>
