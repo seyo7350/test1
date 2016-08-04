@@ -58,10 +58,8 @@ if(ologin == null){
 	<%
 }else{
  %>
-    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;
-    <%} %>
-			<a href='join.jsp'>join</a><br>
-			shopping bag<br>
+    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;<%}%><a href='join.jsp'>join</a><br>
+			<a href='shoppingbag.jsp'>shopping bag</a><br>
 			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
@@ -79,7 +77,7 @@ if(ologin == null){
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="qnaList.do">Q&A</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REVIEW		
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="reviewListPage.jsp">REVIEW</a>
 			<hr>
 		</div>
 	</div>
@@ -483,7 +481,7 @@ if(ologin == null){
 				
 					<p align="center">
 						<input TYPE="IMAGE" src="image/ok_btn.jpg" name="submit"	value="submit" width="90px" /> &nbsp;&nbsp;
-						<a href='myPage.jsp'><img src="image/cancel_btn.jpg" width="90px" style="vertical-align: top;"/></a>
+						<a href='mypage.jsp'><img src="image/cancel_btn.jpg" width="90px" style="vertical-align: top;"/></a>
 					</p>
 				</form>
 			            

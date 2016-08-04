@@ -1,16 +1,16 @@
 @CHARSET "UTF-8";
-td, th {
+#content td, #content th {
     display: table-cell;
     vertical-align: top;
 }
-tr{
+#content tr{
 	display: table-row;
 	vertical-align: inherit;
 }
-div {
+#content div {
     display: block;
 }
-form{
+#content form{
 	overflow: hidden;
 } 
 .info{
@@ -168,7 +168,7 @@ form{
 	text-align: right;
 }
 
-table{
+#content table{
 	width: 394px;
 	height: 161px;
 	border-collapse: collapse;

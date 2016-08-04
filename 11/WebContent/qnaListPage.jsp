@@ -253,7 +253,6 @@ if(ologin == null){
                         </div>
                         <div class="bbs-table-list" style="background-color: white;">
                             <table summary="No, content,Name,Data,Hits">
-                                <caption>일반게시판 게시글</caption>
                                 <colgroup>
                                     <col width="50" />
                                     <col width="30" />
