@@ -78,7 +78,7 @@ public class orderDAO implements iorderDAO {
 	public List<orderDTO> getadminOrderList() {
 		
 		String sql = " select * from order_table "
-				+ " where order_confirm > 0 ";
+				+ " order by order_confirm ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
