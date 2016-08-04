@@ -29,7 +29,7 @@ ul{
 }
 .prdlist{
 	clear:both;
-	margin: 0 -1.5% 0 -1.5%;
+	margin: 0 -1.5% 0 0;
 	line-height: 0;
 	text-align: center;
 }
@@ -172,3 +172,4 @@ product_list_item
     margin-top: 20px;
     text-align: center;
 }
+

@@ -187,7 +187,7 @@ ul.mypage_menu_tabs li a {
     height: 20px;
 }
 
-li {
+.mypage_menu_tabs li {
     display: list-item;
     text-align: -webkit-match-parent;
 }

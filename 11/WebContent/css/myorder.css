@@ -1,7 +1,7 @@
-html, body, pre, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, li, ol, th, td, p, blockquote, form, fieldset, legend, menu, nav, section, hgroup, article, header, aside, footer, input, select, textarea, button {
+/* html, body, pre, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, li, ol, th, td, p, blockquote, form, fieldset, legend, menu, nav, section, hgroup, article, header, aside, footer, input, select, textarea, button {
     margin: 0;
     padding: 0;
-}
+}*/
 
 body, h1, h2, h3, h4, h5, h6, table, input, select, textarea {
     font-size: 12px;

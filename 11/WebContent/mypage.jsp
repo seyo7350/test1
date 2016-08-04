@@ -100,7 +100,7 @@ if(ologin == null){
 	<div class="container_middle">
 		<div class="content">
 			
-<div id="container">
+<div>
  <div id="contentWrapper">
         <div id="contentWrap">
             
