@@ -202,10 +202,10 @@ ul, menu, dir {
     -webkit-padding-start: 40px;
 }
 
-button, input, select, textarea, a {
+.content button, .content input, .content select, .content textarea, .content a {
     vertical-align: middle;
 }
-a {
+.content a {
     color: #787878;
     text-decoration: none;
 }
@@ -290,9 +290,7 @@ li {
     color: #fff;
     background-color: #b4b4b4;
 }
-button, input, select, textarea, a {
-    vertical-align: middle;
-}
+
 
 a {
     color: #787878;

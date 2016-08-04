@@ -19,16 +19,7 @@
 <link rel="stylesheet" href="css/jquery.bxslider.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
-<style type="text/css">
-a {
-	color:#787878;
-}
-a:link{color:#787878;text-decoration:none;}
-a:visited{Color:#787878;text-decoration:none;}
-a:hover{color:#787878;text-decoration:none;}
-a:active{Color:#787878;text-decoration:none;}
 
-</style>
 <link rel="stylesheet" href="css/qnaListPage.css">
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -188,28 +179,26 @@ if(ologin == null){
 	<%
 }else{
  %>
-    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;
-    <%} %>
-			<a href='join.jsp'>join</a><br>
-			shopping bag<br>
-			<a href='myPage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
+    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;<%}%><a href='join.jsp'>join</a><br>
+			<a href='shoppingbag.jsp'>shopping bag</a><br>
+			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=101 %>">OUTER</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp">TOP</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=102 %>">TOP</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=103 %>">BOTTOM</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ONEPIECE
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=104 %>">ONEPIECE</a>
 			<br>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="noticeList.do">NOTICE</a>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="qnaList.do">Q&A</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REVIEW		
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="reviewListPage.jsp">REVIEW</a>
 			<hr>
 		</div>
 	</div>
@@ -234,7 +223,7 @@ if(ologin == null){
                   <h2><img src="image/board_qna_title.png" /></h2>
                   <ul>
                      <li class="first_child"><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%BB%F3%C7%B0%B9%AE%C0%C7&search_type=&stext=%BB%F3%C7%B0%B9%AE%C0%C7"><img src="image/qna_menu1.png" onmouseover="this.src='image/qna_menu1_1.png'" onmouseout="this.src='image/qna_menu1.png'" /></a></li>
-                     <li><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%B1%B3%C8%AF%B9%DD%C7%B0&search_type=&stext=%B1%B3%C8%AF%B9%DD%C7%B0"><img src="image/qna_menu2.png" onmouseover="this.src='image/qna_menu2_1.png'" onmouseout="this.src='image/qna_menu2.png'" /></a></li>
+                     <li><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%B1%B3%C8%AF%B9%DD%C7%B0&search_type=&stext=%B1%B3%C8%AF%B9%DD%C7%B0"><img src="image/qna_menu2.png" onmouseover="src='image/qna_menu2_1.png'" onmouseout="src='image/qna_menu2.png'" /></a></li>
                      <li><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%B9%E8%BC%DB%B9%AE%C0%C7&search_type=&stext=%B9%E8%BC%DB%B9%AE%C0%C7"><img src="image/qna_menu3.png" onmouseover="this.src='image/qna_menu3_1.png'" onmouseout="this.src='image/qna_menu3.png'" /></a></li>
                      <li><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%C3%EB%BC%D2%BA%AF%B0%E6&search_type=&stext=%C3%EB%BC%D2%BA%AF%B0%E6"><img src="image/qna_menu4.png" onmouseover="this.src='image/qna_menu4_1.png'" onmouseout="this.src='image/qna_menu4.png'" /></a></li>
                      <li><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%B1%E2%C5%B8%B9%AE%C0%C7&search_type=&stext=%B1%E2%C5%B8%B9%AE%C0%C7"><img src="image/qna_menu5.png" onmouseover="this.src='image/qna_menu5_1.png'" onmouseout="this.src='image/qna_menu5.png'" /></a></li>
@@ -253,7 +242,6 @@ if(ologin == null){
                         </div>
                         <div class="bbs-table-list" style="background-color: white;">
                             <table summary="No, content,Name,Data,Hits">
-                                <caption>일반게시판 게시글</caption>
                                 <colgroup>
                                     <col width="50" />
                                     <col width="30" />

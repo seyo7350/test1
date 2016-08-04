@@ -26,7 +26,7 @@ public class QnAWriteCommand implements IQnACommand {
 		
 		QnADAO qDAO = new QnADAO();
 		
-		qDAO.writeQnA(qna_author, qna_pwd, qna_subhead, qna_title, qna_content);
+		/*qDAO.writeQnA(qna_author, qna_pwd, qna_subhead, qna_title, qna_content);*/
 	}
 
 }

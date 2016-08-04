@@ -1,3 +1,4 @@
+<%@page import="member.memberDTO"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="product.productOptionDTO"%>
 <%@page import="product.productDAO"%>
@@ -27,6 +28,21 @@
 
 </head>
 <body>
+<%
+Object ologin = session.getAttribute("login");
+memberDTO mem = null;
+
+if(ologin == null){
+	%>
+	<script>
+	  alert("로그인을 해주세요");
+	  location.href="login.jsp";
+	</script>
+	<%
+	return;
+}
+ mem = (memberDTO)ologin;
+%>
 
 <%
 request.setCharacterEncoding("utf-8");
@@ -45,9 +61,9 @@ int totalPoint = 0;
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
-			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join</a><br>
-			shopping bag<br>
-			mypage&nbsp;&nbsp;/&nbsp;&nbsp;home
+			<a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join</a><br>
+			<a href='shoppingbag.jsp'>shopping bag</a><br>
+			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
@@ -60,11 +76,11 @@ int totalPoint = 0;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=104 %>">ONEPIECE</a>
 			<br>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTICE
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="noticeList.do">NOTICE</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q&A
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="qnaList.do">Q&A</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REVIEW		
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="reviewListPage.jsp">REVIEW</a>	
 			<hr>
 		</div>
 	</div>

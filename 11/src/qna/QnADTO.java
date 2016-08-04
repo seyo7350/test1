@@ -13,13 +13,14 @@ public class QnADTO implements Serializable{
 	private String qna_writeday;
 	private int qna_readCnt;
 	private int qna_important;
+	private int qna_product_seq;
 
 	public QnADTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public QnADTO(int qna_num, String qna_author, String qna_pwd, String qna_subhead, String qna_title,
-			String qna_content, String qna_writeday, int qna_readCnt, int qna_important) {
+			String qna_content, String qna_writeday, int qna_readCnt, int qna_important, int qna_product_seq) {
 		super();
 		this.qna_num = qna_num;
 		this.qna_author = qna_author;
@@ -30,6 +31,7 @@ public class QnADTO implements Serializable{
 		this.qna_writeday = qna_writeday;
 		this.qna_readCnt = qna_readCnt;
 		this.qna_important = qna_important;
+		this.qna_product_seq = qna_product_seq;
 	}
 
 	public int getQna_num() {
@@ -103,14 +105,22 @@ public class QnADTO implements Serializable{
 	public void setQna_important(int qna_important) {
 		this.qna_important = qna_important;
 	}
+	
+	public int getQna_product_seq() {
+		return qna_product_seq;
+	}
+
+	public void setQna_product_seq(int qna_product_seq) {
+		this.qna_product_seq = qna_product_seq;
+	}
 
 	@Override
 	public String toString() {
 		return "QnADTO [qna_num=" + qna_num + ", qna_author=" + qna_author + ", qna_pwd=" + qna_pwd + ", qna_subhead="
 				+ qna_subhead + ", qna_title=" + qna_title + ", qna_content=" + qna_content + ", qna_writeday="
-				+ qna_writeday + ", qna_readCnt=" + qna_readCnt + ", qna_important=" + qna_important + "]";
+				+ qna_writeday + ", qna_readCnt=" + qna_readCnt + ", qna_important=" + qna_important
+				+ ", qna_product_seq=" + qna_product_seq + "]";
 	}
-	
-	
+
 	
 }
