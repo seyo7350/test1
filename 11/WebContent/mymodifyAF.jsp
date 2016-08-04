@@ -1,36 +1,28 @@
 <%@page import="java.text.DecimalFormat"%>
-<%@ page import="member.memberDAO" %>
-<%@ page import="member.memberDTO" %>
-<%@page import="product.productDTO"%>
 <%@page import="product.productOptionDTO"%>
 <%@page import="product.productDAO"%>
+<%@page import="product.productDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="order.orderDTO"%>
+<%@ page import="member.memberDTO" %>
+<%@ page import="member.memberDAO" %>
+
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
     <% request.setCharacterEncoding("utf-8"); %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>이용안내</title>
+<title>회원정보 수정</title>
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
-
-<style type="text/css">
-.page_title_area h2 {
-    text-align: center;
-    width: 100%;
-    margin: 0 0 -1px 0;
-    padding: 0 0 0 0;
-    font-size: 20px;
-    color: #494949;
-    font-weight: bold;
-    text-transform: capitalize;
-    background-color: #d6d6d6 !important;
-}
-
-</style>
+<link href="css/my.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/member.css">
 
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -41,6 +33,7 @@
 
 </head>
 <body>
+
 <%
 int outer_style_code = 101;
 int top_style_code = 102;
@@ -95,56 +88,100 @@ if(ologin == null){
 	</div>
 </div>
 
+
+
       
       
 <div class="container">
 	<div class="container_top">
 		<div class="logo">
-			<a href='index.jsp'><img alt="로고" src="image/header.png"></a>
+			<img alt="로고" src="image/header.png">
 		</div>
 	</div>	
 	<div class="container_middle">
 		<div class="content">
-			
-<div class="page_title_area">
-<h2>이용안내</h2>
-</div>
 		
-<pre style="font-size: 12px;">
-저희 쇼핑몰을 방문해 주셔서 감사드립니다. 저희 쇼핑몰은 회원제를 실시하고 있습니다.
-처음 오신 분은 먼저 회원가입을 하신 후 이용하시길 바랍니다.
-<hr>
-<strong>상품 주문 방법</strong><br>
-1. 각 코너를 클릭하셔서 들어갑니다.
-2. "바로가기" 메뉴 또는 사진이나 상품명을 클릭하세요!
-3. "장바구니 담기"를 클릭하세요!
-4. "장바구니에 넣었습니다" 메시지가 나오면, 주문상품을 확인한 후 "주문버튼"을 클릭하세요!
-5. 주문버튼을 누르면, "주문서"가 나옵니다! 주문서를 작성 후 "주문"을 클릭하면 주문이 완료됩니다!
-<hr>
-<strong>전화</strong><br>
-주소 : 서울시 강남구 신사동 517-4 2층 체리코코
-전화 : 1600-7255
-메일 : help@cherrykoko.com
-<hr>
-<strong>배송일</strong><br>
-배송 방법은 택배입니다.
-주문하신 날로부터 1 ~ 4일 안에 받을 수 있습니다.
-온라인 입금 시 입금 확인 후 1 ~ 4일
-신용카드 결제 시 주문 후 1 ~ 4일
-<hr>
-<strong>반품 안내</strong><br>
-고객의 변심에 의한 교환 및 반품이면 배송비는 소비자부담입니다.
-상품의 이상에 의한 교환 및 반품이면 배송비는 판매자부담입니다.
-문의 : 1600-7255
-담당 : 나반품
-전화 : 1600-7255
-메일 : help@applekoko.com</pre>
-<hr>
+<span></span>
+			<div id="content">
+            <div id="mypage" class="section_mypage">
 
-<strong>찾아오시는 길</strong><br><br>
-<img alt="지도" src="image/map.jpg"/>
+					<div class="page_path hide">
+						<h3>현재 위치</h3>
+						<ol>
+							<li class="first"><a href="/">Home</a></li>
+							<li><a href="javascript:;">Mypage</a></li>
+						</ol>
+					</div>
+                    <div class="page-body">
+
+						<ul class="mypage_menu_tabs">
+							<li class="first_child"><a href="mypage.jsp" class="mypage_menu1"><span class="hide">my page</span></a></li>
+							<li><a href="shoppingbag.jsp" class="mypage_menu2"><span class="hide">shopping bag</span></a></li>
+							<li><a href="myorder.jsp" class="mypage_menu3"><span class="hide">주문내역</span></a></li>
+							<li><a href="myqna.jsp" class="mypage_menu5"><span class="hide">Q&A 내역</span></a></li>
+							<li class="selected"><a href="mymodify.jsp" class="mypage_menu7"><span class="hide">내정보수정</span></a></li>
+							<li class="last_child"><a href="mydelete.jsp" class="mypage_menu8"><span class="hide">회원탈퇴</span></a></li>
+						</ul>
+            
+			            <!-- 여기삽입! -->
+			            
+ <%! //메소드 모음 
+//1분을 01분으로 나타나게 만드는 메소드
+public String two(String msg){
+	return msg.trim().length()<2 ? "0"+msg : msg.trim();
+}
+%>
+
+<%
+String sseq = request.getParameter("seq");
+int seq = Integer.parseInt(sseq);
+
+String name = request.getParameter("name");
+String id = request.getParameter("id");
+String password = request.getParameter("password");
+
+String year = request.getParameter("year");
+String smonth = request.getParameter("month");
+int month = Integer.parseInt(smonth);
+String sday = request.getParameter("day");
+int day = Integer.parseInt(sday);
+String birthday = year+two(month+"")+two(day+"");
+
+String postcode = request.getParameter("postcode");
+String address = request.getParameter("address1");
+String addressDetail = request.getParameter("address2");
+
+String phone = request.getParameter("phone");
+String email = request.getParameter("email");
+
+memberDAO mdao = memberDAO.getInstance();
+
+boolean isS = mdao.updateMember(password, postcode, address, addressDetail, email, phone, birthday, seq);
+ if(isS){
+	%>
+	<script type="text/javascript">
+	alert("회원정보 수정이 완료되었습니다.");
+	location.href="mypage.jsp";
+	</script>
+	<%
+}else{
+	%>
+	<script type="text/javascript">
+	alert("처리 중 오류가 발생하였습니다. 정보를 제대로 기입하셨는지 확인하시고 이상이 있으면 관리자에게 문의하세요.");
+	location.href="mymodify.jsp";
+	</script>
+	<%
+}
+%> 
+			            
+			            
+			            <!-- 여기삽입! -->
+            		</div>
+            	</div>             
+            </div><!-- #content -->
+           <hr />
+    <!-- ### 하단 시작 -->
 		
-			
 		</div>
 	</div>
 	<div class="container_footer">
@@ -160,13 +197,14 @@ if(ologin == null){
 						LUNCHI TIME PM 1:00 - 2:00 / SUN/HOLYDAY CLOSED<br><br>
 						_BANK_ : WOORI 1005-501-330632, ....
 					</p>
-	               <p id="info2">
-	                	법인명(상호): (주)애플코코  | 대표자(성명): 나대표 | 사업자 등록번호 안내: [777-77-77777] | 통신판매업 신고 제 2016 - 서울강북 - 77777호<br>
-						전화: 1600-7255 | 주소: 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 -(주)애플코코 <br>
-						교환 & 반품 주소 : 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 (주)애플코코 <br>
-						개인정보관리책임자: 나책임 | Contact help@applekoko.com for more information.<br>
+	                <p id="info2">
+	                	법인명(상호): (주)체리코코  | 대표자(성명): 지동헌 | 사업자 등록번호 안내: [215-87-15936] | 통신판매업 신고 제 2011 - 서울강남 - 03186호<br>
+						전화: 1600-7255 | 주소: 서울특별시 강남구 신사동 517-4 M SPACE 빌딩 2층 (강남대로158길 26) -(주)체리코코 <br>
+						교환 & 반품 주소 : 서울 성북구 종암동 57-39번지 CJ대한통운 종암대리점 (주)체리코코 <br>
+						개인정보관리책임자: 지동헌 | Contact help@cherrykoko.com for more information.<br>
 	                </p>
-	            </div>          
+	                <p class="copyright" style="text-align: right;"><img src="http://img29.makeshop.co.kr/design/cherry07/trend9/cherrycoco/imgs/footer_copy_img.png" /></p>
+	            </div>	           
 	        </div>
 		</div>		
 	</div><!-- container_footer -->
@@ -192,7 +230,6 @@ $(document).ready(function(){
  }); 
 });
 </script>
-
 
 </body>
 </html>

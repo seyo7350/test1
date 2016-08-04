@@ -23,7 +23,7 @@
 		%>
 		<script type="text/javascript">
 		alert("회원정보를 수정합니다.");
-		location.href="member_Update2.jsp";
+		location.href="mymodify2.jsp";
 		self.close();
 		</script>
 		<%
@@ -31,7 +31,7 @@
 		%>
 		<script type="text/javascript">
 		alert("패스워드가 틀립니다. 확인해주세요");
-		location.href="member_Update.jsp";
+		location.href="mymodify.jsp";
 		self.close();
 		</script>
 		<%

@@ -1,5 +1,10 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page import="member.memberDAO" %>
 <%@ page import="member.memberDTO" %>
+<%@page import="product.productDTO"%>
+<%@page import="product.productOptionDTO"%>
+<%@page import="product.productDAO"%>
+<%@page import="java.util.List"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -115,7 +120,19 @@
 
 
 </head>
-<body>
+<%
+int outer_style_code = 101;
+int top_style_code = 102;
+int bottom_style_code = 103;
+int onepice_style_code = 104;
+
+productDAO pdao = productDAO.getInstance();
+
+List<productDTO> outerList = pdao.getProductList(outer_style_code);
+List<productDTO> topList = pdao.getProductList(top_style_code);
+List<productDTO> bottomList = pdao.getProductList(bottom_style_code);
+List<productDTO> onepiceList = pdao.getProductList(onepice_style_code);
+%>
 
 <div class="side">
 	<div class="side_inner">
@@ -134,17 +151,17 @@ if(ologin == null){
     <%} %>
 			<a href='join.jsp'>join</a><br>
 			shopping bag<br>
-			<a href='myPage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
+			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=101 %>">OUTER</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp">TOP</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=102 %>">TOP</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=103 %>">BOTTOM</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ONEPIECE
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=104 %>">ONEPIECE</a>
 			<br>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="noticeList.do">NOTICE</a>
@@ -156,6 +173,7 @@ if(ologin == null){
 		</div>
 	</div>
 </div>
+
 
       
 <div class="container">
@@ -234,7 +252,6 @@ if(ologin == null){
 					<input type="submit" value="비밀번호 찾기">
 				</div>
      			</form>
-			
 				<div class="last">
 					<div class="join" ><a href="join.jsp" style="color: gray;">회원가입</a></div>
 				</div>
