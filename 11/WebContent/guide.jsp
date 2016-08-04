@@ -166,11 +166,8 @@ if(ologin == null){
 						교환 & 반품 주소 : 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 (주)애플코코 <br>
 						개인정보관리책임자: 나책임 | Contact help@applekoko.com for more information.<br>
 	                </p>
-
-
 	            </div>          
 	        </div>
-	        
 		</div>		
 	</div><!-- container_footer -->
 </div>
