@@ -5,6 +5,8 @@
 <%@page import="product.productDAO"%>
 <%@page import="qna.QnADTO"%>
 <%@page import="qna.QnADAO"%>
+<%--<%@page import="review.ReviewDTO"%>
+<%@page import="review.ReviewDAO"%>--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -49,6 +51,9 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 
 QnADAO qdao = new QnADAO();
 List<QnADTO> gpqList = qdao.getproductqnaList(product_seq);
+
+/*ReviewDAO rdao = ReviewDAO.getInstance();
+List<ReviewDTO> gprList = rdao.getProductReviewList(product_seq);*/
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 //tip부분 
@@ -355,43 +360,48 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
             </div>
          </div>
       </div><!-- content -->
-     <%--  <div id="detail_review">
+     <%--<div id="detail_Review">
       	<div class="detail_menu_tab">
-			<ul><li class="first_child">REVIEW</li></ul>
+			<!-- <ul><li class="first_child">QnA</li></ul>&nbsp; -->
       	</div>
-      	<div class="qna-list" style="background-color: white;" align="center">
+      	<div class="review-inner">
+      		<img src="image/detail_qna_title.png"><!-- 이미지 변경 해야되!!!!!!!!! -->
+      		
+      		<br><br>
+      	<div class="table-slide qna-list" style="background-color: white;" align="center">
                             <table summary="번호,제목,작성자,작성일" border="1">
-                                <colgroup>
+                                <!-- <colgroup>
                                     <col width="80" />
-                                   <!--  <col width="0" /> -->
-                                    <col width="1000" />
+                                    <col width="0" />
+                                    <col width="*" />
+                                    <col width="100" />
                                     <col width="100" />
                                     <col width="10" />
-                                </colgroup>
+                                </colgroup> -->
                                 <thead>
-                                    <tr>
-                                        <th scope="col"><div class="tb-center border_right">NO</div></th>
+                                    <tr height="37">
+                                        <th scope="col"><div class="tb-center" style="width:37px;"><img src="image/board_number.png"></div></th>
                                         <!-- .상품정보가 있을 경우에만 나타남 -->
-                                        <!-- <th scope="col"><div class="tb-center">&nbsp;</div></th> -->
-                                        <th scope="col"><!-- <div class="tb-center border_right"> -->SUBJECT</div></th>
-                                        <th scope="col"><!-- <div class="tb-center border_right"> -->NAME</div></th>
-                                        <th scope="col"><!-- <div class="tb-center border_right"> -->DATE</div></th>
+                                        <!-- <th scope="col" width="554"><div class="tb-center"></div></th> -->
+                                        <th scope="col"><div class="tb-center"  style="width:554px;"><img src="image/board_subject.png"></div></th>
+                                        <th scope="col"><div class="tb-center"  style="width:100px;"><img src="image/board_name.png"></div></th>
+                                        <th scope="col"><div class="tb-center"  style="width:100px;"><img src="image/board_date.png"></div></th>
                                     </tr>
                                 </thead>
                                 <tbody >
                               		<%
-                              		if(gpqList.isEmpty()){
+                              		if(gprList.isEmpty()){
                               		%>
-                              			<tr><td colspan="4">작성된 QnA가 없습니다.</td></tr>
+                              			<tr height="37"><td colspan="4"><div class="tb-center">작성된 QnA가 없습니다.</div></td></tr>
                               		<%
                               		}else{
-	                              		for(int i=0; i<gpqList.size(); i++){
+	                              		for(int i=0; i<gprList.size(); i++){
 	                              		%>
-	                              			<tr>
-	                              				<td><%=i %></td>
-	                              				<td><%=gpqList.get(i).getQna_title() %></td>
-	                              				<td><%=gpqList.get(i).getQna_author() %></td>
-	                              				<td><%=gpqList.get(i).getQna_writeday() %></td>
+	                              			<tr height="37">
+	                              				<td><div class="tb-center"><%=i%></div></td>
+	                              				<td><div class="tb-center"><%=gprList.get(i).getReview_title() %></div></td>
+	                              				<td><div class="tb-center"><%=gprList.get(i).getReview_author() %></div></td>
+	                              				<td><div class="tb-center"><%=gprList.get(i).getReview_writeday() %></div></td>
 	                              			</tr>
 	                              		<%
 	                              		}
@@ -399,7 +409,10 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                               		%>
                                 </tbody>
                             </table>     	
-      </div> --%>
+      			</div>
+      	</div>      	            
+   </div>--%>
+   
       <div id="detail_QnA">
       	<div class="detail_menu_tab">
 			<!-- <ul><li class="first_child">QnA</li></ul>&nbsp; -->
@@ -450,11 +463,9 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                                 </tbody>
                             </table>     	
       			</div>
-      		
-      		
-      		
       	</div>      	            
    </div>
+   
    </div>
    <div class="container_footer">
       <div class="footer_content">
