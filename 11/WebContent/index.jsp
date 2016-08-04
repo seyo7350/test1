@@ -1,6 +1,10 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page import="member.memberDAO" %>
 <%@ page import="member.memberDTO" %>
-
+<%@page import="product.productDTO"%>
+<%@page import="product.productOptionDTO"%>
+<%@page import="product.productDAO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,6 +15,7 @@
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
+<!-- <link rel="stylesheet" href="css/contentstyle.css"> -->
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="js/textRolling.js"></script>
@@ -21,8 +26,21 @@
 </head>
 <body>
 
+<%
+int outer_style_code = 101;
+int top_style_code = 102;
+int bottom_style_code = 103;
+int onepice_style_code = 104;
+
+productDAO pdao = productDAO.getInstance();
+
+List<productDTO> outerList = pdao.getProductList(outer_style_code);
+List<productDTO> topList = pdao.getProductList(top_style_code);
+List<productDTO> bottomList = pdao.getProductList(bottom_style_code);
+List<productDTO> onepiceList = pdao.getProductList(onepice_style_code);
 
 
+%>
 
 <div class="side">
 	<div class="side_inner">
@@ -45,13 +63,13 @@ if(ologin == null){
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=101 %>">OUTER</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp">TOP</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=102 %>">TOP</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=103 %>">BOTTOM</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ONEPIECE
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=104 %>">ONEPIECE</a>
 			<br>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="noticeList.do">NOTICE</a>
@@ -113,14 +131,17 @@ if(ologin == null){
 					</ul>
 				</div>
 			</div>
+			<div class="new_content">
+				<jsp:include page="index_new_content.jsp"></jsp:include>
+			</div>
 		</div>
 	</div>
 	<div class="container_footer">
 		<div class="footer_content">
 	        <div class="footer_info">
-	            <!-- <ul class="menu">
+	          <!--   <ul class="menu">
 	                GUIDE/개인정보취급방침/..
-	            </ul> -->
+	            </ul>  -->
 	            <div class="address">
 					<p id="info1">
 						CALL 1600 - 7255<br>

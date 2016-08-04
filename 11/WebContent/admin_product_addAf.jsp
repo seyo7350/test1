@@ -150,6 +150,9 @@ for(int i=1; i<=product_photo_detail_count; i++){
 } 
 System.out.println(product_photo_detail); 
 
+/* String s_product_style_code = multi.getParameter("product_style_code");
+int product_style_code = Integer.parseInt(s_product_style_code); */
+
 String s_product_style_code = multi.getParameter("product_style_code");
 int product_style_code = Integer.parseInt(s_product_style_code);
 
@@ -164,13 +167,13 @@ if(isS){
 %>
 	<script type="text/javascript">
 		alert("상품등록이 되었습니다.");
-		location.href = "index_admin.jsp";
+		location.href = "admin_index.jsp";
 	</script>
 <%
 }else{
 %>
 	<script type="text/javascript">
-		alert("다시 가입을 해주세요");
+		alert("다시 한번 확인 해주세요");
 		location.href = "product_add.jsp";
 	</script>
 <%

@@ -94,6 +94,7 @@ public class productDAO implements iproductDAO {
 		return pList;
 	}
 	
+
 	@Override
 	public boolean insertProduct(productDTO pdto, List<productOptionDTO> product_list) {
 		String sql1 = " insert into product_table "

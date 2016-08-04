@@ -52,6 +52,7 @@ $(document).ready(function(){
 		
 	});
 	
+	
 	$('#product_photo_detail_count').change(function() {
 		if($('#product_photo_detail_count option:selected').val()==null){
 			return;
@@ -75,6 +76,14 @@ $(document).ready(function(){
 		image_count = $('#product_photo_detail_count option:selected').val();
 		
 	});
+	
+	/* $('#product_style_code').change(function() {
+		if($('#product_style_code option:selected').val()==null){
+			return;
+		}else{
+			product_style_code = $('#product_style_code option:selected').val()
+		}
+	}); */
 });
 </script>
 
@@ -205,7 +214,16 @@ $(document).ready(function(){
 		</tr>
 		<tr>
 			<th>STYLE CODE</th>
-			<td><input type="text" name="product_style_code"></td>
+			<td>
+				<select name="product_style_code">
+					<option value="">--카테고리 선택--</option>
+					<option value="101">OUTER</option>
+					<option value="102">TOP</option>
+					<option value="103">BOTTOM</option>
+					<option value="104">ONEPICE</option>
+				</select>
+			
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit" value="상품등록"></td>

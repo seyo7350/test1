@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<%
+<%-- <%
 Object ologin = session.getAttribute("login");
 memberDTO mem = null;
 
@@ -25,7 +25,7 @@ if(ologin == null && mem.getMember_auth()==1){
 	return;
 }
  mem = (memberDTO)ologin;
-%>
+%> --%>
  
 
 <h1 style="text-align: center;">관리자 메뉴</h1>
@@ -37,7 +37,7 @@ if(ologin == null && mem.getMember_auth()==1){
 		<td align="center"><button onclick="location.href='admin_purchase_list.jsp'">결제 목록</button></td>
 	</tr>
 	<tr>
-		<td align="center"><button onclick="location.href='admin_member.jsp?seq=<%=mem.getMember_seq()%>'">회원정보 보기</button></td>
+		<%-- <td align="center"><button onclick="location.href='admin_member.jsp?seq=<%=mem.getMember_seq()%>'">회원정보 보기</button></td> --%>
 	</tr>
 	<tr>
 		<td align="center"><button onclick="location.href='admin_join.jsp'">관리자 계정 추가</button></td>
