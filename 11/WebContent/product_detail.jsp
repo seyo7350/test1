@@ -330,9 +330,9 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
             </div>
          </div>
       </div><!-- content -->
-      <div id="detail_review">
+     <%--  <div id="detail_review">
       	<div class="detail_menu_tab">
-			<ul><li class="first_child">QnA</li></ul>
+			<ul><li class="first_child">REVIEW</li></ul>
       	</div>
       	<div class="qna-list" style="background-color: white;" align="center">
                             <table summary="번호,제목,작성자,작성일" border="1">
@@ -351,6 +351,52 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                                         <th scope="col"><!-- <div class="tb-center border_right"> -->SUBJECT</div></th>
                                         <th scope="col"><!-- <div class="tb-center border_right"> -->NAME</div></th>
                                         <th scope="col"><!-- <div class="tb-center border_right"> -->DATE</div></th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                              		<%
+                              		if(gpqList.isEmpty()){
+                              		%>
+                              			<tr><td colspan="4">작성된 QnA가 없습니다.</td></tr>
+                              		<%
+                              		}else{
+	                              		for(int i=0; i<gpqList.size(); i++){
+	                              		%>
+	                              			<tr>
+	                              				<td><%=i %></td>
+	                              				<td><%=gpqList.get(i).getQna_title() %></td>
+	                              				<td><%=gpqList.get(i).getQna_author() %></td>
+	                              				<td><%=gpqList.get(i).getQna_writeday() %></td>
+	                              			</tr>
+	                              		<%
+	                              		}
+                              		}
+                              		%>
+                                </tbody>
+                            </table>     	
+      </div> --%>
+      <div id="detail_QnA">
+      	<div class="detail_menu_tab">
+			<ul><li class="first_child">QnA</li></ul>&nbsp;
+      	</div>
+      	<br><br>
+      	<div class="qna-list" style="background-color: white;" align="center">
+                            <table summary="번호,제목,작성자,작성일" border="1" width="835px">
+                                <colgroup>
+                                    <col width="80" />
+                                   <!--  <col width="0" /> -->
+                                    <col width="1000" />
+                                    <col width="100" />
+                                    <col width="10" />
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><div class="tb-center border_right">NO</div></th>
+                                        <!-- .상품정보가 있을 경우에만 나타남 -->
+                                        <!-- <th scope="col"><div class="tb-center">&nbsp;</div></th> -->
+                                        <th scope="col"><!-- <div class="tb-center border_right"> -->SUBJECT</th>
+                                        <th scope="col"><!-- <div class="tb-center border_right"> -->NAME</th>
+                                        <th scope="col"><!-- <div class="tb-center border_right"> -->DATE</th>
                                     </tr>
                                 </thead>
                                 <tbody >

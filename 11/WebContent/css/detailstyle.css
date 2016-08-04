@@ -16,6 +16,11 @@ form{
 .info{
 	clear: both;
 }
+.detail_menu_tab{
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #cecece;
+}
 .tb-left{
 	text-align: left;
 }
