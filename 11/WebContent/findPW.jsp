@@ -252,7 +252,6 @@ if(ologin == null){
 					<input type="submit" value="비밀번호 찾기">
 				</div>
      			</form>
-			
 				<div class="last">
 					<div class="join" ><a href="join.jsp" style="color: gray;">회원가입</a></div>
 				</div>
