@@ -51,13 +51,13 @@ int totalPoint = 0;
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=101 %>">OUTER</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp?product_style_code=<%=1 %>">TOP</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=102 %>">TOP</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=103 %>">BOTTOM</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ONEPIECE
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=104 %>">ONEPIECE</a>
 			<br>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTICE
@@ -98,17 +98,18 @@ int totalPoint = 0;
 						<ul class="mypage_menu_tabs">
 							<li class="first_child"><a href="mypage.jsp" class="mypage_menu1"><span class="hide">my page</span></a></li>
 							<li class="selected"><a href="shoppingbag.jsp" class="mypage_menu2"><span class="hide">shopping bag</span></a></li>
-							<li><a href="/shop/mypage.html?mypage_type=myorder" class="mypage_menu3"><span class="hide">주문내역</span></a></li>
-							<!-- <li><a href="/shop/mypage.html?mypage_type=mywishlist" class="mypage_menu4"><span class="hide">wish list</span></a></li> -->
-							<li><a href="/shop/mypage.html?mypage_type=myarticle" class="mypage_menu5"><span class="hide">Q&A 내역</span></a></li>
-							<!-- <li><a href="/shop/mypage.html?mypage_type=mym2mboard" class="mypage_menu6"><span class="hide">1:1 문의</span></a></li> -->
-							<li><a href="/shop/idinfo.html" class="mypage_menu7"><span class="hide">내정보수정</span></a></li>
-							<li class="last_child"><a href="/shop/mypage.html?mypage_type=myexituser" class="mypage_menu8"><span class="hide">회원탈퇴</span></a></li>
+							<li><a href="myorder.jsp" class="mypage_menu3"><span class="hide">주문내역</span></a></li>
+							<li><a href="myqna.jsp" class="mypage_menu5"><span class="hide">Q&A 내역</span></a></li>
+							<li><a href="mymodify.jsp" class="mypage_menu7"><span class="hide">내정보수정</span></a></li>
+							<li class="last_child"><a href="mydelete.jsp" class="mypage_menu8"><span class="hide">회원탈퇴</span></a></li>
 						</ul>
 
 
                         <div class="page-wrap">
                         <h3 class="cart_top_title"><img src="image/shoppingBag.png" /></h3>
+                        
+                        <form action="shoppingbagAf.jsp" id="frm1" method="post">
+                        
                         <div class="cart-ct">
                             <table summary="번호, 사진, 제품명, 수량, 적립, 가격, 배송비, 취소">
                                 <!-- <caption>장바구니 담긴 상품 목록</caption> -->
@@ -294,12 +295,14 @@ int totalPoint = 0;
 						<p class="cart_desc"><img src="image/cart_list_delivery_desc.png" /></p>
 
                         <div class="cart-ft">
-                            <a href="javascript:basket_clear();"><img src="image/cart_list_clear_cart2.png" alt="장바구니 비우기" title="장바구니 비우기" /></a>&nbsp;
-                             <a href="/html/mainm.html"><img src="image/cart_list_go_shopping2.png" alt="계속 쇼핑하기" title="계속 쇼핑하기" /></a>&nbsp;
-                               <a href="javascript:multi_order()"><img src="image/cart_list_order2.png " alt="주문하기" title="주문하기" /></a>
+                            <a href="shoppingbagClear.jsp"><img src="image/cart_list_clear_cart2.png" alt="장바구니 비우기" title="장바구니 비우기" /></a>&nbsp;
+                             <a href="index.jsp"><img src="image/cart_list_go_shopping2.png" alt="계속 쇼핑하기" title="계속 쇼핑하기" /></a>&nbsp;
+                               <a href="javascript:buy()"><img src="image/cart_list_order2.png " alt="주문하기" title="주문하기" /></a>
                             <!-- <a href="javascript:basket_estimate()" class="hide"><img src="/design/cherry07/trend9/cherrycoco/imgs/cart_list_print_estimate.png" alt="견적서 출력" title="견적서 출력" /></a> -->
                         </div>
 <div style="margin-top: 10px; text-align:right"></div>
+
+						</form>
 
 
 						<p class="cart_desc"><img src="image/cart_list_cart_desc.png" /></p>
@@ -396,18 +399,8 @@ $(document).ready(function(){
 </script>
 
 <script type="text/javascript">
-function checkProduct(){
-	var product = document.getElementByName("basketchks");
-	var total = 0;
-	for(var i = 0; i < product.length; i++){
-		if(product[i].checked){
-			total += product[i].value;
-		}
-	}
-	printTotal(total);
-}
-function printTotal(total){
-	document.getElementById(total).innerHTML = total;
+function buy(){
+	document.getElementById('frm1').submit();
 }
 </script>
 

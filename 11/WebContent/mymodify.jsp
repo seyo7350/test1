@@ -1,8 +1,10 @@
-<%@page import="java.util.List"%>
-<%@page import="product.productOptionDTO"%>
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="product.productDTO"%>
+<%@page import="product.productOptionDTO"%>
 <%@page import="product.productDAO"%>
+<%@page import="product.productDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="order.orderDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,44 +15,22 @@
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
-<link rel="stylesheet" href="css/contentstyle.css">
+<link href="css/my.css" rel="stylesheet" type="text/css">
+
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="js/textRolling.js"></script>
 <script src="js/jquery.bxslider.js"></script>
 <script src="js/jquery.bxslider.min.js"></script>
 
+
 </head>
 <body>
-
-<%-- <%
-Object ologin = session.getAttribute("login");
-memberDTO mem = null;
-if(ologin == null){
-	%>
-	<script type="text/javascript">
-	alert('로그인 하십시오');
-	location.href = 'index.jsp';
-	</script>
-	<%
-	return;
-}
-mem = (memberDTO)ologin;
-%> --%>
-
-<%
-String product_style_code_string = request.getParameter("product_style_code");
-int product_style_code = Integer.parseInt(product_style_code_string);
-
-productDAO pdao = productDAO.getInstance();
-List<productDTO> pList = pdao.getProductList(product_style_code);
-System.out.println(pList.size());
-%>
 
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
-			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;join<br>
+			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join</a><br>
 			shopping bag<br>
 			mypage&nbsp;&nbsp;/&nbsp;&nbsp;home
 		</div>
@@ -86,59 +66,39 @@ System.out.println(pList.size());
 		</div>
 	</div>	
 	<div class="container_middle">
-		<div class="top_log" align="center">
-			<img src="image/<%=product_style_code %>.jpg">
-		</div>
 		<div class="content">
-			<div class="item-list">
-				<ul class="prdlist">
-				<%
-				for(int i = 0; i < pList.size(); i++){
-					productDTO pdto = pList.get(i);					
-					List<productOptionDTO> poList =  pdao.getProductOptionList(pdto.getProduct_seq());
-					%>
-					<li class="item">
-                  		<div class="box">
-                    		<a href="product_detail.jsp?product_seq=<%=pdto.getProduct_seq()%>&product_style_code=<%=product_style_code %>" class="prdimg">
-                    			<img src="upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_gif()%>" alt="이미지 없음" onmouseover='src="upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_main()%>"' onmouseout="src='upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_gif()%>'"/>
-                    		</a>
-                  			<div class="product_contents_info">
-                  				<p class="name">
-                        			<a href="product_detail?product_seq=<%=pdto.getProduct_seq()%>"><%=pdto.getProduct_name()%></a>
-                     			</p>
-                     			<ul class="product_list_item">
-                        			<li>
-                           				<strong class="title title_price">판매가:</strong>
-                           				<span class="product_price" style="text-align: center;">
-                           				<%
-                           				int price = pdto.getProduct_price();
-                           				DecimalFormat df = new DecimalFormat("###,###,###");                           				
-                           				%>
-                           				<%=df.format(price)%>원
-                           				</span>
-                        			</li>
-                        			<br>
-                        			<li class="color_type">
-                           				<strong class="title title_color">색상 :</strong>
-                           				<%
-                           				System.out.println("poList= "+poList.size());
-                           				for(int j = 0; j < poList.size(); j++){
-                           					productOptionDTO podto = poList.get(j);
-                           					%>
-                           					<span style="display: inline-block; *margin:0 2px; width: 10px; height: 10px; background: <%=podto.getProductOption_colorCode()%>; border:1px solid #c3c3c3;"></span>
-                           					<%
-                           				}
-                           				%>
-                        			</li>
-                     			</ul>
-                  			</div>
-                  		</div>
-               		</li>
-					<%
-				}
-				%>
-				</ul>
-        	</div>
+		
+<span></span>
+			<div id="content">
+            <div id="mypage" class="section_mypage">
+
+					<div class="page_path hide">
+						<h3>현재 위치</h3>
+						<ol>
+							<li class="first"><a href="/">Home</a></li>
+							<li><a href="javascript:;">Mypage</a></li>
+						</ol>
+					</div>
+                    <div class="page-body">
+
+						<ul class="mypage_menu_tabs">
+							<li class="first_child"><a href="mypage.jsp" class="mypage_menu1"><span class="hide">my page</span></a></li>
+							<li><a href="shoppingbag.jsp" class="mypage_menu2"><span class="hide">shopping bag</span></a></li>
+							<li><a href="myorder.jsp" class="mypage_menu3"><span class="hide">주문내역</span></a></li>
+							<li><a href="myqna.jsp" class="mypage_menu5"><span class="hide">Q&A 내역</span></a></li>
+							<li class="selected"><a href="mymodify.jsp" class="mypage_menu7"><span class="hide">내정보수정</span></a></li>
+							<li class="last_child"><a href="mydelete.jsp" class="mypage_menu8"><span class="hide">회원탈퇴</span></a></li>
+						</ul>
+            
+			            <!-- 여기삽입! -->
+			            
+			            <!-- 여기삽입! -->
+            		</div>
+            	</div>             
+            </div><!-- #content -->
+           <hr />
+    <!-- ### 하단 시작 -->
+		
 		</div>
 	</div>
 	<div class="container_footer">
@@ -187,7 +147,6 @@ $(document).ready(function(){
  }); 
 });
 </script>
-
 
 </body>
 </html>

@@ -40,13 +40,13 @@ if(ologin == null){
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=101 %>">OUTER</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp">TOP</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=102 %>">TOP</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=103 %>">BOTTOM</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ONEPIECE
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=104 %>">ONEPIECE</a>
 			<br>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="noticeList.do">NOTICE</a>
@@ -82,12 +82,12 @@ if(ologin == null){
                     <div class="page-body">
 
 						<ul class="mypage_menu_tabs">
-							<li class="first_child selected"><a href="myPage.jsp" class="mypage_menu1"><span class="hide">my page</span></a></li>
+							<li class="first_child selected"><a href="mypage.jsp" class="mypage_menu1"><span class="hide">my page</span></a></li>
 							<li><a href="shoppingbag.jsp" class="mypage_menu2"><span class="hide">shopping bag</span></a></li>
-							<li><a href="/shop/mypage.html?mypage_type=myorder" class="mypage_menu3"><span class="hide">주문내역</span></a></li>
-							<li><a href="qnaListPage.jsp" class="mypage_menu5"><span class="hide">Q&A 내역</span></a></li>
-							<li><a href="member_Update.jsp" class="mypage_menu7"><span class="hide">내정보수정</span></a></li>
-							<li class="last_child"><a href="member_Delete.jsp" class="mypage_menu8"><span class="hide">회원탈퇴</span></a></li>
+							<li><a href="myorder.jsp" class="mypage_menu3"><span class="hide">주문내역</span></a></li>
+							<li><a href="myqna.jsp" class="mypage_menu5"><span class="hide">Q&A 내역</span></a></li>
+							<li><a href="mymodify.jsp" class="mypage_menu7"><span class="hide">내정보수정</span></a></li>
+							<li class="last_child"><a href="mydelete.jsp" class="mypage_menu8"><span class="hide">회원탈퇴</span></a></li>
 						</ul>
 
 

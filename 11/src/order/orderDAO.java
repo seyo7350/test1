@@ -152,6 +152,53 @@ public class orderDAO implements iorderDAO {
 		}
 		return count>0?true:false;
 	}
+
+	@Override
+	public List<orderDTO> getMemberOrderList(int member_seq) {
+		String sql = " select * from order_table "
+				+ " where order_member_seq = ? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<orderDTO> orderlist = new ArrayList<orderDTO>();
+		
+		try{
+			conn=DBconnection.makeConnection();
+			log("2/6 Success getMemberOrderList");
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, member_seq);
+			log("3/6 Success getMemberOrderList");
+			
+			rs=psmt.executeQuery();
+			log("4/6 Success getMemberOrderList");
+			
+			while(rs.next()){
+				int i = 1;
+				orderDTO odto = new orderDTO(
+						rs.getInt(i++),
+						rs.getInt(i++),
+						rs.getInt(i++),
+						rs.getInt(i++),
+						rs.getInt(i++),
+						rs.getDate(i++),
+						rs.getInt(i++),
+						rs.getInt(i++)
+						);
+				orderlist.add(odto);
+			}
+			log("5/6 Success getMemberOrderList");
+			
+		}catch(SQLException e){
+			log("Fail getMemberOrderList");
+		}finally{
+			DBclose.close(psmt, conn, rs);
+		}
+		
+		return orderlist;
+	}
 	
 	
 
