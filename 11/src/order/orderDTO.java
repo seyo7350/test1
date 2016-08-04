@@ -10,7 +10,7 @@ create table order_table(
 	order_productOption_seq number(8) not null,
 	order_amount number(8) not null,
 	order_regiDate date not null,
-	order_confirm number(8) not null,
+	order_confirm number(8) not null,	
 	order_del number(8) not null
 )
 
