@@ -54,6 +54,13 @@ productDAO pdao = productDAO.getInstance();
 int total = 0;
 int totalPoint = 0;
 %>
+
+<script type="text/javascript">
+function buy(){
+	document.getElementById('frm1').submit();
+}
+</script>
+
 <body>
 
 <%-- product_seq : <%=product_seq%>
@@ -294,12 +301,21 @@ for(int i = 0; i < product_option_count; i++){
 										</tr>
 									</tbody>
 								</table>
-							</div>	<!-- boxMiddle -->
-							<div>
-								<form action="">
-									
-								</form>
-							</div>
+							</div>	<!-- boxMiddle -->							
+						</div>
+						<div style="text-align: right;">
+							<form action="buyAf.jsp" id="frm1" method="post">
+								<div class="btnBox">
+									<div id="order1">
+										<a href="javascript:buy();" style="text-decoration: none !important;">
+											<img src="image/order_finish.gif" alt="주문하기" title="주문하기">
+										</a>
+										<a href="shoppingbag.jsp" style="text-decoration: none !important;">
+											<img src="image/order_cancel.gif" alt="주문취소" title="주문취소">
+										</a>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>

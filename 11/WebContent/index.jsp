@@ -132,7 +132,7 @@ if(ologin == null){
 				</div>
 			</div>
 			<div class="new_content">
-				<jsp:include page="index_new_content.jsp"></jsp:include>
+				<%-- <jsp:include page="index_new_content.jsp"></jsp:include> --%>
 			</div>
 		</div>
 	</div>
