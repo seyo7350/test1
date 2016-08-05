@@ -87,7 +87,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
 <div class="side">
    <div class="side_inner">
       <div class="side_inner_top">
-			<a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join</a><br>
+			<a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>Sjoin</a><br>
 			<a href='shoppingbag.jsp'>shopping bag</a><br>
 			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
@@ -399,7 +399,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
 	                              		%>
 	                              			<tr height="37">
 	                              				<td><div class="tb-center"><%=i%></div></td>
-	                              				<td><div class="tb-center"><%=gprList.get(i).getReview_title() %></div></td>
+	                              				<td><div class="tb-center"><a href="reviewDetail.jsp?seq=<%=gprList.get(i).getReview_seq()%>"><%=gprList.get(i).getReview_title() %></a></div></td>
 	                              				<td><div class="tb-center"><%=gprList.get(i).getReview_author() %></div></td>
 	                              				<td><div class="tb-center"><%=gprList.get(i).getReview_writeday() %></div></td>
 	                              			</tr>

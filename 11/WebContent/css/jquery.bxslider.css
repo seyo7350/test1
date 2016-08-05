@@ -15,8 +15,8 @@
 ===================================*/
 
 .bx-wrapper {
-	position: relative;
-	margin: 0 /* auto 60px */;
+	/* position: relative; */
+	margin: 0 auto 60px;
 	padding: 0;
 	*zoom: 1;
 }
@@ -147,9 +147,9 @@
 	z-index: 9999;
 }
 
-.bx-wrapper .bx-controls-direction a.disabled {
+/* .bx-wrapper .bx-controls-direction a.disabled {
 	display: none;
-}
+} */
 
 /* AUTO CONTROLS (START / STOP) */
 

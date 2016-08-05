@@ -1,3 +1,5 @@
+<%@page import="notice.NoticeDTO"%>
+<%@page import="notice.NoticeDAO"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@ page import="member.memberDAO" %>
 <%@ page import="member.memberDTO" %>
@@ -18,9 +20,11 @@
 <!-- <link rel="stylesheet" href="css/contentstyle.css"> -->
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-<script src="js/textRolling.js"></script>
+
 <script src="js/jquery.bxslider.js"></script>
-<script src="js/jquery.bxslider.min.js"></script>
+<!-- <script src="js/jquery.bxslider.min.js"></script> -->
+
+<script src="js/textRolling.js"></script>
 
 
 </head>
@@ -38,6 +42,9 @@ List<productDTO> outerList = pdao.getProductList(outer_style_code);
 List<productDTO> topList = pdao.getProductList(top_style_code);
 List<productDTO> bottomList = pdao.getProductList(bottom_style_code);
 List<productDTO> onepiceList = pdao.getProductList(onepice_style_code);
+
+NoticeDAO noDAO = new NoticeDAO();
+List<NoticeDTO> noList = noDAO.importantNoticeList();
 %>
 
 <div class="side">
@@ -98,7 +105,30 @@ if(ologin == null){
 				</div>
 				<div class="rolling_text">
 					<ul id="scroll">
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">공지사항 111111111111111111</a></li>
+						<%
+						for(int i = 0; i < noList.size(); i++){
+							NoticeDTO ndto = noList.get(i);
+							%>
+							<li style="float: none; list-style: none; position: relative; height: 21px;">
+								<a href="noticeView.do?seq=<%=ndto.getNotice_num()%>">
+									<%
+									String title = "";
+									if(ndto.getNotice_title().length()>15){
+										title = ndto.getNotice_title().substring(0, 15);
+										title += "...";
+									}else{
+										title = ndto.getNotice_title();
+									}
+									%>
+									<%=title%>
+									<%
+									%>
+								</a>
+							</li>
+							<%
+						}
+						%>
+					    <!-- <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">공지사항 111111111111111111</a></li>
 					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">222222222222222222222위</a></li>
 					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">333333333333333333위</a></li>
 					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">444444444444444위</a></li>
@@ -107,7 +137,7 @@ if(ologin == null){
 					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">7777777777777777777위</a></li>
 					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">888888888888888888위</a></li>
 					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">9999999999999999999위</a></li>
-					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">1000000000000000위</a></li>
+					    <li style="float: none; list-style: none; position: relative; height: 21px;"><a href="">1000000000000000위</a></li> -->
 					</ul>
 				</div>
 			</div>
@@ -115,16 +145,16 @@ if(ologin == null){
 			<!-- 여기에 삽입 -->
 			<div id="main">
 				<div class="widget_main_visual_area"> 
-	   				<ul class="slider">	      
-					  <li><img src="image/main1.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main2.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main3.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main4.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main5.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main6.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main7.jpg" style="width: 1155px;"/></li>
-					  <li><img src="image/main8.jpg" style="width: 1155px;"/></li>
-					</ul>
+	   				<div class="slider">
+					  <div><a href="#"><img src="image/main1.jpg" style="width: 1155px;"/></a></div>
+					  <div><a href="#"><img src="image/main2.jpg" style="width: 1155px;"/></a></div>
+					  <div><a href="#"><img src="image/main3.jpg" style="width: 1155px;"/></a></div>
+					  <div><a href="#"><img src="image/main4.jpg" style="width: 1155px;"/></a></div>
+					  <div><a href="#"><img src="image/main5.jpg" style="width: 1155px;"/></a></div>
+					  <div><a href="#"><img src="image/main6.jpg" style="width: 1155px;"/></a></div>
+					  <div><a href="#"><img src="image/main7.jpg" style="width: 1155px;"/></a></div>
+					  <div><a href="#"><img src="image/main8.jpg" style="width: 1155px;"/></a></div>
+					</div>
 				</div>
 			</div>
 			<div class="new_content">

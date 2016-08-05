@@ -45,6 +45,9 @@ if(ologin == null && mem.getMember_auth()==1){
 	<tr>
 		<td align="center"><button onclick="location.href='admin_delete.jsp'">탈퇴 회원 DB 삭제</button></td>
 	</tr>
+	<tr>
+		<td align="center"><button onclick="location.href='admin_logout.jsp'">관리자 로그아웃</button></td>
+	</tr>
 </table>
 </body>
 </html>
