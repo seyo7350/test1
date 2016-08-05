@@ -180,15 +180,15 @@ public class ReviewDAO implements iReviewDAO {
 	      return gprList;
 	   }
 	   
-	   public productDTO getReview(int review_seq) {
+	   public ReviewDTO ReviewDetail(int review_seq) {
 			String sql = "select review_num, review_member_num, review_product_num, review_productOption_num, review_author, review_title, review_content, to_char(review_writeday, 'YYYY/MM/DD') review_writeday, review_del, review_imageUrl "
-					+ " from product_table "
+					+ " from review_table "
 					+ " where review_seq = ?";
 			
 			Connection conn = null;
 			PreparedStatement psmt = null;
 			ResultSet rs = null;
-			productDTO pdto = null;
+			ReviewDTO rdto = null;
 					
 			try {
 				conn = DBconnection.makeConnection();
@@ -201,23 +201,17 @@ public class ReviewDAO implements iReviewDAO {
 				
 				if(rs.next()){
 					int i = 1;
-					pdto = new productDTO(
-							rs.getInt(i++),			// product_seq
-							rs.getString(i++),		// product_name
-							rs.getInt(i++),			// product_price
-							rs.getInt(i++),			// product_point
-							rs.getInt(i++),			// product_option_count
-							rs.getString(i++),		// product_info_about
-							rs.getString(i++),		// product_info_detail						
-							rs.getString(i++),		// product_info_size_tip
-							rs.getString(i++),		// product_info_washing_tip
-							rs.getString(i++),		// product_photo_gif
-							rs.getString(i++),		// product_photo_main
-							rs.getString(i++),		// product_photo_detail_main
-							rs.getString(i++),		// product_photo_detail
-							rs.getInt(i++),			// product_style_code
-							rs.getDate(i++),		// product_regiDate
-							rs.getInt(i++)			// product_del
+					rdto = new ReviewDTO(
+							rs.getInt(i++),
+							rs.getInt(i++),
+							rs.getInt(i++),
+							rs.getInt(i++),
+							rs.getString(i++),
+							rs.getString(i++),
+							rs.getString(i++),
+							rs.getString(i++),
+							rs.getInt(i++),
+							rs.getString(i++)
 							);
 				}
 				log("4/6 success getReview");
@@ -228,7 +222,7 @@ public class ReviewDAO implements iReviewDAO {
 				DBclose.close(psmt, conn, rs);
 				log("6/6 success getReview");
 			}
-			return pdto;
+			return rdto;
 		}
 }
 	
