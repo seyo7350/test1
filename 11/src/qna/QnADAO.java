@@ -8,12 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class QnADAO {
 	
-	DAOSetting daosetting = DAOSetting.getInstance();	///////////////////// DAOSetting 생성자 private으로 하면 ??
+	DAOSetting daosetting = DAOSetting.getInstance();	
 
-	
 	public QnADAO() {
 		// TODO Auto-generated constructor stub
 	}
@@ -33,7 +31,7 @@ public class QnADAO {
 			conn = DAOSetting.getConnection();
 			System.out.println("2/6 Success qnaList");
 			
-			String sql = " select qna_num, qna_author, qna_pwd, qna_subhead, qna_title, qna_content, to_char(qna_writeday, 'YYYY/MM/DD') qna_writeday, qna_readCnt, qna_important "
+			String sql = " select qna_num, qna_author, qna_pwd, qna_subhead, qna_title, qna_content, to_char(qna_writeday, 'YYYY/MM/DD') qna_writeday, qna_readCnt, qna_important, qna_product_seq "
 					+ " from qna_table "
 					+ " order by qna_num desc ";
 			
@@ -45,7 +43,7 @@ public class QnADAO {
 			
 			while(rs.next()) {
 				int i = 1;
-				QnADTO qDTO = new QnADTO(rs.getInt(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++));
+				QnADTO qDTO = new QnADTO(rs.getInt(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++),rs.getInt(i++));
 				
 				qList.add(qDTO);
 				
@@ -62,9 +60,8 @@ public class QnADAO {
 	}
 	
 	//글 쓰기
-	public void writeQnA(String qna_author, String qna_pwd, String qna_subhead, String qna_title, String qna_content) {
+	public void writeQnA(String qna_author, String qna_pwd, String qna_subhead, String qna_title, String qna_content, int qna_product_seq) {
 		
-		boolean qnaInsertCount = true;
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -76,8 +73,8 @@ public class QnADAO {
 			System.out.println("2/6 Success writeQnA");
 			
 			String sql = " insert into qna_table "
-					+ " (qna_num, qna_author, qna_pwd, qna_subhead, qna_title, qna_content, qna_writeday, qna_readCnt, qna_important) "
-					+ " values(qna_table_seq.nextval, ?, ?, ?, ?, ?, sysdate, 0, 0) ";
+					+ " (qna_num, qna_author, qna_pwd, qna_subhead, qna_title, qna_content, qna_writeday, qna_readCnt, qna_important, qna_product_seq) "
+					+ " values(qna_table_seq.nextval, ?, ?, ?, ?, ?, sysdate, 0, 0, ?) ";
 			
 			psmt = conn.prepareStatement(sql);
 			int i = 1;
@@ -148,7 +145,10 @@ public class QnADAO {
 			conn = DAOSetting.getConnection();
 			System.out.println("2/6 Success qnaDetail");
 			
-			String sql = " select * from qna_table where qna_num=? ";
+			
+			String sql = " select qna_num, qna_author, qna_pwd, qna_subhead, qna_title, qna_content, to_char(qna_writeday, 'YYYY-MM-DD') qna_writeday, qna_readCnt, qna_important "
+					+ " from qna_table "
+					+ " where qna_num=? ";
 			
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, Integer.parseInt(_qna_num));
@@ -159,7 +159,7 @@ public class QnADAO {
 			while(rs.next()){
 				
 				int i = 1;
-				qDTO = new QnADTO(rs.getInt(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++));
+				qDTO = new QnADTO(rs.getInt(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++),rs.getInt(i++));
 				
 			}
 			System.out.println("4/6 Success qnaDetail");
@@ -195,7 +195,7 @@ public class QnADAO {
 			rs = psmt.executeQuery();
 			System.out.println("4/6 Success totalCount");
 			
-			while(rs.next()){	// if?
+			if(rs.next()){	// if?
 				count = rs.getInt(1);
 			}
 			
@@ -225,7 +225,7 @@ public class QnADAO {
 			conn = DAOSetting.getConnection();
 			System.out.println("2/6 Success page");
 			
-			String sql = " select qna_num, qna_author, qna_pwd, qna_subhead, qna_title, qna_content, to_char(qna_writeday, 'YYYY/MM/DD') qna_writeday, qna_readCnt, qna_important "
+			String sql = " select qna_num, qna_author, qna_pwd, qna_subhead, qna_title, qna_content, to_char(qna_writeday, 'YYYY/MM/DD') qna_writeday, qna_readCnt, qna_important,qna_product_seq "
 					+ " from qna_table "
 					+ " order by qna_num desc ";
 			
@@ -245,7 +245,7 @@ public class QnADAO {
 			for (int j = 0; j < perPage && rs.next(); j++) {
 				
 				int i = 1;
-				QnADTO qDTO = new QnADTO(rs.getInt(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++));
+				QnADTO qDTO = new QnADTO(rs.getInt(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++),rs.getInt(i++));
 				
 				qList.add(qDTO);
 			}
@@ -261,6 +261,56 @@ public class QnADAO {
 			System.out.println("5/6 Success page");
 		}
 		return pDTO;
+	}
+	
+	public List<QnADTO> getproductqnaList(int product_seq) {
+		
+		String sql = " select qna_num, qna_author, qna_pwd, qna_subhead, qna_title, qna_content, to_char(qna_writeday, 'YYYY/MM/DD') qna_writeday, "
+				+ " qna_readCnt, qna_important, qna_product_seq from qna_table where qna_product_seq = ? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<QnADTO> getpqList = new ArrayList<QnADTO>();
+		
+		try{
+			
+			conn = DAOSetting.getConnection();
+			System.out.println("2/6 Success getproductqnaList");
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, product_seq);
+			System.out.println("3/6 Success getproductqnaList");
+			
+			rs = psmt.executeQuery();
+			System.out.println("4/6 Success getproductqnaList");
+			
+			while(rs.next()) {
+				int i = 1;
+				QnADTO qDTO = new QnADTO(
+						rs.getInt(i++), 
+						rs.getString(i++), 
+						rs.getString(i++), 
+						rs.getString(i++), 
+						rs.getString(i++), 
+						rs.getString(i++), 
+						rs.getString(i++), 
+						rs.getInt(i++), 
+						rs.getInt(i++),
+						rs.getInt(i++)
+						);
+				getpqList.add(qDTO);
+			}
+			
+		}catch(SQLException e){
+			System.out.println("FAIL qnaList" + e.getMessage());
+		}finally{
+			DAOSetting.close(conn, psmt, rs);
+			System.out.println("5/6 Success qnaList");
+		}
+		
+		return getpqList;
 	}
 	
 }

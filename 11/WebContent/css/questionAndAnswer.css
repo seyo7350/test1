@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 
-body, h1, h2, h3, h4, h5, h6, table, input, select, textarea {
+ h1, h2, h3, h4, h5, h6, table, input, select, textarea {
     font-size: 12px;
     line-height: 1.25;
     color: #8a8a8a;
@@ -99,7 +99,7 @@ table td.info {
     border: 1px solid #dcdcdc;
 }
 
-button, input, select, textarea, a, table, th, td {
+button, input, select, textarea, table, th, td {
     vertical-align: middle;
 }
 

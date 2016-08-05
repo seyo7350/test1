@@ -1,6 +1,10 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page import="member.memberDAO" %>
 <%@ page import="member.memberDTO" %>
-
+<%@page import="product.productDTO"%>
+<%@page import="product.productOptionDTO"%>
+<%@page import="product.productDAO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% request.setCharacterEncoding("utf-8"); %>
@@ -37,6 +41,20 @@
 
 </head>
 <body>
+<%
+int outer_style_code = 101;
+int top_style_code = 102;
+int bottom_style_code = 103;
+int onepice_style_code = 104;
+
+productDAO pdao = productDAO.getInstance();
+
+List<productDTO> outerList = pdao.getProductList(outer_style_code);
+List<productDTO> topList = pdao.getProductList(top_style_code);
+List<productDTO> bottomList = pdao.getProductList(bottom_style_code);
+List<productDTO> onepiceList = pdao.getProductList(onepice_style_code);
+%>
+
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
@@ -54,17 +72,17 @@ if(ologin == null){
     <%} %>
 			<a href='join.jsp'>join</a><br>
 			shopping bag<br>
-			<a href='myPage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
+			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=101 %>">OUTER</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp">TOP</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=102 %>">TOP</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=103 %>">BOTTOM</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ONEPIECE
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=104 %>">ONEPIECE</a>
 			<br>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="noticeList.do">NOTICE</a>
@@ -148,11 +166,8 @@ if(ologin == null){
 						교환 & 반품 주소 : 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 (주)애플코코 <br>
 						개인정보관리책임자: 나책임 | Contact help@applekoko.com for more information.<br>
 	                </p>
-
-
 	            </div>          
 	        </div>
-	        
 		</div>		
 	</div><!-- container_footer -->
 </div>

@@ -5,17 +5,21 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="order.orderDTO"%>
 <%@page import="java.util.List"%>
+<%@ page import="member.memberDTO" %>
+<%@ page import="member.memberDAO" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>koko</title>
+<title>회원탈퇴</title>
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/jquery.bxslider.css">
 <link href="css/my.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/member.css">
 
 
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -27,12 +31,38 @@
 </head>
 <body>
 
+<%
+int outer_style_code = 101;
+int top_style_code = 102;
+int bottom_style_code = 103;
+int onepice_style_code = 104;
+
+productDAO pdao = productDAO.getInstance();
+
+List<productDTO> outerList = pdao.getProductList(outer_style_code);
+List<productDTO> topList = pdao.getProductList(top_style_code);
+List<productDTO> bottomList = pdao.getProductList(bottom_style_code);
+List<productDTO> onepiceList = pdao.getProductList(onepice_style_code);
+%>
+
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
-			<a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join</a><br>
+            <%
+Object ologin = session.getAttribute("login");
+memberDTO mem = null;
+
+if(ologin == null){
+	%>
+    <a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+	<%
+}else{
+ %>
+    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;
+    <%} %>
+			<a href='join.jsp'>join</a><br>
 			shopping bag<br>
-			mypage&nbsp;&nbsp;/&nbsp;&nbsp;home
+			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
@@ -45,16 +75,15 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=104 %>">ONEPIECE</a>
 			<br>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTICE
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="noticeList.do">NOTICE</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q&A
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="qnaList.do">Q&A</a>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REVIEW		
 			<hr>
 		</div>
 	</div>
 </div>
-
 
 
       
@@ -91,6 +120,69 @@
 						</ul>
             
 			            <!-- 여기삽입! -->
+			            
+<script>
+function noSpaceForm(obj) { // 공백사용못하게
+    var str_space = /\s/;  // 공백체크
+    if(str_space.exec(obj.value)) { //공백 체크
+        alert("해당 항목에는 공백을 사용할수 없습니다.");
+        obj.focus();
+        obj.value = obj.value.replace(' ',''); // 공백제거
+        return false;
+    }
+}
+</script>
+			            
+	<%
+if(ologin == null){
+	%>
+	<script>
+	  alert("로그인을 해주세요");
+	  location.href="login.jsp";
+	</script>
+	<%
+	return;
+}
+ mem = (memberDTO)ologin;
+%>
+<form action="mydeleteAF.jsp" method="post" >
+<table width="700px">
+   <tr>
+      <td> 
+       <img src ="image/reconfirm_pwd.gif" /><br><br>
+    </td>
+   </tr>
+   <tr>
+       <td>  
+         <a>탈퇴시 보유하신 </a><a style="color: red;">포인트는 삭제됩니다. </a><br>
+         <a>또한 주기적으로 회원정보를 업데이트 하기 때문에 </a><br>
+         <a style="color: red;">탈퇴 철회가 안될 수도 있습니다. </a><br>
+         <a>탈퇴를 원하시면 비밀번호를 입력해 주세요. </a><br><br>
+       </td>
+   </tr>
+   <tr bgcolor="#f4f4f4";>
+       <td>  
+          <a style="font-size: 15px">아이디  : &nbsp;&nbsp;<%=mem.getMember_id()%></a><br><br>
+          <input type="password" name="password" onkeyup="noSpaceForm(this)"; placeholder="비밀번호" />
+           <input type="hidden" name="id" value="<%=mem.getMember_id()%>">
+          <input type="hidden" name="seq" value="<%=mem.getMember_seq()%>">
+      </td>
+  </tr>
+
+  <tr>
+     <td class="td">  
+        <p align="center"><input  TYPE="IMAGE" src="image/update_confirm.gif" name="submit" value="submit" style="outline-style:none" width="90px" />
+        &nbsp;&nbsp;<a href='mypage.jsp'><img src="image/update_cancel.gif"  width="90px" style="outline-style:none; vertical-align: top;"/></p>
+      </td>
+  </tr>
+</table>
+</form>		            
+			            
+			            
+			            
+			            
+			            
+			            
 			            
 			            <!-- 여기삽입! -->
             		</div>

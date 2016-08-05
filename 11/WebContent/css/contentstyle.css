@@ -4,11 +4,15 @@
 img {
     vertical-align: top;
 }
-li {
-   /* margin-right: 20px; */
-    list-style: none;
-    text-align: center;
+.item-list ul.prdList li.item {
+    position: relative;
     display: inline-block;
+    width: 270px;
+    margin: 10px 10px 40px 10px;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 16px;
+    list-style: none;
 }
 li.color_type{
 	clear:both;
@@ -162,4 +166,9 @@ product_list_item
 
 .product_contents_info .product_list_item li strong.price {
 	color: #7e7e7e;
-} */
+}
+
+.item-list {
+    margin-top: 20px;
+    text-align: center;
+}
