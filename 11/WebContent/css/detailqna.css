@@ -70,3 +70,7 @@
 .tb-left, .tb-center, .tb-right {
     padding: 0 10px;
 }
+
+.table-slide a{
+	text-decoration: none;
+}

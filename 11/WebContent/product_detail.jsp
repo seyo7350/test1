@@ -125,13 +125,13 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
             <div id="productDetail">               
                <div class="page-body">
                   <div class="thumb-info">
-                     <div class="thumb-wrap">
+                     <div class="thumb-wrap" style="float: left;">
                         <div class="thumb">
                            <img src ="upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_detail_main()%>" alt="yes! we are applekoko"/>
                         </div>
                      </div>
                       <!--  .thumb-wrap  -->
-                      <form action="product_detailAf.jsp" name="form1" id="form1" method="post">
+                      <form action="product_detailAf.jsp" name="form1" id="form1" method="post" style="float: right;">
                         <div class="info">
                            <h3 class="tit-prd">상품명</h3>
                         <div class="table-opt">
@@ -359,11 +359,11 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
       	<div class="detail_menu_tab">
 			<!-- <ul><li class="first_child">QnA</li></ul>&nbsp; -->
       	</div>
-      	<div class="review-inner">
+      	<div class="qna-inner">
       		<img src="image/detail_review_title.png">
       		
       		<br><br>
-      	<div class="table-slide review-list" style="background-color: white;" align="center">
+      	<div class="table-slide review-list" style="background-color: white; margin-top: 15px;" align="center">
                             <table summary="번호,제목,작성자,작성일" border="1">
                                 <!-- <colgroup>
                                     <col width="80" />
@@ -480,13 +480,11 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                   LUNCHI TIME PM 1:00 - 2:00 / SUN/HOLYDAY CLOSED<br><br>
                   _BANK_ : WOORI 1005-501-330632, ....
                </p>
-                   <p id="info2">
-                      법인명(상호): (주)체리코코  | 대표자(성명): 지동헌 | 사업자 등록번호 안내: [215-87-15936] | 통신판매업 신고 제 2011 - 서울강남 - 03186호<br>
-                  전화: 1600-7255 | 주소: 서울특별시 강남구 신사동 517-4 M SPACE 빌딩 2층 (강남대로158길 26) -(주)체리코코 <br>
-                  교환 & 반품 주소 : 서울 성북구 종암동 57-39번지 CJ대한통운 종암대리점 (주)체리코코 <br>
-                  개인정보관리책임자: 지동헌 | Contact help@cherrykoko.com for more information.<br>
+                   <p id="info2">법인명(상호): (주)애플코코  | 대표자(성명): 나대표 | 사업자 등록번호 안내: [777-77-77777] | 통신판매업 신고 제 2016 - 서울강북 - 77777호<br>
+						전화: 1600-7255 | 주소: 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 -(주)애플코코 <br>
+						교환 & 반품 주소 : 서울특별시 마포구 백범로18(노고산동) 미화빌딩 3층 F반 강의실 (주)애플코코 <br>
+						개인정보관리책임자: 나책임 | Contact help@applekoko.com for more information.<br>
                    </p>
-                   <p class="copyright" style="text-align: right;"><img src="http://img29.makeshop.co.kr/design/cherry07/trend9/cherrycoco/imgs/footer_copy_img.png" /></p>
                </div>              
            </div>
       </div>      
