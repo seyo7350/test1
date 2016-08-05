@@ -146,7 +146,7 @@ public class QnADAO {
 			System.out.println("2/6 Success qnaDetail");
 			
 			
-			String sql = " select qna_num, qna_author, qna_pwd, qna_subhead, qna_title, qna_content, to_char(qna_writeday, 'YYYY-MM-DD') qna_writeday, qna_readCnt, qna_important "
+			String sql = " select qna_num, qna_author, qna_pwd, qna_subhead, qna_title, qna_content, to_char(qna_writeday, 'YYYY-MM-DD') qna_writeday, qna_readCnt, qna_important, qna_product_seq "
 					+ " from qna_table "
 					+ " where qna_num=? ";
 			
@@ -307,7 +307,7 @@ public class QnADAO {
 			System.out.println("FAIL qnaList" + e.getMessage());
 		}finally{
 			DAOSetting.close(conn, psmt, rs);
-			System.out.println("5/6 Success qnaList");
+			System.out.println("5/6 Success getproductqnaList");
 		}
 		
 		return getpqList;

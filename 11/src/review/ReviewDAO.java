@@ -11,6 +11,7 @@ import DBControl.DBclose;
 import DBControl.DBconnection;
 import notice.NoticeDTO;
 import product.productDAO;
+import product.productDTO;
 import qna.DAOSetting;
 
 public class ReviewDAO implements iReviewDAO {
@@ -32,6 +33,14 @@ public class ReviewDAO implements iReviewDAO {
 			reviewdao = new ReviewDAO();
 		}
 		return reviewdao;
+	}
+	
+	public void log(String msg){
+		System.out.println(getClass() + ":" + msg);
+	}
+	
+	public void log(String msg, Exception e){
+		System.out.println(e + ":" + getClass() + ":" + msg);
 	}
 	
 	// 리뷰 리스트
@@ -119,11 +128,11 @@ public class ReviewDAO implements iReviewDAO {
 	
 	// 상품에 대한 리스트
 	   @Override
-	   public List<ReviewDTO> getProductReviewList(int review_product_seq) {
+	   public List<ReviewDTO> getProductReviewList(int review_product_num) {
 	      
 	      
 	      String sql = " select review_num, review_member_num, review_product_num, review_productOption_num, review_author, review_title, review_content, to_char(review_writeday, 'YYYY/MM/DD') review_writeday, review_del, review_imageUrl "
-	               + " from review_table where review_product_seq=? ";
+	               + " from review_table where review_product_num=? ";
 	      
 
 	      
@@ -138,7 +147,7 @@ public class ReviewDAO implements iReviewDAO {
 	         System.out.println("2/6 Success getReviewList");
 
 	         psmt = conn.prepareStatement(sql);
-	         psmt.setInt(1,review_product_seq);
+	         psmt.setInt(1,review_product_num);
 	         System.out.println("3/6 Success getReviewList");
 	         
 	         rs = psmt.executeQuery();
@@ -170,6 +179,58 @@ public class ReviewDAO implements iReviewDAO {
 	      }
 	      return gprList;
 	   }
+	   
+	   public productDTO getReview(int review_seq) {
+			String sql = "select review_num, review_member_num, review_product_num, review_productOption_num, review_author, review_title, review_content, to_char(review_writeday, 'YYYY/MM/DD') review_writeday, review_del, review_imageUrl "
+					+ " from product_table "
+					+ " where review_title = ? and review_author";
+			
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			ResultSet rs = null;
+			productDTO pdto = null;
+					
+			try {
+				conn = DBconnection.makeConnection();
+				log("2/6 success getReview");
+				
+				psmt = conn.prepareStatement(sql);
+				psmt.setInt(1, review_seq);
+				rs = psmt.executeQuery();
+				log("3/6 success getReview");
+				
+				if(rs.next()){
+					int i = 1;
+					pdto = new productDTO(
+							rs.getInt(i++),			// product_seq
+							rs.getString(i++),		// product_name
+							rs.getInt(i++),			// product_price
+							rs.getInt(i++),			// product_point
+							rs.getInt(i++),			// product_option_count
+							rs.getString(i++),		// product_info_about
+							rs.getString(i++),		// product_info_detail						
+							rs.getString(i++),		// product_info_size_tip
+							rs.getString(i++),		// product_info_washing_tip
+							rs.getString(i++),		// product_photo_gif
+							rs.getString(i++),		// product_photo_main
+							rs.getString(i++),		// product_photo_detail_main
+							rs.getString(i++),		// product_photo_detail
+							rs.getInt(i++),			// product_style_code
+							rs.getDate(i++),		// product_regiDate
+							rs.getInt(i++)			// product_del
+							);
+				}
+				log("4/6 success getReview");
+				
+			} catch(SQLException e) {
+				log("getReview Fail", e);
+			} finally {
+				DBclose.close(psmt, conn, rs);
+				log("6/6 success getReview");
+			}
+			
+			return pdto;
+		}
 }
 	
 	
