@@ -183,7 +183,7 @@ public class ReviewDAO implements iReviewDAO {
 	   public productDTO getReview(int review_seq) {
 			String sql = "select review_num, review_member_num, review_product_num, review_productOption_num, review_author, review_title, review_content, to_char(review_writeday, 'YYYY/MM/DD') review_writeday, review_del, review_imageUrl "
 					+ " from product_table "
-					+ " where review_title = ? and review_author";
+					+ " where review_seq = ?";
 			
 			Connection conn = null;
 			PreparedStatement psmt = null;
@@ -228,7 +228,6 @@ public class ReviewDAO implements iReviewDAO {
 				DBclose.close(psmt, conn, rs);
 				log("6/6 success getReview");
 			}
-			
 			return pdto;
 		}
 }
