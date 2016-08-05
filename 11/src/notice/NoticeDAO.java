@@ -168,6 +168,47 @@ public class NoticeDAO {
 		return nDTO;
 	}
 	
+	// 중요 공지사항 가져오기
+	public List<NoticeDTO> importantNoticeList() {
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<NoticeDTO> nList = new ArrayList<NoticeDTO>();
+		
+		try{
+			conn = DAOSetting.getConnection();
+			System.out.println("2/6 Success noticeList");
+
+			String sql = " select notice_num, notice_author, notice_pwd, notice_title, notice_content, to_char(notice_writeday, 'YYYY/MM/DD') notice_writeday, notice_readCnt, notice_important "
+					+ " from notice_table "
+					+ " where notice_important = 1 "
+					+ " order by notice_num desc ";
+			
+			psmt = conn.prepareStatement(sql);
+			System.out.println("3/6 Success importantNoticeList");
+			
+			rs = psmt.executeQuery();
+			System.out.println("4/6 Success importantNoticeList");
+			
+			while(rs.next()){
+				int i = 1;
+				NoticeDTO nDTO = new NoticeDTO(rs.getInt(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++));
+				
+				nList.add(nDTO);
+			}
+			
+		}catch(SQLException e){
+			System.out.println("FAIL importantNoticeList" + " " + e);
+		}finally{
+			DAOSetting.close(conn, psmt, rs);
+			System.out.println("5/6 Success importantNoticeList");
+		}
+		return nList;
+	}
+	
+	
 	// 페이징 처리
 	
 	// 페이지 구현
