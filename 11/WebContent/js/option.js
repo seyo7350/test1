@@ -76,7 +76,7 @@ function add_product(obj){
 	_option.push('<span class="MK_p-name">' + opt_title + '</span>');
 	_option.push('<div class="MK_qty-ctrl">');
 	_option.push('<input type="hidden" name="productOption_seq" value="'+j+'">');
-	_option.push('<input type="text" class="MK_count" value="1" name="MK_p_cnt_' + j + '" id="MK_p_cnt_' + j + '" style="ime-mode:disabled;">');
+	_option.push('<input type="text" class="MK_count" value="1" name="MK_p_cnt_' + j + '" id="MK_p_cnt_' + j + '" readonly style="ime-mode:disabled;">');
 	_option.push('<a href="javascript:change_amount(\'+\', \'' + j + '\');" class="MK_btn-up">');
 	_option.push('<img src="image/basket_up.gif" border="0">');
 	_option.push('</a>');
