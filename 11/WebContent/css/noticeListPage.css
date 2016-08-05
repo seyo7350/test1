@@ -31,7 +31,7 @@
        url(//fonts.gstatic.com/ea/nanumgothic/v5/NanumGothic-ExtraBold.ttf) format('truetype');
 }
 
-.content body{
+body{
 	background-color: #f5f5f5;
 	font-family: 'Nanum Gothic', sans-serif;
 }
@@ -44,7 +44,7 @@
     background-color: white;
 }
 user agent stylesheet
-.content div {
+div {
     display: block;
 =======
     padding: 0px 0;
@@ -140,13 +140,13 @@ h2 {
     padding: 0;
 }
 
-.content li {
+li {
     list-style: none;
     display: list-item;
     text-align: -webkit-match-parent;
 }
 
-.content table {
+table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
@@ -156,7 +156,7 @@ h2 {
 }
 
 user agent stylesheet
-.content table {
+table {
     display: table;
     border-collapse: separate;
     border-spacing: 2px;
@@ -170,24 +170,31 @@ Inherited from div#container
     background-color: #fff;
 }
 
+<<<<<<< HEAD
+/* hr, caption, legend {
+=======
+caption, legend {
+>>>>>>> branch 'master' of https://github.com/seyo7350/test1.git
+    display: none;
+} */
 
-.content colgroup {
+colgroup {
     display: table-column-group;
 }
 
-.content thead {
+thead {
     display: table-header-group;
     vertical-align: middle;
     border-color: inherit;
 }
 
-.content tr {
+tr {
     display: table-row;
     vertical-align: inherit;
     border-color: inherit;
 }
 
-.content table-list thead th {
+table-list thead th {
     padding: 5px 0 13px;
     border-top: 4px solid #e5e5e5;
     border-bottom: 1px solid #cecece;
@@ -220,7 +227,7 @@ Inherited from div#container
     padding: 0 10px;
 }
 
-.content tbody {
+tbody {
     display: table-row-group;
     vertical-align: middle;
     border-color: inherit;
@@ -273,7 +280,7 @@ bbs-table-list thead th, .bbs-table-list tbody td {
 } */
 
 user agent stylesheet
-.content form {
+form {
     display: block;
     margin-top: 0em;
 }
@@ -295,13 +302,16 @@ user agent stylesheet
     width: 880px;
     margin: 0 auto;
 }
-
-.content a {
-	color:#787878;
 }
 
+
+
+.content a {
+   text-decoration: none;
+   color:#787878;
+
+}
 .content a:link{color:#787878;text-decoration:none;}
 .content a:visited{Color:#787878;text-decoration:none;}
 .content a:hover{color:#787878;text-decoration:none;}
 .content a:active{Color:#787878;text-decoration:none;}
-

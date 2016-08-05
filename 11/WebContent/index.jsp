@@ -53,10 +53,8 @@ if(ologin == null){
 	<%
 }else{
  %>
-    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;
-    <%} %>
-			<a href='join.jsp'>join</a><br>
-			shopping bag<br>
+    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;<%}%><a href='join.jsp'>join</a><br>
+			<a href='shoppingbag.jsp'>shopping bag</a><br>
 			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
@@ -74,7 +72,7 @@ if(ologin == null){
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="qnaList.do">Q&A</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REVIEW		
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="reviewListPage.jsp">REVIEW</a>
 			<hr>
 		</div>
 	</div>

@@ -51,18 +51,8 @@ List<productDTO> onepiceList = pdao.getProductList(onepice_style_code);
 <div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
-            <%
-
-if(ologin == null){
-	%>
-    <a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;
-	<%
-}else{
- %>
-    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;
-    <%} %>
-			<a href='join.jsp'>join</a><br>
-			shopping bag<br>
+    		<a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join</a><br>
+			<a href='shoppingbag.jsp'>shopping bag</a><br>
 			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
@@ -80,7 +70,7 @@ if(ologin == null){
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="qnaList.do">Q&A</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REVIEW		
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="review.jsp">REVIEW</a>
 			<hr>
 		</div>
 	</div>
@@ -100,7 +90,7 @@ if(ologin == null){
 	<div class="container_middle">
 		<div class="content">
 			
-<div id="container">
+<div>
  <div id="contentWrapper">
         <div id="contentWrap">
             
