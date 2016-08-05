@@ -9,7 +9,7 @@
 <%
 request.setCharacterEncoding("utf-8");
 String strMemberSeq = request.getParameter("memberSeq");
-String strProductSeq = request.getParameter("productSeq");
+/* String strProductSeq = request.getParameter("productSeq"); */
 String strProductOptionSeq = request.getParameter("productOptionSeq");
 String reviewId = request.getParameter("reviewId");
 
@@ -21,9 +21,9 @@ memberDAO mDAO = memberDAO.getInstance();
 
 productDAO pDAO = productDAO.getInstance();
 
-int productSeq = Integer.parseInt(strProductSeq);
+/* int productSeq = Integer.parseInt(strProductSeq); */
 
-productDTO pDTO = pDAO.getProduct(productSeq);
+/* productDTO pDTO = pDAO.getProduct(productSeq); */
 
 
 
@@ -120,6 +120,8 @@ if(ologin == null){
 									<%
 									List<ReviewDTO> rDTO = rDAO.getReviewList();
 									for(int i = 0; i < rDTO.size(); i++) {
+										ReviewDTO reDTO = rDTO.get(i);
+										productDTO pdto = pDAO.getProduct(reDTO.getReview_product_seq());
 									%>
 									<li class="review review_thumbnail"
 										data-product-url="http://www.cherrykoko.com/shop/shopdetail.html?branduid=29789"
@@ -130,23 +132,23 @@ if(ologin == null){
 													<%-- C:/Users/aa1/git/new01/test1/11/WebContent/upload/review/<%= strMemberSeq%>/<%=rDTO.get(i).getReview_imageUrl() --%>
 														<!--이미지 소스--> 
 														<img class="review-image loaded"	 alt="FUCK YOU"
-														src="upload/product">
+														src="upload/review/<%=reDTO.getReview_member_seq()%>/<%=reDTO.getReview_imageUrl() %>">
 
 												<div class="images-count-indicator image-count-2"></div>
 											</div>
 											<div class="review-author-info">
 												<div class="review-title">
 													<!--리뷰 타이틀-->
-													<%=rDTO.get(i).getReview_title() %>
+													<%=reDTO.getReview_title() %>
 												</div>
 												<div class="date-name-container show-created-at">
 													<div class="author-name">
 														<!--작성자-->
-														<%=rDTO.get(i).getReview_author()  %>
+														<%=reDTO.getReview_author()  %>
 													</div>
 													<div class="created-at">
 														<!--작성일-->
-														<%=rDTO.get(i).getReview_writeday() %>
+														<%=reDTO.getReview_writeday() %>
 													</div>
 												</div>
 											</div>
@@ -156,17 +158,17 @@ if(ologin == null){
 											<div class="review-product-thumbnail">
 											
 												<!--구입 제품 이미지-->
-												<img alt="racella, skirt" width="90" height="90" src="upload/product/<%=productSeq %>/<%=pDTO.getProduct_photo_gif()%>">
+												<img alt="racella, skirt" width="90" height="90" src="upload/product/<%=reDTO.getReview_product_seq()%>/<%=pdto.getProduct_photo_gif()%>">
 											</div>
 											<div class="review-product-info">
 												<div class="product-info-title">
 													<!--구입 제품명-->
-													<%=pDTO.getProduct_name() %>
+													<%=pdto.getProduct_name()%>										
 													
 												</div>
 												<div class="product-info-feedbacks">
 													<!--기타 정보-->
-													<span class="reviews-count">리뷰<strong>27</strong></span><span	class="display-score">평점<strong>4.9</strong></span>
+													<!-- <span class="reviews-count">리뷰<strong>27</strong></span><span	class="display-score">평점<strong>4.9</strong></span> -->
 												
 												</div>
 												
