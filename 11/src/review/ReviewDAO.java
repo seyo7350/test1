@@ -183,7 +183,7 @@ public class ReviewDAO implements iReviewDAO {
 	   public ReviewDTO ReviewDetail(int review_seq) {
 			String sql = "select review_num, review_member_num, review_product_num, review_productOption_num, review_author, review_title, review_content, to_char(review_writeday, 'YYYY/MM/DD') review_writeday, review_del, review_imageUrl "
 					+ " from review_table "
-					+ " where review_seq = ?";
+					+ " where review_num = ?";
 			
 			Connection conn = null;
 			PreparedStatement psmt = null;

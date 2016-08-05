@@ -131,8 +131,9 @@ if(ologin == null){
 											<div class="thumbnail-container">
 													<%-- C:/Users/aa1/git/new01/test1/11/WebContent/upload/review/<%= strMemberSeq%>/<%=rDTO.get(i).getReview_imageUrl() --%>
 														<!--이미지 소스--> 
-														<img class="review-image loaded"	 alt="FUCK YOU"
-														src="upload/review/<%=reDTO.getReview_member_seq()%>/<%=reDTO.getReview_imageUrl() %>">
+													<a href="reviewDetail.jsp?seq=<%=reDTO.getReview_seq()%>"><img class="review-image loaded"	 alt="FUCK YOU"
+														src="upload/review/<%=reDTO.getReview_member_seq()%>/<%=reDTO.getReview_imageUrl() %>"></a>
+			
 
 												<div class="images-count-indicator image-count-2"></div>
 											</div>
