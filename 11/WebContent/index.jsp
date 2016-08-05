@@ -113,8 +113,8 @@ if(ologin == null){
 								<a href="noticeView.do?seq=<%=ndto.getNotice_num()%>">
 									<%
 									String title = "";
-									if(ndto.getNotice_title().length()>15){
-										title = ndto.getNotice_title().substring(0, 15);
+									if(ndto.getNotice_title().length()>25){
+										title = ndto.getNotice_title().substring(0, 25);
 										title += "...";
 									}else{
 										title = ndto.getNotice_title();

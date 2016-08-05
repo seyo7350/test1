@@ -82,7 +82,7 @@ public class QnAFrontController extends HttpServlet {
 		if(com.equals("/qnaWrite.do")){
 			icommand = new QnAWriteCommand();
 			icommand.execute(request, response);
-			nextPage = "qnaList.do";
+			nextPage = "qnaListPage.jsp";
 		}
 		
 		// 글 자세히 보기
@@ -112,6 +112,7 @@ public class QnAFrontController extends HttpServlet {
 			icommand = new NoticeWriteCommand();
 			icommand.execute(request, response);
 			nextPage = "noticeList.do";
+			/*response.sendRedirect("noticeListPage.jsp");*/
 		}
 		
 		// 공지글 자세히 보기

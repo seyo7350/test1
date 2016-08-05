@@ -133,7 +133,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                       <!--  .thumb-wrap  -->
                       <form action="product_detailAf.jsp" name="form1" id="form1" method="post" style="float: right;">
                         <div class="info">
-                           <h3 class="tit-prd">상품명</h3>
+                           <h3 class="tit-prd"><%=pdto.getProduct_name()%></h3>
                         <div class="table-opt">
                            <table summary="판매가격, 적립금, 주문수량, 옵션, 사이즈">
                            <colgroup>

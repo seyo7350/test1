@@ -70,3 +70,13 @@ references product_table(product_seq);
 
 select * from product_table
 select * from productOption_table
+
+
+delete from product_table where product_seq = 2
+
+delete from productOption_table where productOption_product_seq = 2
+
+update product_table set product_photo_gif = '0010010048713.jpg' where product_seq = 3
+update product_table set product_photo_main = '00100300247321.jpg'
+
+0010010048713.jpg

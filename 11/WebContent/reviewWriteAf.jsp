@@ -54,10 +54,8 @@ int productOptionSeq = Integer.parseInt(strProductOptionSeq);
 ReviewDAO rDAO =  ReviewDAO.getInstance();
 rDAO.writeReview(memberSeq, productSeq, productOptionSeq, reviewId, title, smarteditor, reviewImage);
 
-
-
-
+response.sendRedirect("reviewListPage.jsp");
 %>
-<jsp:forward page="reviewListPage.jsp??memberSeq=<%=strMemberSeq %>&productSeq=<%=strProductSeq %>&productOptionSeq=<%=strProductOptionSeq %>&reviewId=<%=reviewId %>"></jsp:forward>
-</body>
+<%-- <jsp:forward page="reviewListPage.jsp??memberSeq=<%=strMemberSeq %>&productSeq=<%=strProductSeq %>&productOptionSeq=<%=strProductOptionSeq %>&reviewId=<%=reviewId %>"></jsp:forward>
+ --%></body>
 </html>

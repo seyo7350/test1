@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="notice.NoticeDTO"%>
 <%@page import="notice.NoticeDAO"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -24,6 +25,22 @@
 <script src="js/jquery.bxslider.js"></script>
 <script src="js/jquery.bxslider.min.js"></script>
 
+<script type="text/javascript">
+
+document.onkeydown = function(e){
+ key = (e) ? e.keyCode : event.keyCode;
+ if(key==8 || key==116){
+  if(e){
+   e.preventDefault();
+  }
+  else{
+   event.keyCode = 0;
+   event.returnValue = false;
+  }
+ }
+}
+</script> 
+
 
 </head>
 <body>
@@ -44,7 +61,19 @@ List<productDTO> onepiceList = pdao.getProductList(onepice_style_code);
 
 <%
 NoticeDAO nDAO = new NoticeDAO();
-List<NoticeDTO> noticeList = nDAO.noticeList();
+List<NoticeDTO> noticeList1 = nDAO.noticeList();
+List<NoticeDTO> imList = nDAO.importantNoticeList();
+
+List<NoticeDTO> noticeList = new ArrayList<NoticeDTO>();
+for(int i = 0; i < noticeList1.size(); i++){
+	NoticeDTO ndto = noticeList1.get(i);
+	if(ndto.getNotice_important()==1){
+		continue;
+	}else{
+		noticeList.add(ndto);
+	}
+	
+}
 
 /* Object obj = request.getAttribute("noticeList");
 List<NoticeDTO> noticeList = (List<NoticeDTO>)obj; */
@@ -156,6 +185,7 @@ if(ologin == null){
     <a href='login.jsp'>login</a>&nbsp;&nbsp;/&nbsp;&nbsp;
 	<%
 }else{
+	mem = (memberDTO)ologin;
  %>
     <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;<%}%><a href='join.jsp'>join</a><br>
 			<a href='shoppingbag.jsp'>shopping bag</a><br>
@@ -259,23 +289,56 @@ if(ologin == null){
                                     </c:forEach> --%>
                                       
                                        <%
-                                    if(noticeList == null || noticeList.size() == 0){
-                                       %>
-                                       <tr>
-                                          <td colspan="5">작성된 공지사항이 없습니다</td>
-                                       </tr>
-                                       <%
-                                    }
+                                       
+                                    for(int i = 0; i < imList.size(); i++){
+                                    	if(imList.size() <= i) {
+                                            break;
+                                         }
+                                         NoticeDTO nDTO = imList.get(i);
+                                         /* if(qDTO.getDel()==0) */
+                                         %>
+                                         <tr>
+                                            <td colspan="2"><div class="tb-center"><img src="image/icon_box_arrow.gif"></div></td>
+                                            <td><div class="tb-left"><img src="image/neo_notice.gif"></div></td>
+                                            <!-- .product image 관련 -->
+                                            <td><div class="tb-left"><a href="noticeView.do?seq=<%=nDTO.getNotice_num()%>"><%=nDTO.getNotice_title() %></a></div></td>
+                                            <td><div class="tb-center"><%=nDTO.getNotice_author() %></div></td>
+                                   <td><div class="tb-center"><%=nDTO.getNotice_writeday() %></div></td>
+                                   <td><div class="tb-center"><%=nDTO.getNotice_readCnt() %></div></td>
+                                         </tr>
+                                            <%--}else{
+                                         %>               
+                                         <tr>
+                                            <td><%=bdto.getSeq()%></td>
+                                            <td>삭제된 글입니다</td>
+                                            <td></td>
+                                         </tr>
+                                         <% --%>
+                                         
+                                         <%
+                                      }
+ 
+									 if(noticeList == null || noticeList.size() == 0){
+									     %>
+									     <tr>
+									        <td colspan="5">작성된 공지사항이 없습니다</td>
+									     </tr>
+									     <%
+									  }
+                                    
                                     for(int i = record_start_no; i < record_start_no+page_per_record_cnt; i++){
                                        if(noticeList.size() <= i) {
                                           break;
                                        }
                                        NoticeDTO nDTO = noticeList.get(i);
                                        /* if(qDTO.getDel()==0) */
+                                       /* if(nDTO.getNotice_important()==1){
+                                    	   continue;
+                                       } */
                                        %>
                                        <tr>
                                           <td colspan="2"><div class="tb-center"><%=nDTO.getNotice_num() %></div></td>
-                                          <td><div class="tb-left"><img src="image/neo_default.gif"></div></td>
+                                          <td><div class="tb-left"><img src="image/neo_notice.gif"></div></td>
                                           <!-- .product image 관련 -->
                                           <td><div class="tb-left"><a href="noticeView.do?seq=<%=nDTO.getNotice_num()%>"><%=nDTO.getNotice_title() %></a></div></td>
                                           <td><div class="tb-center"><%=nDTO.getNotice_author() %></div></td>
@@ -320,9 +383,15 @@ if(ologin == null){
       
                                 </div>
                                 <dl class="bbs-link-btm">
+                                <%
+                                if(mem.getMember_auth()==0){
+                                %>
                             <dd>
                                 <a href="noticeWriteUI.do"><img src="image/detail_write_bt.png" /></a>
                             </dd>
+                            <%
+                                }
+                            %>
                         </dl>
                         
                                  <div class="bbs-sch">

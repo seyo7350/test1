@@ -222,12 +222,18 @@ if(ologin == null){
 			<div class="qna_menu_area">
                   <h2><img src="image/board_qna_title.png" /></h2>
                   <ul>
-                     <li class="first_child"><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%BB%F3%C7%B0%B9%AE%C0%C7&search_type=&stext=%BB%F3%C7%B0%B9%AE%C0%C7"><img src="image/qna_menu1.png" onmouseover="this.src='image/qna_menu1_1.png'" onmouseout="this.src='image/qna_menu1.png'" /></a></li>
+                     <!-- <li class="first_child"><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%BB%F3%C7%B0%B9%AE%C0%C7&search_type=&stext=%BB%F3%C7%B0%B9%AE%C0%C7"><img src="image/qna_menu1.png" onmouseover="this.src='image/qna_menu1_1.png'" onmouseout="this.src='image/qna_menu1.png'" /></a></li>
                      <li><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%B1%B3%C8%AF%B9%DD%C7%B0&search_type=&stext=%B1%B3%C8%AF%B9%DD%C7%B0"><img src="image/qna_menu2.png" onmouseover="src='image/qna_menu2_1.png'" onmouseout="src='image/qna_menu2.png'" /></a></li>
                      <li><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%B9%E8%BC%DB%B9%AE%C0%C7&search_type=&stext=%B9%E8%BC%DB%B9%AE%C0%C7"><img src="image/qna_menu3.png" onmouseover="this.src='image/qna_menu3_1.png'" onmouseout="this.src='image/qna_menu3.png'" /></a></li>
                      <li><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%C3%EB%BC%D2%BA%AF%B0%E6&search_type=&stext=%C3%EB%BC%D2%BA%AF%B0%E6"><img src="image/qna_menu4.png" onmouseover="this.src='image/qna_menu4_1.png'" onmouseout="this.src='image/qna_menu4.png'" /></a></li>
                      <li><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%B1%E2%C5%B8%B9%AE%C0%C7&search_type=&stext=%B1%E2%C5%B8%B9%AE%C0%C7"><img src="image/qna_menu5.png" onmouseover="this.src='image/qna_menu5_1.png'" onmouseout="this.src='image/qna_menu5.png'" /></a></li>
-                     <li><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%C7%D8%BF%DC%B9%E8%BC%DB&search_type=&stext=%C7%D8%BF%DC%B9%E8%BC%DB"><img src="image/qna_menu6.png" onmouseover="this.src='image/qna_menu6_1.png'" onmouseout="this.src='image/qna_menu6.png'" /></a></li>
+                     <li><a href="/board/board.html?s_id=&code=cherry07&page=1&type=s&search_header=%C7%D8%BF%DC%B9%E8%BC%DB&search_type=&stext=%C7%D8%BF%DC%B9%E8%BC%DB"><img src="image/qna_menu6.png" onmouseover="this.src='image/qna_menu6_1.png'" onmouseout="this.src='image/qna_menu6.png'" /></a></li> -->
+                     <li class="first_child"><a href=""><img src="image/qna_menu1.png" onmouseover="this.src='image/qna_menu1_1.png'" onmouseout="this.src='image/qna_menu1.png'" /></a></li>
+                     <li><a href=""><img src="image/qna_menu2.png" onmouseover="src='image/qna_menu2_1.png'" onmouseout="src='image/qna_menu2.png'" /></a></li>
+                     <li><a href=""><img src="image/qna_menu3.png" onmouseover="this.src='image/qna_menu3_1.png'" onmouseout="this.src='image/qna_menu3.png'" /></a></li>
+                     <li><a href=""><img src="image/qna_menu4.png" onmouseover="this.src='image/qna_menu4_1.png'" onmouseout="this.src='image/qna_menu4.png'" /></a></li>
+                     <li><a href=""><img src="image/qna_menu5.png" onmouseover="this.src='image/qna_menu5_1.png'" onmouseout="this.src='image/qna_menu5.png'" /></a></li>
+                     <li><a href=""><img src="image/qna_menu6.png" onmouseover="this.src='image/qna_menu6_1.png'" onmouseout="this.src='image/qna_menu6.png'" /></a></li>
                   </ul>
                   
    </div>
@@ -267,10 +273,10 @@ if(ologin == null){
                                 <tbody> 
                                 
                                     <!-- .공지사항 리스트 시작 -->
-                                                                            <tr>
+                                        <!--                                     <tr>
                                         <td><div class="tb-center"><img src="image/icon_box_arrow.gif" /></div></td>
                                         <td><div class="tb-left"><img src = "image/neo_notice.gif"/> </div></td>
-                                        <!-- .상품정보가 있을 경우에만 나타남 -->
+                                        .상품정보가 있을 경우에만 나타남
                                         <td colspan="2" >
                                                                                     <div class="tb-left">
                                                 <img src = ""/> 
@@ -289,7 +295,7 @@ if(ologin == null){
                                                                             <tr>
                                         <td><div class="tb-center"><img src="image/icon_box_arrow.gif" /></div></td>
                                         <td><div class="tb-left"><img src = "image/neo_notice.gif"/> </div></td>
-                                        <!-- .상품정보가 있을 경우에만 나타남 -->
+                                        .상품정보가 있을 경우에만 나타남
                                         <td colspan="2" >
                                                                                     <div class="tb-left">
                                                 <img src = ""/> 
@@ -308,7 +314,7 @@ if(ologin == null){
                                                                             <tr>
                                         <td><div class="tb-center"><img src="image/icon_box_arrow.gif" /></div></td>
                                         <td><div class="tb-left"><img src = "image/neo_notice.gif"/> </div></td>
-                                        <!-- .상품정보가 있을 경우에만 나타남 -->
+                                        .상품정보가 있을 경우에만 나타남
                                         <td colspan="2" >
                                                                                     <div class="tb-left">
                                                 <img src = ""/> 
@@ -327,7 +333,7 @@ if(ologin == null){
                                                                             <tr>
                                         <td><div class="tb-center"><img src="image/icon_box_arrow.gif" /></div></td>
                                         <td><div class="tb-left"><img src = "image/neo_notice.gif"/> </div></td>
-                                        <!-- .상품정보가 있을 경우에만 나타남 -->
+                                        .상품정보가 있을 경우에만 나타남
                                         <td colspan="2" >
                                                                                     <div class="tb-left">
                                                 <img src = ""/> 
@@ -342,7 +348,7 @@ if(ologin == null){
                                         </td>
                                         <td><div class="tb-center">2014/05/14</div></td>
                                         <td><div class="tb-center">190592</div></td>
-                                    </tr>
+                                    </tr> -->
                                                                             <!--. 공지사항 리스트 끝! -->   
                                     
                                   <%--   <c:forEach items="${qnaList}" var="dto"> <!-- 반복할땐 qnaList.qna_num 이렇게 바로 못쓰나? -->
