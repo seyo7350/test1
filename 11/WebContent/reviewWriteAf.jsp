@@ -17,8 +17,9 @@ String strMemberSeq = request.getParameter("memberSeq");
 String strProductSeq = request.getParameter("productSeq");
 String strProductOptionSeq = request.getParameter("productOptionSeq");
 
-String savePath = "C:/Users/aa1/git/new01/test1/11/WebContent/upload/review";
-savePath += "/" + strMemberSeq;
+/* String savePath = "C:/Users/aa1/git/new01/test1/11/WebContent/upload/review"; */
+String savePath = request.getServletContext().getRealPath("/");
+savePath += "upload/review/" + strMemberSeq;
 
 File file = new File(savePath);
 
