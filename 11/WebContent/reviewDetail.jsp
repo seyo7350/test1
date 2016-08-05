@@ -47,28 +47,26 @@ if(ologin == null){
 	<%
 }else{
  %>
-    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;
-    <%} %>
-			<a href='join.jsp'>join</a><br>
-			shopping bag<br>
-			<a href='myPage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
+    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;<%}%><a href='join.jsp'>join</a><br>
+			<a href='shoppingbag.jsp'>shopping bag</a><br>
+			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=101 %>">OUTER</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp">TOP</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=102 %>">TOP</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=103 %>">BOTTOM</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ONEPIECE
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=104 %>">ONEPIECE</a>
 			<br>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="noticeList.do">NOTICE</a>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="qnaList.do">Q&A</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REVIEW		
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="reviewListPage.jsp">REVIEW</a>
 			<hr>
 		</div>
 	</div>
@@ -139,12 +137,12 @@ System.out.println("dfdfdfd" + review_num);
 	
 	    <dl class="prd-tinfo">
                             <dt>
-                                <a href="/shop/shopdetail.html?branduid=29890&xcode=002&mcode=003&scode=&GfDT=bmt4W1w%3D"><img src="/shopimages/cherry07/0020030030003.gif" /></a>
+                                <a href="product_dtail.jsp?product_seq=<%=pdto.getProduct_seq()%>"><img src="upload/product/<%=pdto.getProduct_seq()%>/<%=pdto.getProduct_photo_gif()%>" height="80px"   style="padding-left: 20px"/></a>
                             </dt>
                             <dd>
                                 <ul>
-                                    <li class="name"><span class="tit">상 품 명:</span><a href="/shop/shopdetail.html?branduid=29890&xcode=002&mcode=003&scode=&GfDT=bmt4W1w%3D"><%=pdto.getProduct_name()%></a></li>
-                                    <li class="price"><span class="tit">색 상:</span><strong><%=podto.getProductOption_color() %></strong></li>
+                                    <li class="name"><span class="tit">상 품 명:</span><a href="product_dtail.jsp?product_seq=<%=pdto.getProduct_seq()%>" style="font-size: 14px;"><%=pdto.getProduct_name()%></a></li>
+                                    <li class="price"><span class="tit">색 상:</span><strong style="font-size: 12px;"><%=podto.getProductOption_color() %></strong></li>
                                 </ul>
                             </dd>
                         </dl>

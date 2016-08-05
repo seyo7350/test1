@@ -8,12 +8,12 @@
 
 <%
 request.setCharacterEncoding("utf-8");
-String strMemberSeq = request.getParameter("memberSeq");
+/* String strMemberSeq = request.getParameter("memberSeq"); */
 /* String strProductSeq = request.getParameter("productSeq"); */
-String strProductOptionSeq = request.getParameter("productOptionSeq");
-String reviewId = request.getParameter("reviewId");
+/* String strProductOptionSeq = request.getParameter("productOptionSeq");
+String reviewId = request.getParameter("reviewId"); */
 
-int MemberSeq = Integer.parseInt(strMemberSeq);
+/* int MemberSeq = Integer.parseInt(strMemberSeq); */
 
 ReviewDAO rDAO = ReviewDAO.getInstance();
 
@@ -50,11 +50,9 @@ productDAO pDAO = productDAO.getInstance();
 	<div class="side">
 	<div class="side_inner">
 		<div class="side_inner_top">
-		            <%
+            <%
 Object ologin = session.getAttribute("login");
 memberDTO mem = null;
-
-mem = mDAO.getMember(MemberSeq);
 
 if(ologin == null){
 	%>
@@ -62,28 +60,26 @@ if(ologin == null){
 	<%
 }else{
  %>
-    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;
-    <%} %>
-			<a href='join.jsp'>join</a><br>
-			shopping bag<br>
-			<a href='myPage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
+    <a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;<%}%><a href='join.jsp'>join</a><br>
+			<a href='shoppingbag.jsp'>shopping bag</a><br>
+			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
 		<div class="side_inner_middle">	
 			<hr>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OUTER
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=101 %>">OUTER</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="top.jsp">TOP</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=102 %>">TOP</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BOTTOM
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=103 %>">BOTTOM</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ONEPIECE
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="product.jsp?product_style_code=<%=104 %>">ONEPIECE</a>
 			<br>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="noticeList.do">NOTICE</a>
 			<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="qnaList.do">Q&A</a>
 			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;REVIEW		
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href ="reviewListPage.jsp">REVIEW</a>
 			<hr>
 		</div>
 	</div>

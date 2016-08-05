@@ -413,6 +413,8 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
       	</div>      	            
    </div>
    
+   <br><br><br><br><br>
+   
       <div id="detail_QnA">
       	<div class="detail_menu_tab">
 			<!-- <ul><li class="first_child">QnA</li></ul>&nbsp; -->
