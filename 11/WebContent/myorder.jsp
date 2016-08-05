@@ -1,3 +1,4 @@
+<%@page import="review.ReviewDTO"%>
 <%@page import="member.memberDTO"%>
 <%@page import="order.orderDAO"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -54,6 +55,9 @@ orderDAO odao = orderDAO.getInstance();
 productDAO pdao = productDAO.getInstance();
 
 List<orderDTO> orderList = odao.getMemberOrderList(mem.getMember_seq());
+
+
+
 %>
 
 <script type="text/javascript">
@@ -204,9 +208,17 @@ function buy(){
 	                                						<%
 	                                					}else{
 	                                						%>
+	                                						
 	                                						배송완료
+	                                						
+	                                						<input type="button" value="리뷰 작성" onclick="location.href='reviewWrite.jsp?memberSeq=<%=mem.getMember_seq() %>&productSeq=<%=odto.getOrder_product_seq() %>&productOptionSeq=<%=odto.getOrder_productOption_seq() %>&reviewId=<%=mem.getMember_id() %>'" />
 	                                						<%
+	                                						System.out.println(pdto.getProduct_seq());
+	                                						System.out.println(podto.getProductOption_seq());
+	                                						
 	                                						/* if() 리뷰*/
+	                                						
+	                                						//ReviewDTO rdto = new ReviewDTO(mem.getMember_seq(), pdto.getProduct_seq(), podto.getProductOption_seq())
 	                                					}
 	                                					%>
 	                                				</div>

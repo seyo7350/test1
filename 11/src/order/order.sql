@@ -12,6 +12,9 @@ create table order_table(
 insert into order_table (order_seq, order_member_seq, order_product_seq, order_productOption_seq, order_amount, order_regiDate, order_confirm, order_del)  
 values (seq_order_table.nextval, 2, 2, 2, 4, sysdate, 1, 0) ;
 
+insert into order_table (order_seq, order_member_seq, order_product_seq, order_productOption_seq, order_amount, order_regiDate, order_confirm, order_del)  
+values (seq_order_table.nextval, 3, 1, 2, 4, sysdate, 1, 0) ;
+
 create sequence seq_order_table
 start with 1 increment by 1;
 

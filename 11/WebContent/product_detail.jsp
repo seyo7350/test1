@@ -5,6 +5,8 @@
 <%@page import="product.productDAO"%>
 <%@page import="qna.QnADTO"%>
 <%@page import="qna.QnADAO"%>
+<%@page import="review.ReviewDTO"%>
+<%@page import="review.ReviewDAO"%>
 <%--<%@page import="review.ReviewDTO"%>
 <%@page import="review.ReviewDAO"%>--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -52,8 +54,8 @@ List<productOptionDTO> poList = pdao.getProductOptionList(product_seq);
 QnADAO qdao = new QnADAO();
 List<QnADTO> gpqList = qdao.getproductqnaList(product_seq);
 
-/*ReviewDAO rdao = ReviewDAO.getInstance();
-List<ReviewDTO> gprList = rdao.getProductReviewList(product_seq);*/
+ReviewDAO rdao = ReviewDAO.getInstance();
+List<ReviewDTO> gprList = rdao.getProductReviewList(product_seq);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 //tip부분 
@@ -85,7 +87,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
 <div class="side">
    <div class="side_inner">
       <div class="side_inner_top">
-			<a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>join</a><br>
+			<a href='logout.jsp'>logout</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='join.jsp'>Sjoin</a><br>
 			<a href='shoppingbag.jsp'>shopping bag</a><br>
 			<a href='mypage.jsp'>mypage</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href='index.jsp'>home</a>
 		</div>
@@ -353,15 +355,15 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
             </div>
          </div>
       </div><!-- content -->
-     <%--<div id="detail_Review">
+     <div id="detail_Review">
       	<div class="detail_menu_tab">
 			<!-- <ul><li class="first_child">QnA</li></ul>&nbsp; -->
       	</div>
       	<div class="review-inner">
-      		<img src="image/detail_qna_title.png"><!-- 이미지 변경 해야되!!!!!!!!! -->
+      		<img src="image/detail_review_title.png">
       		
       		<br><br>
-      	<div class="table-slide qna-list" style="background-color: white;" align="center">
+      	<div class="table-slide review-list" style="background-color: white;" align="center">
                             <table summary="번호,제목,작성자,작성일" border="1">
                                 <!-- <colgroup>
                                     <col width="80" />
@@ -385,14 +387,19 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                               		<%
                               		if(gprList.isEmpty()){
                               		%>
-                              			<tr height="37"><td colspan="4"><div class="tb-center">작성된 QnA가 없습니다.</div></td></tr>
+                              			<tr height="37"><td colspan="4"><div class="tb-center">
+                              			<img src="">
+                              			<strong>REVIEW |</strong>
+                              			<!-- <span>|</span> -->
+                              			이 상품의 첫번째 리뷰어가 되어 주세요! 각 상품별 첫번째 후기+착용사진 등록시 5,000원 포토후기 2,000원 / 글후기 1,000원을 적립해드려요
+                              			</div></td></tr>
                               		<%
                               		}else{
 	                              		for(int i=0; i<gprList.size(); i++){
 	                              		%>
 	                              			<tr height="37">
 	                              				<td><div class="tb-center"><%=i%></div></td>
-	                              				<td><div class="tb-center"><%=gprList.get(i).getReview_title() %></div></td>
+	                              				<td><div class="tb-center"><a href="reviewDetail.jsp?seq=<%=gprList.get(i).getReview_seq()%>"><%=gprList.get(i).getReview_title() %></a></div></td>
 	                              				<td><div class="tb-center"><%=gprList.get(i).getReview_author() %></div></td>
 	                              				<td><div class="tb-center"><%=gprList.get(i).getReview_writeday() %></div></td>
 	                              			</tr>
@@ -404,7 +411,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
                             </table>     	
       			</div>
       	</div>      	            
-   </div>--%>
+   </div>
    
       <div id="detail_QnA">
       	<div class="detail_menu_tab">
@@ -445,7 +452,7 @@ for(int i=0; i<product_photo_detail_vales.length; i++){
 	                              		%>
 	                              			<tr height="37">
 	                              				<td><div class="tb-center"><%=i%></div></td>
-	                              				<td><div class="tb-center"><%=gpqList.get(i).getQna_title() %></div></td>
+	                              				<td><div class="tb-center"><a href="qnaDetail.jsp?seq=<%=gpqList.get(i).getQna_num()%>"><%=gpqList.get(i).getQna_title() %></a></div></td>
 	                              				<td><div class="tb-center"><%=gpqList.get(i).getQna_author() %></div></td>
 	                              				<td><div class="tb-center"><%=gpqList.get(i).getQna_writeday() %></div></td>
 	                              			</tr>
